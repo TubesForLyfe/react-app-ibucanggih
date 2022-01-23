@@ -94,3 +94,19 @@ body {
     flex-grow: 0;
     margin: 0px 10px;
 }
+
+.bottom-text {
+    position: absolute;
+    width: 315px;
+    height: 19px;
+    left: 30px;
+    top: 529px;
+
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+
+    color: #2F2F2F;
+}

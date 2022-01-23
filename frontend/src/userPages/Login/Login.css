@@ -1,0 +1,102 @@
+body {
+    margin: 0;
+}
+
+.background-login {
+    position: absolute;
+    width: 375px;
+    height: 555px;
+    left: 0px;
+    top: 0px;
+
+    background: #F2FAFF;
+}
+
+.logo-login {
+    position: absolute;
+    width: 94px;
+    height: 105px;
+    left: 140px;
+    top: 24px;
+}
+
+.email-login {
+    position: absolute;
+    width: 320px;
+    height: 40px;
+    left: 28px;
+    top: 164px;
+
+    background: #FFFFFF;
+
+    box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.08);
+    border-radius: 67px;
+}
+
+.password-login {
+    position: absolute;
+    width: 320px;
+    height: 40px;
+    left: 28px;
+    top: 228px;
+
+    background: #FFFFFF;
+
+    box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.08);
+    border-radius: 154px;
+}
+
+.submit-login {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 101px;
+
+    position: absolute;
+    width: 320px;
+    height: 40px;
+    left: 28px;
+    top: 321px;
+
+    background: #85296B;
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 77px;
+}
+
+.submit-text-login {
+    position: static;
+    width: 43px;
+    height: 22px;
+    left: 138.5px;
+    top: 9px;
+
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 850;
+    font-size: 14px;
+    line-height: 22px;
+
+    color: #FFFFFF;
+
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 10px;
+}
+
+.bottom-text-login {
+    position: absolute;
+    width: 314px;
+    height: 22px;
+    left: 30px;
+    top: 398px;
+
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+
+    color: #2F2F2F;
+}

@@ -1,8 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Logo from "../../img/Logo.png";
 import Background from "../../img/Background.png";
 import "./Register.css";
+import FooterRegister from "../../components/FooterRegister/FooterRegister";
 
 const Register = () => {
   return (
@@ -22,6 +24,10 @@ const Register = () => {
           <button type="submit" className="submit"><p className="submit-text">Daftar</p></button>
         </form>
       </div>
+      <p className="bottom-text">
+        Sudah punya Akun Ibu-Ibu Canggih? <Link to="/login">Masuk disini</Link>
+      </p>
+      <FooterRegister />
     </div>
   )
 }
