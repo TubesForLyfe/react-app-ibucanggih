@@ -1,0 +1,16 @@
+body {
+    margin: 0;
+}
+
+.event-admin {
+    position: relative;
+    width: 333px;
+    height: 200px;
+    left: 0px;
+    top: 0px;
+
+    background: #FFFFFF;
+
+    box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.08);
+    border-radius: 24px;
+}

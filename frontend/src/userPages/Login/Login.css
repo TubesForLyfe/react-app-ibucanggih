@@ -20,7 +20,7 @@ body {
     top: 24px;
 }
 
-.email-login {
+.phone-login {
     position: absolute;
     width: 320px;
     height: 40px;
@@ -31,6 +31,7 @@ body {
 
     box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.08);
     border-radius: 67px;
+    padding-left: 15px;
 }
 
 .password-login {
@@ -44,6 +45,7 @@ body {
 
     box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.08);
     border-radius: 154px;
+    padding-left: 15px;
 }
 
 .submit-login {
@@ -99,4 +101,20 @@ body {
     line-height: 19px;
 
     color: #2F2F2F;
+}
+
+.login-status {
+    position: absolute;
+    width: 192px;
+    height: 14px;
+    left: 27px;
+    top: 267px;
+
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 14px;
+
+    color: #E62828;
 }

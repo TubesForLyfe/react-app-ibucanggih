@@ -1,0 +1,419 @@
+body {
+    margin: 0;
+}
+
+.bg-addreward {
+    position: absolute;
+    width: 374px;
+    height: 181px;
+    left: 0px;
+    top: -50px;
+    
+    background: #85296B;
+    border-radius: 50%;
+}
+
+.title-addreward {
+    position: absolute;
+    width: 238px;
+    height: 38px;
+    left: 69px;
+    top: -10px;
+
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 38px;
+
+    color: #FFFFFF;
+}
+
+.title-addreward img {
+    position: absolute;
+    left: -45px;
+    right: 20.83%;
+    top: 14px;
+    bottom: 25%;
+    
+    box-sizing: border-box;
+    border-radius: 2px;    
+}
+
+.formadd-bg {
+    position: absolute;
+    width: 335px;
+    height: 364px;
+    left: 20px;
+    top: 50px;
+    
+    background: #FFFFFF;
+    
+    box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+}
+
+.datetxt-add {
+    position: absolute;
+    width: 50px;
+    height: 22px;
+    left: 44px;
+    top: 74px;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 22px;
+    
+    color: #2F2F2F;
+}
+
+.date-active {
+    position: absolute;
+    width: 287px;
+    height: 40px;
+    left: 44px;
+    top: 105px;
+    
+    background: #FFFFFF;
+    
+    box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.date-picker {
+    position: absolute;
+    top: 175px;
+    left: 13px;
+}
+
+.date-picture {
+    position: absolute;
+    left: 285px;
+    right: 55.84%;
+    top: 130px;
+    bottom: 84.38%;
+
+    width: 22px;
+    cursor: pointer;
+}
+
+.date-txt {
+    position: absolute;
+    width: 81px;
+    height: 19px;
+    left: 10px;
+    top: -1px;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    
+    color: #000000;
+}
+
+.month-txt {
+    position: absolute;
+    width: 81px;
+    height: 19px;
+    left: 28px;
+    top: -1px;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    
+    color: #000000;
+}
+
+.year-txt {
+    position: absolute;
+    width: 81px;
+    height: 19px;
+    left: 53px;
+    top: -1px;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    
+    color: #000000;
+}
+
+.eventtypetxt-add {
+    position: absolute;
+    width: 73px;
+    height: 22px;
+    left: 44px;
+    top: 166px;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 22px;
+    
+    color: #2F2F2F;
+}
+
+.eventtype-active {
+    position: absolute;
+    width: 287px;
+    height: 40px;
+    left: 44px;
+    top: 192px;
+    
+    background: #FFFFFF;
+    
+    box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.button-eventtype {
+    position: absolute;
+    left: 290px;
+    right: 0%;
+    top: 226px;
+    bottom: -12.5%;
+    
+    box-sizing: border-box;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.eventtype-list {
+    position: relative;
+    cursor: pointer;
+    top: -470px;
+    left: 45px;
+    background-color: #FFFFFF;
+    width: 270px;
+    box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.08);
+    border-radius: 15px;
+    cursor: pointer;
+    padding-left: 15px;
+}
+
+.eventtype-name {
+    margin-bottom: -15px;
+}
+
+.eventtype-list:hover {
+    background-color: #ECECEC;
+}
+
+.eventtype-txt {
+    position: absolute;
+    width: 200px;
+    height: 19px;
+    left: 55px;
+    top: 206px;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    
+    color: #000000;
+}
+
+.eventnametxt-add {
+    position: absolute;
+    width: 78px;
+    height: 22px;
+    left: 44px;
+    top: 253px;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 22px;
+    
+    color: #2F2F2F;
+}
+
+.eventname-active {
+    position: absolute;
+    width: 287px;
+    height: 40px;
+    left: 44px;
+    top: 279px;
+    
+    background: #FFFFFF;
+    
+    box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.button-eventname {
+    position: absolute;
+    left: 290px;
+    right: 0%;
+    top: 313px;
+    bottom: -12.5%;
+    
+    box-sizing: border-box;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+.eventname-txt {
+    position: absolute;
+    width: 200px;
+    height: 19px;
+    left: 55px;
+    top: 293px;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    
+    color: #000000;
+}
+
+.eventname-list {
+    position: relative;
+    cursor: pointer;
+    top: -368px;
+    left: 45px;
+    background-color: #FFFFFF;
+    width: 270px;
+    box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.08);
+    border-radius: 15px;
+    cursor: pointer;
+    padding-left: 15px;
+}
+
+.eventname-name {
+    margin-top: -15px;
+}
+
+.eventname-list:hover {
+    background-color: #ECECEC;
+}
+
+.image-reward {
+    position: absolute;
+    top: 387px;
+    left: 56px;
+    cursor: pointer;
+}
+
+.eventimagetxt-add {
+    position: absolute;
+    width: 151px;
+    height: 22px;
+    left: 44px;
+    top: 340px;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 22px;
+    
+    color: #2F2F2F;   
+}
+
+.bg-uploadimage {
+    position: absolute;
+    width: 102px;
+    height: 32px;
+    left: 44px;
+    top: 366px;
+    
+    background: #295985;
+    
+    box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+}
+
+.uploadimagetxt {
+    position: absolute;
+    width: 48px;
+    height: 20px;
+    left: 84px;
+    top: 372px;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 850;
+    font-size: 14px;
+    line-height: 22px;
+    
+    color: #FFFFFF;
+}
+
+.uploadimgtop {
+    position: absolute;
+    left: 64px;
+    right: 33.33%;
+    top: 391px;
+    bottom: 37.5%;
+}
+
+.uploadimgbottom {
+    position: absolute;
+    left: 62px;
+    right: 33.33%;
+    top: 401px;
+    bottom: 37.5%;
+}
+
+.label-imagereward {
+    cursor: pointer;
+}
+
+.submit-addrewardbg {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 32px;
+    
+    position: absolute;
+    width: 80px;
+    height: 20px;
+    left: 108px;
+    top: 462px;
+    
+    background: #85296B;
+    
+    box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+}
+
+.submit-addrewardtxt {
+    position: absolute;
+    width: 53px;
+    height: 22px;
+    left: 144px;
+    top: 480px;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 850;
+    font-size: 16px;
+    line-height: 25px;
+    
+    color: #FFFFFF;
+    
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 10px;
+}

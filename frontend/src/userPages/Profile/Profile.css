@@ -1,0 +1,250 @@
+body {
+    margin: 0;
+}
+
+.profile-bg {
+    position: absolute;
+    width: 375px;
+    height: 708px;
+    left: 0px;
+    top: 0px;
+
+    background: #F2FAFF;
+}
+
+.edit-profile {
+    position: absolute;
+    left: 325px;
+    right: 20.83%;
+    top: 30px;
+    bottom: 16.67%;
+}
+
+.edit-profilepencil {
+    position: absolute;
+    left: 333px;
+    right: 12.5%;
+    top: 27px;
+    bottom: 45.83%;
+}
+
+.defaultprofile-pic {
+    position: absolute;
+    width: 92px;
+    height: 92px;
+    left: 142px;
+    top: 70px;
+
+    border-radius: 100%;
+}
+
+.defaultprofile-text {
+    position: absolute;
+    width: 145px;
+    height: 38px;
+    left: 115px;
+    top: 170px;
+    text-align: center;
+
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 38px;
+
+    color: #295985;
+}
+
+.profile-rectangle1 {
+    position: absolute;
+    width: 335px;
+    height: 64px;
+    left: 20px;
+    top: 272px;
+
+    background: #FFFFFF;
+
+    box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.08);
+    border-radius: 8px 8px 0px 0px;
+}
+
+.profile-smallrectangle1 {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    left: 44px;
+    top: 288px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.handphone-profile {
+    position: absolute;
+    left: 54px;
+    right: 18.75%;
+    top: 295px;
+    bottom: 0%;
+}
+
+.profile-text1 {
+    position: absolute;
+    width: 88px;
+    height: 14px;
+    left: 92px;
+    top: 275px;
+
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 14px;
+
+    color: #7A7A7A;
+}
+
+.profile-phone {
+    position: absolute;
+    width: 92px;
+    height: 22px;
+    left: 92px;
+    top: 284px;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 14px;
+    line-height: 22px;
+    
+    color: #295985;
+}
+
+.profile-rectangle2 {
+    position: absolute;
+    width: 335px;
+    height: 86px;
+    left: 20px;
+    top: 337px;
+
+    background: #FFFFFF;
+
+    box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.08);
+    border-radius: 0px;
+}
+
+.profile-smallrectangle2 {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    left: 44px;
+    top: 364px;
+
+    background: #FFFFFF;
+    box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.house-profile {
+    position: absolute;
+    left: 52px;
+    top: 372px;
+    bottom: 8.2%;
+}
+
+.profile-text2 {
+    position: absolute;
+    width: 66px;
+    height: 14px;
+    left: 92px;
+    top: 341px;
+
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 14px;
+
+    color: #7A7A7A;
+}
+
+.profile-house {
+    position: absolute;
+    width: 223px;
+    height: 44px;
+    left: 92px;
+    top: 350px;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 14px;
+    line-height: 22px;
+    
+    color: #295985;    
+}
+
+.profile-rectangle3 {
+    position: absolute;
+    width: 335px;
+    height: 86px;
+    left: 20px;
+    top: 424px;
+
+    background: #FFFFFF;
+
+    box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.08);
+    border-radius: 0px 0px 8px 8px;
+}
+
+.profile-smallrectangle3 {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    left: 44px;
+    top: 451px;
+    
+    background: #FFFFFF;
+    box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+}
+
+.wa-profile {
+    position: absolute;
+    left: 53px;
+    right: 6.25%;
+    top: 458px;
+    bottom: 6.25%;
+}
+
+.profile-text3 {
+    position: absolute;
+    width: 99px;
+    height: 14px;
+    left: 92px;
+    top: 428px;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 14px;
+
+    color: #7A7A7A;
+}
+
+.profile-wa {
+    position: absolute;
+    width: 180px;
+    height: 44px;
+    left: 92px;
+    top: 437px;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 14px;
+    line-height: 22px;
+    
+    color: #295985;
+}

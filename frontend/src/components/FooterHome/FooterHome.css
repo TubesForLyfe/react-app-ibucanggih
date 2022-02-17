@@ -1,0 +1,134 @@
+body {
+    margin: 0;
+}
+
+.footer-homepage {
+    position: absolute;
+    top: 275px
+}
+
+.footer-rectangle1 {
+    position: absolute;
+    width: 125px;
+    height: 59px;
+    left: 0px;
+    top: 625px;
+
+    background: #FFFFFF;
+}
+
+.footer-house {
+    position: absolute;
+    left: 45px;
+    right: 15.62%;
+    top: 12.5%;
+    bottom: 12.5%;
+}
+
+.footer-txt1-home {
+    position: absolute;
+    width: 46px;
+    height: 19px;
+    left: 40px;
+    top: 666px;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 19px;
+
+    color: #85296B;
+}
+
+.footer-rectangle2 {
+    position: absolute;
+    width: 125px;
+    height: 59px;
+    left: 125px;
+    top: 625px;
+
+    background: #FFFFFF;
+}
+
+.footer-prof {
+    position: absolute;
+    left: 35.6%;
+    right: 29.59%;
+    top: 15.5%;
+    bottom: 46.61%;
+}
+
+.footer-txt2-home {
+    position: absolute;
+    width: 29px;
+    height: 19px;
+    left: 172px;
+    top: 666px;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 19px;
+    
+    color: #C4C4C4;
+}
+
+.footer-rectangle3 {
+    position: absolute;
+    width: 125px;
+    height: 59px;
+    left: 250px;
+    top: 625px;
+    
+    background: #FFFFFF;
+}
+
+.footer-calendar {
+    position: absolute;
+    left: 35.62%;
+    right: 15.62%;
+    top: 15.5%;
+    bottom: 12.5%;
+    
+    background: #273B4A;
+}
+
+.footer-txt3 {
+    position: absolute;
+    width: 49px;
+    height: 19px;
+    left: 288px;
+    top: 666px;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 19px;
+
+    color: #C4C4C4;
+}
+
+.footer-bottom {
+    position: absolute;
+    width: 375px;
+    height: 34px;
+    left: 0px;
+    top: 699px;
+    
+    background: #FFFFFF;
+}
+
+.footer-lineprofil {
+    position: absolute;
+    width: 134px;
+    height: 5px;
+    left: 118.5px;
+    bottom: 8px;
+    top: 719px;
+
+    background: #000000;
+    border-radius: 100px;
+}

@@ -30,6 +30,7 @@ body {
 
     box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.08);
     border-radius: 67px;
+    padding-left: 15px;
 }
 
 .form input {
@@ -42,18 +43,22 @@ body {
 
     box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.08);
     border-radius: 154px;
+    padding-left: 15px;
 }
 
 .email {
     top: 225px;
 }
 
-.password {
+.number {
     top: 289px;
+}
+.password {
+    top: 353px;
 }
 
 .pwconfirm {
-    top: 353px;
+    top: 417px;
 }
 
 .submit {
@@ -67,7 +72,7 @@ body {
     width: 320px;
     height: 40px;
     left: 27px;
-    top: 441px;
+    top: 505px;
 
     background: #85296B;
     box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.15);
@@ -100,7 +105,7 @@ body {
     width: 315px;
     height: 19px;
     left: 30px;
-    top: 529px;
+    top: 593px;
 
     font-family: Avenir;
     font-style: normal;
@@ -109,4 +114,20 @@ body {
     line-height: 19px;
 
     color: #2F2F2F;
+}
+
+.register-status {
+    position: absolute;
+    width: 192px;
+    height: 14px;
+    left: 27px;
+    top: 457px;
+
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 14px;
+
+    color: #E62828;
 }

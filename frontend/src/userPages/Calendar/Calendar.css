@@ -1,0 +1,132 @@
+body {
+    margin: 0;
+}
+
+.calendar-bg {
+    width: 375px;
+    height: 440px;
+}
+
+.title-calendar {
+    position: absolute;
+    width: 176px;
+    height: 38px;
+    left: 21px;
+    top: 0px;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 38px;
+    
+    color: #295985;
+}
+
+.calendar-main {
+    position: absolute;
+    top: 90px;
+    zoom: 107%;
+    color: #85296B;
+}
+
+.event-calendar {
+    position: absolute;
+    width: 115px;
+    height: 38px;
+    left: 22px;
+    top: 376px;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 38px;
+    
+    color: #295985;
+}
+
+.eventlist-calendar {
+    position: relative;
+    margin-top: -5px;
+}
+
+.bgcalendar {
+    width: 375px;
+    height: 95px;
+}
+
+.date-calendar {
+    position: absolute;
+    width: 29px;
+    height: 21px;
+    left: 5%;
+    top: -10%;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 850;
+    font-size: 24px;
+    line-height: 37px;
+    display: flex;
+    align-items: center;
+    
+    color: #2F2F2F;
+}
+
+.month-calendar {
+    position: absolute;
+    width: 22px;
+    height: 19px;
+    left: 5.5%;
+    top: 20%;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 19px;
+    
+    color: #2F2F2F;    
+}
+
+.type-calendar {
+    position: absolute;
+    width: 200px;
+    height: 22px;
+    left: 20%;
+    top: -2%;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 850;
+    font-size: 14px;
+    line-height: 22px;
+    /* identical to box height */
+    
+    
+    color: #2F2F2F;
+}
+
+.name-calendar {
+    position: absolute;
+    width: 272px;
+    height: 16px;
+    left: 20%;
+    top: 20%;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+    
+    color: #2F2F2F;    
+}
+
+.line-calendar {
+    position: absolute;
+    width: 335px;
+    left: 5%;
+    top: 75%;
+}

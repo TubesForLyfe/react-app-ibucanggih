@@ -1,0 +1,226 @@
+body {
+    margin: 0;
+}
+
+.editprofile-bg {
+    width: 375px;
+    height: 842px;
+}
+
+.back-editprofile {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    left: 20px;
+    top: 16px;
+}
+
+.submit-editprofile {
+    position: absolute;
+    left: 335px;
+    top: 18px;
+    cursor: pointer;
+}
+
+.default-editprofile {
+    position: absolute;
+    width: 92px;
+    height: 92px;
+    left: 142px;
+    top: 70px;
+
+    border-radius: 100%;
+}
+
+.ganti-foto {
+    position: absolute;
+    width: 117px;
+    height: 38px;
+    left: 129px;
+    top: 170px;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 38px;
+    
+    text-decoration-line: underline;
+    
+    color: #295985;
+}
+
+.form-edit input {
+    position: absolute;
+    width: 335px;
+    height: 52px;
+    left: 20px;
+
+    background: #ECECEC;
+    border: 1px solid #7A7A7A;
+    box-sizing: border-box;
+
+    box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    padding-left: 15px;
+}
+
+.form-edit input:hover {
+    background-color: #FFFFFF;
+    border: 1px solid #85296B;
+    box-sizing: border-box;
+}
+
+.form-edit div {
+    position: absolute;
+    width: 335px;
+    height: 52px;
+    left: 20px;
+
+    background: #ECECEC;
+    border: 1px solid #7A7A7A;
+    box-sizing: border-box;
+
+    box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+}
+
+.form-edit div:hover {
+    background-color: #FFFFFF;
+    border: 1px solid #85296B;
+    box-sizing: border-box;
+}
+
+.groupwa-name {
+    position: absolute;
+    top: 460px;
+    left: 35px;
+    width: 200px;
+}
+
+.groupwa-list {
+    position: relative;
+    cursor: pointer;
+    top: -350px;
+    left: 20px;
+    background-color: #ECECEC;
+    width: 320px;
+    padding-left: 15px;
+}
+
+.list {
+    margin-bottom: -16px;
+}
+
+.groupwa-list:hover {
+    background-color: #FFFFFF;
+}
+
+.edit-image {
+    top: 254px;
+}
+
+.edit-name {
+    top: 254px;
+}
+
+.edit-phone {
+    top: 322px;
+}
+
+.edit-address {
+    top: 390px;
+}
+
+.edit-groupwa {
+    top: 458px;
+}
+
+.borderemail-profil {
+    position: absolute;
+    width: 335px;
+    height: 52px;
+    left: 20px;
+
+    background: #ECECEC;
+
+    box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    top: 610px;
+    color: #000000;
+}
+
+.email-profil {
+    position: absolute;
+    width: 167px;
+    height: 22px;
+    left: 36px;
+    top: 630px;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 14px;
+    line-height: 22px;
+    
+    color: #7A7A7A;
+}
+
+.arrowemail-profil {
+    position: absolute;
+    left: 325px;
+    top: 645px;
+}
+
+.borderpw-profil {
+    position: absolute;
+    width: 335px;
+    height: 52px;
+    left: 20px;
+    top: 663px;
+    
+    background: #ECECEC;
+    /* shadow 1 */
+    
+    box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.08);
+    border-radius: 0px 0px 8px 8px;
+}
+
+.pw-profil {
+    position: absolute;
+    width: 82px;
+    height: 22px;
+    left: 36px;
+    top: 683px;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 14px;
+    line-height: 22px;
+    
+    color: #7A7A7A;
+}
+
+.arrowpw-profil {
+    position: absolute;
+    left: 325px;
+    top: 698px;
+}
+
+.edit-akun {
+    position: absolute;
+    width: 59px;
+    height: 38px;
+    left: 20px;
+    top: 542px;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 38px;
+
+    color: #295985;
+}
+

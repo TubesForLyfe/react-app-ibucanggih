@@ -1,0 +1,63 @@
+body {
+    margin: 0;
+}
+
+.notfoundtxt1 {
+    position: absolute;
+    width: 235px;
+    height: 54px;
+    left: 75px;
+    top: 64px;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    line-height: 150%;
+    
+    text-align: center;
+    
+    color: #295985;
+}
+
+.notfoundimg {
+    position: absolute;
+    width: 221px;
+    height: 242px;
+    left: 77px;
+    top: 166px;
+}
+
+.notfoundtxt2 {
+    position: absolute;
+    width: 335px;
+    height: 27px;
+    left: 20px;
+    top: 456px;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 18px;
+    line-height: 150%;
+    
+    text-align: center;
+    
+    color: #295985;
+}
+
+.backtohomie {
+    position: absolute;
+    width: 133px;
+    height: 22px;
+    left: 121px;
+    top: 638px;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 14px;
+    line-height: 22px;
+    
+    text-decoration-line: underline;
+}

@@ -1,0 +1,56 @@
+body {
+    margin: 0;
+}
+
+.editevent-admin input {
+    position: relative;
+    width: 320px;
+    height: 40px;
+    left: 27px;
+    top: 25px;
+
+    background: #FFFFFF;
+    /* shadow 1 */
+
+    box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.08);
+    border-radius: 67px;
+}
+
+.editevent-admin button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 101px;
+    
+    position: absolute;
+    width: 320px;
+    height: 40px;
+    left: 28px;
+    top: 400px;
+    
+    background: #85296B;
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 77px;
+}
+
+.editevent-admin h2 {
+    position: absolute;
+    width: 43px;
+    height: 22px;
+    left: 138.5px;
+    top: 410px;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 850;
+    font-size: 14px;
+    line-height: 22px;
+
+    color: #FFFFFF;
+    
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 10px;
+}

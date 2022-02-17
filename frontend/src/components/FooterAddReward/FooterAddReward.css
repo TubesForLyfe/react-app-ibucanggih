@@ -1,0 +1,29 @@
+body {
+    margin: 0;
+}
+
+.footeraddreward {
+    position: absolute;
+    top: -100px;
+}
+
+.footerevent-bg {
+    position: absolute;
+    width: 375px;
+    height: 34px;
+    left: 0px;
+    top: 778px;
+    
+    background: #F2FAFF;
+}
+
+.footerevent-img {
+    position: absolute;
+    width: 134px;
+    height: 5px;
+    left: calc(50% - 134px/2 + 0.5px);
+    bottom: 8px;
+    
+    background: #000000;
+    border-radius: 100px;
+}

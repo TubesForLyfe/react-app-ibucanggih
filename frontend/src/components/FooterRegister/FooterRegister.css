@@ -7,7 +7,7 @@ body {
     width: 375px;
     height: 244px;
     left: 0px;
-    top: 600px;
+    top: 660px;
 }
 
 .logo-ellipse {
@@ -55,7 +55,7 @@ body {
 
 .whatsapp-footer {
     position: absolute;
-    width: 99px;
+    width: 90px;
     height: 34px;
     left: 256px;
     top: 76px;

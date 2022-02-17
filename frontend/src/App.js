@@ -1,11 +1,13 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import React from "react";
 
 import RouteManager from './route.js';
+import './App.css';
 
 function App() {
   return (
-    <RouteManager />
+    <div className="app">
+      <RouteManager />
+    </div>
   );
 }
 
