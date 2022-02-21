@@ -12,6 +12,11 @@ const DeleteUser = () => {
   const {id} = useParams();
   const history = useHistory();
 
+  const [logIn, setLogIn] = useState(false);
+  const [roleLogIn, setRoleLogIn] = useState([]);
+
+  Axios.defaults.withCredentials = true;
+
   const deleteUser = (e) => {
       e.preventDefault();
       Axios.delete(`http://localhost:5000/delete-user/${id}`).then((response) => {
@@ -32,11 +37,20 @@ const DeleteUser = () => {
   }
 
   useEffect(() => {
+    Axios.get('http://localhost:5000/login').then((response) => {
+    if (response.data.loggedIn) {
+        setRoleLogIn(response.data.user[0].role);
+        setLogIn(true);
+      } else {
+        setLogIn(false);
+      }
+    })
     getUserId(id);
   }, [])
 
   return (
     <div>
+      {logIn && (roleLogIn == "admin") && <div>
       <Link to="/admin/user"><h2>Back</h2></Link>  
       <p>Nama: {name}</p>
       <p>Email: {email}</p>
@@ -45,6 +59,7 @@ const DeleteUser = () => {
       <p>Asal Grup Whatsapp: {wagroup}</p>
       <h2>Delete this user?</h2>
       <button onClick={deleteUser}>Yes</button>
+      </div>}
     </div>
   )
 }

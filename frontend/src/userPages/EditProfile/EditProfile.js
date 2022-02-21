@@ -21,6 +21,12 @@ const EditProfile = () => {
   const {id} = useParams();
   const history = useHistory();
 
+  const [logIn, setLogIn] = useState(false);
+  const [idLogIn, setIDLogIn] = useState([]);
+  const [roleLogIn, setRoleLogIn] = useState([]);
+
+  Axios.defaults.withCredentials = true;
+
   const update = (e) => {
     e.preventDefault();
     Axios.put('http://localhost:5000/edit-profil/half', {
@@ -57,10 +63,6 @@ const EditProfile = () => {
     })
   }
 
-  useEffect(() => {
-    getUserId(id);
-  }, [])
-
   const getWAGroup = () => {
     Axios.get('http://localhost:5000/get-wagroup').then((response) => {
         setListWAGroup(response.data);
@@ -68,11 +70,22 @@ const EditProfile = () => {
   }
 
   useEffect(() => {
-      getWAGroup();
+    Axios.get('http://localhost:5000/login').then((response) => {
+        if (response.data.loggedIn) {
+          setIDLogIn(response.data.user[0].id);
+          setRoleLogIn(response.data.user[0].role);
+          setLogIn(true);
+        } else {
+          setLogIn(false);
+        }
+    })
+    getUserId(id);
+    getWAGroup();
   }, [])
 
   return (
     <div>
+      {logIn && (roleLogIn == "user") && (id == idLogIn) && <div>
       <div>
         <img className="editprofile-bg" src={Background} />
         <div>
@@ -126,6 +139,7 @@ const EditProfile = () => {
         </p>}
       </div>
       <FooterEditProfile />
+      </div>}
     </div>
   )
 }

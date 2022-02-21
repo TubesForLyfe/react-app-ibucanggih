@@ -5,20 +5,34 @@ import Axios from 'axios'
 import "./EventType.css"
 
 const EventType = () => {
-    const [eventType, setEventType] = useState([]);
+  const [eventType, setEventType] = useState([]);
 
-    const getEventType = () => {
-        Axios.get('http://localhost:5000/get-eventtype').then((response) => {
-            setEventType(response.data);
-        })
-    }
+  const [logIn, setLogIn] = useState(false);
+  const [roleLogIn, setRoleLogIn] = useState([]);
 
-    useEffect(() => {
-        getEventType();
-    }, [])
+  Axios.defaults.withCredentials = true;
+
+  const getEventType = () => {
+      Axios.get('http://localhost:5000/get-eventtype').then((response) => {
+          setEventType(response.data);
+      })
+  }
+
+  useEffect(() => {
+    Axios.get('http://localhost:5000/login').then((response) => {
+    if (response.data.loggedIn) {
+        setRoleLogIn(response.data.user[0].role);
+        setLogIn(true);
+      } else {
+        setLogIn(false);
+      }
+    })
+    getEventType();
+  }, [])
 
   return (
     <div>
+      {logIn && (roleLogIn == "admin") && <div>
       <div>
           <Link to="/admin"><h2>Back</h2></Link>
           <Link to="/admin/add-event-type"><h2>Add Event</h2></Link>
@@ -35,6 +49,7 @@ const EventType = () => {
               })}
           </div>
       </div>
+      </div>}
     </div>
   )
 }

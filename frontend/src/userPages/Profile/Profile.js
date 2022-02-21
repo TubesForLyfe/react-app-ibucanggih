@@ -5,7 +5,6 @@ import Axios from 'axios'
 import Background from "../../img/Background.png";
 import EditProfile from "../../img/EditProfile.png";
 import Pencil from "../../img/Pencil.png";
-import DefaultPicture from "../../img/DefaultPicture.png";
 import Rectangle from "../../img/Rectangle.png";
 import SmallRectangle from "../../img/SmallRectangle.png";
 import Handphone from "../../img/Handphone.png";
@@ -20,7 +19,13 @@ const Profile = () => {
   const [address,setAddress] = useState([]);
   const [wagroup, setWagroup] = useState([]); 
   const [image, setImage] = useState([]);
-  const {id} = useParams();  
+  const {id} = useParams(); 
+  
+  const [logIn, setLogIn] = useState(false);
+  const [idLogIn, setIDLogIn] = useState([]);
+  const [roleLogIn, setRoleLogIn] = useState([]);
+
+  Axios.defaults.withCredentials = true;
 
   const getUserId = (id) => {
       Axios.post(`http://localhost:5000/profil`, {
@@ -35,11 +40,21 @@ const Profile = () => {
   }
 
   useEffect(() => {
+      Axios.get('http://localhost:5000/login').then((response) => {
+        if (response.data.loggedIn) {
+          setIDLogIn(response.data.user[0].id);
+          setRoleLogIn(response.data.user[0].role);
+          setLogIn(true);
+        } else {
+          setLogIn(false);
+        }
+      })
       getUserId(id);
   }, [])
 
   return (
     <div>
+        {logIn && (roleLogIn == "user") && (id == idLogIn) && <div>
         <img className="profile-bg" src={Background} />
         <Link to={`/edit-profil/${id}`}><img className="edit-profile" src={EditProfile} /></Link>
         <Link to={`/edit-profil/${id}`}><img className="edit-profilepencil" src={Pencil} /></Link>
@@ -71,6 +86,7 @@ const Profile = () => {
             </div>
         </div>
         <FooterProfile />
+        </div>}
     </div>
   )
 }

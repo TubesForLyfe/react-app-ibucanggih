@@ -12,6 +12,12 @@ const Calendar = () => {
   const [listEvent, setListEvent] = useState([]);
   const {id} = useParams();
 
+  const [logIn, setLogIn] = useState(false);
+  const [idLogIn, setIDLogIn] = useState([]);
+  const [roleLogIn, setRoleLogIn] = useState([]);
+
+  Axios.defaults.withCredentials = true;
+
   const getEvent = () => {
     Axios.get('http://localhost:5000/get-eventname').then((response) => {
         setListEvent(response.data);
@@ -19,11 +25,21 @@ const Calendar = () => {
   }
 
   useEffect(() => {
-      getEvent();
+    Axios.get('http://localhost:5000/login').then((response) => {
+        if (response.data.loggedIn) {
+          setIDLogIn(response.data.user[0].id);
+          setRoleLogIn(response.data.user[0].role);
+          setLogIn(true);
+        } else {
+          setLogIn(false);
+        }
+    })
+    getEvent();
   }, [])
 
   return (
     <div>
+      {logIn && (roleLogIn == "user") && (id == idLogIn) && <div>
       <img className="calendar-bg" src={Background} />
       <p className="title-calendar">Event Kalender</p>
       <div className="calendar-main">
@@ -45,6 +61,7 @@ const Calendar = () => {
           })}
       </div>
       <FooterCalendar />
+      </div>}
     </div>
   )
 }

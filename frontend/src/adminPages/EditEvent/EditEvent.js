@@ -14,6 +14,11 @@ const EditEvent = () => {
   const {id} = useParams();
   const history = useHistory();
 
+  const [logIn, setLogIn] = useState(false);
+  const [roleLogIn, setRoleLogIn] = useState([]);
+
+  Axios.defaults.withCredentials = true;
+
   const updateEvent = (e) => {
     e.preventDefault();
     Axios.put('http://localhost:5000/edit-event', {
@@ -45,11 +50,20 @@ const EditEvent = () => {
   }
 
   useEffect(() => {
+    Axios.get('http://localhost:5000/login').then((response) => {
+    if (response.data.loggedIn) {
+        setRoleLogIn(response.data.user[0].role);
+        setLogIn(true);
+      } else {
+        setLogIn(false);
+      }
+    })
     getEventId(id);
   }, [])
     
   return (
     <div>
+      {logIn && (roleLogIn == "admin") && <div>
       <Link to="/admin/event"><h2>Back</h2></Link>
       <form className="editevent-admin">
             <div>
@@ -90,6 +104,7 @@ const EditEvent = () => {
             <button onClick={updateEvent}></button>
             <h2>Update</h2>
       </form>
+      </div>}
     </div>
   )
 }

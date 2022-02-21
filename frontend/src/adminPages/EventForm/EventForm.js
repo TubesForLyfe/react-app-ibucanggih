@@ -5,21 +5,35 @@ import Axios from 'axios'
 import "./EventForm.css"
 
 const EventForm = () => {
-    const [eventForm, setEventForm] = useState([]);
-    const history = useHistory();
+  const [eventForm, setEventForm] = useState([]);
+  const history = useHistory();
 
-    const getEventForm = () => {
-        Axios.get('http://localhost:5000/get-eventform').then((response) => {
-            setEventForm(response.data);
-        })
-    }
+  const [logIn, setLogIn] = useState(false);
+  const [roleLogIn, setRoleLogIn] = useState([]);
 
-    useEffect(() => {
-        getEventForm();
-    }, [])
+  Axios.defaults.withCredentials = true;
+
+  const getEventForm = () => {
+      Axios.get('http://localhost:5000/get-eventform').then((response) => {
+          setEventForm(response.data);
+      })
+  }
+
+  useEffect(() => {
+    Axios.get('http://localhost:5000/login').then((response) => {
+    if (response.data.loggedIn) {
+        setRoleLogIn(response.data.user[0].role);
+        setLogIn(true);
+      } else {
+        setLogIn(false);
+      }
+    })
+    getEventForm();
+  }, [])
 
   return (
     <div>
+      {logIn && (roleLogIn == "admin") && <div>
       <div>
           <Link to="/admin"><h2>Back</h2></Link>
           <div>
@@ -39,6 +53,7 @@ const EventForm = () => {
               })}
           </div>
       </div>
+      </div>}
     </div>
   )
 }

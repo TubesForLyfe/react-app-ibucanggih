@@ -1,16 +1,76 @@
-import React from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 
 import Logo from "../../img/Logo.png";
 import Background from "../../img/Background.png";
 import LandingPhoto from "../../img/LandingPhoto.png";
+import Banner2 from "../../img/Banner2.jpg";
+import Banner3 from "../../img/Banner3.jpg";
+import RightArrow from "../../img/RightArrow.png";
+import LandingDesc from "../../img/LandingDesc.png";
 import "./Landing.css";
 import FooterLanding from "../../components/FooterLanding/FooterLanding";
 
+const Image = [
+  LandingPhoto,
+  Banner2,
+  Banner3
+];
+
+let slideInterval;
 const Landing = () => {
+  const [index, setIndex] = useState(0);
+  const slideRef = useRef();
+
+  const handleNextClick = () => {
+    setIndex((index + 1) % Image.length);
+    slideRef.current.classList.add('fade-anim');
+  }
+  
+  const handlePrevClick = () => {
+    setIndex((index + Image.length - 1) % Image.length);
+    slideRef.current.classList.add('fade-anim');
+  }
+
+  const removeAnimation = () => {
+    slideRef.current.classList.remove('fade-anim');
+  }
+
+  const startSlider = () => {
+    slideInterval = setInterval(() => {
+      handleNextClick();
+    }, 4000);
+  }
+
+  const pauseSlider =() => {
+    clearInterval(slideInterval);
+  }
+
+  useEffect(() => {
+    slideRef.current.addEventListener('animationend', removeAnimation);
+    startSlider();
+    return () => {
+      pauseSlider();
+    }
+  })
+
   return (
     <div>
-      <img className="landing-top" src={LandingPhoto} />
+      <div ref={slideRef}>
+        {index == 0 && <a href="https://bertsolution.com/our-community-ibu2canggih/">
+          <img className="landing-top" src={Image[index]} />
+        </a>}
+        {index == 1 && <a href="http://wa.me/6281326035476">
+          <img className="landing-top" src={Image[index]} />
+        </a>}
+        {index == 2 &&
+          <img className="landing-top" src={Image[index]} />
+        }
+      </div>
+      <div>
+        <img className="left-slide" src={RightArrow} onClick={handlePrevClick} />
+        <img className="right-slide" src={RightArrow} onClick={handleNextClick} />
+      </div>
       <div>
         <img className="landing-bg1" src={Background} />
         <img className="landing-logo" src={Logo} />
@@ -25,7 +85,9 @@ const Landing = () => {
                 ibu-ibu yang bercita menjadi ibu modern multitalenta yang memiliki skill cukup untuk menaklukan dunia digital.
             </p>
         </div>
-        <div>
+        <img className="landing-desc" src={LandingDesc} />
+        <p className="landing-distance"></p>
+        <div className="landing-bottom">
             <p className="landing-bottomtext">
                 Ayo Nikmati Reward Program dengan cara mendaftar Akun Ibu-Ibu Canggih!
             </p>
@@ -33,8 +95,8 @@ const Landing = () => {
                 <Link to="/login" className="landing-login"><p className="landing-logintext">Masuk</p></Link>
                 <Link to="/sign-up" className="landing-register"><p className="landing-registertext">Registrasi</p></Link>
             </div>
+            <FooterLanding />
         </div>
-        <FooterLanding />
       </div>
     </div>
   )

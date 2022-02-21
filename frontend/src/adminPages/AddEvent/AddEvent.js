@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import Axios from 'axios'
 
-import DefaultPicture from '../../img/DefaultPicture.png'
 import './AddEvent.css'
 
 const AddEvent = () => {
@@ -13,6 +12,22 @@ const AddEvent = () => {
   const [poin, setPoin] = useState('');
 
   const history = useHistory();
+
+  const [logIn, setLogIn] = useState(false);
+  const [roleLogIn, setRoleLogIn] = useState([]);
+
+  Axios.defaults.withCredentials = true;
+
+  useEffect(() => {
+    Axios.get('http://localhost:5000/login').then((response) => {
+    if (response.data.loggedIn) {
+        setRoleLogIn(response.data.user[0].role);
+        setLogIn(true);
+      } else {
+        setLogIn(false);
+      }
+    })
+  }, [])
 
   const addEvent = (e) => {
     e.preventDefault();
@@ -29,6 +44,7 @@ const AddEvent = () => {
 
   return (
     <div>
+      {logIn && (roleLogIn == "admin") && <div>
       <Link to="/admin/event"><h2>Back</h2></Link>
       <div className="add-eventadmin">
           <form>
@@ -71,6 +87,7 @@ const AddEvent = () => {
             <h2>Tambah</h2>
           </form>
       </div>
+      </div>}
     </div>
   )
 }

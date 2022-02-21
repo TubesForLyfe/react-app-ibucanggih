@@ -12,6 +12,11 @@ const DeleteEvent = () => {
   const {id} = useParams();
   const history = useHistory();
 
+  const [logIn, setLogIn] = useState(false);
+  const [roleLogIn, setRoleLogIn] = useState([]);
+
+  Axios.defaults.withCredentials = true;
+
   const deleteEvent = (e) => {
       e.preventDefault();
       Axios.delete(`http://localhost:5000/delete-event/${id}`).then((response) => {
@@ -32,11 +37,20 @@ const DeleteEvent = () => {
   }
 
   useEffect(() => {
+    Axios.get('http://localhost:5000/login').then((response) => {
+    if (response.data.loggedIn) {
+        setRoleLogIn(response.data.user[0].role);
+        setLogIn(true);
+      } else {
+        setLogIn(false);
+      }
+    })
     getEventId(id);
   }, [])
 
   return (
     <div>
+      {logIn && (roleLogIn == "admin") && <div>
       <Link to="/admin/user"><h2>Back</h2></Link>  
       <p>Nama Event: {name}</p>
       <p>Tipe: {type}</p>
@@ -44,6 +58,7 @@ const DeleteEvent = () => {
       <p>Poin: {poin}</p>
       <h2>Delete this event?</h2>
       <button onClick={deleteEvent}>Yes</button>
+      </div>}
     </div>
   )
 }

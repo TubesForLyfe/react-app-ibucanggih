@@ -15,6 +15,11 @@ const ValidEvent = () => {
   const {id} = useParams();
   const history = useHistory();
 
+  const [logIn, setLogIn] = useState(false);
+  const [roleLogIn, setRoleLogIn] = useState([]);
+
+  Axios.defaults.withCredentials = true;
+
   const validEventForm = (e) => {
       e.preventDefault();
       Axios.put(`http://localhost:5000/valid-eventform/${id}`).then((response) => {})
@@ -41,11 +46,20 @@ const ValidEvent = () => {
   }
 
   useEffect(() => {
+    Axios.get('http://localhost:5000/login').then((response) => {
+    if (response.data.loggedIn) {
+        setRoleLogIn(response.data.user[0].role);
+        setLogIn(true);
+      } else {
+        setLogIn(false);
+      }
+    })
     getEventFormId(id);
   }, [])
 
   return (
     <div>
+      {logIn && (roleLogIn == "admin") && <div>
       <Link to="/admin/event-form"><h2>Back</h2></Link>  
       <p>Nama Ibu: {name}</p>
       <p>Tipe Event: {eventtype}</p>
@@ -55,6 +69,7 @@ const ValidEvent = () => {
       <img src={image} />
       <h2>Valid?</h2>
       <button onClick={validEventForm}>Yes</button>
+      </div>}
     </div>
   )
 }

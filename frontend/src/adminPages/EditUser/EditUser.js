@@ -15,6 +15,11 @@ const EditUser = () => {
   const {id} = useParams();
   const history = useHistory();
 
+  const [logIn, setLogIn] = useState(false);
+  const [roleLogIn, setRoleLogIn] = useState([]);
+
+  Axios.defaults.withCredentials = true;
+
   const updateUser = (e) => {
     e.preventDefault();
     Axios.put('http://localhost:5000/edit-profil', {
@@ -48,11 +53,20 @@ const EditUser = () => {
   }
 
   useEffect(() => {
+    Axios.get('http://localhost:5000/login').then((response) => {
+    if (response.data.loggedIn) {
+        setRoleLogIn(response.data.user[0].role);
+        setLogIn(true);
+      } else {
+        setLogIn(false);
+      }
+    })
     getUserId(id);
   }, [])
     
   return (
     <div>
+      {logIn && (roleLogIn == "admin") && <div>
       <Link to="/admin/user"><h2>Back</h2></Link>
       <form className="edituser-admin">
             <div>
@@ -100,6 +114,7 @@ const EditUser = () => {
             <button onClick={updateUser}></button>
             <h2>Update</h2>
       </form>
+      </div>}
     </div>
   )
 }

@@ -13,6 +13,12 @@ const Home = () => {
   const [poin, setPoin] = useState([]);
   const {id} = useParams();
 
+  const [logIn, setLogIn] = useState(false);
+  const [idLogIn, setIDLogIn] = useState([]);
+  const [roleLogIn, setRoleLogIn] = useState([]);
+
+  Axios.defaults.withCredentials = true;
+
   const getUserId = (id) => {
     Axios.post(`http://localhost:5000/profil`, {
         id: id
@@ -24,11 +30,21 @@ const Home = () => {
   }
 
   useEffect(() => {
-      getUserId(id);
+    Axios.get('http://localhost:5000/login').then((response) => {
+      if (response.data.loggedIn) {
+        setIDLogIn(response.data.user[0].id);
+        setRoleLogIn(response.data.user[0].role);
+        setLogIn(true);
+      } else {
+        setLogIn(false);
+      }
+    })
+    getUserId(id);
   }, [])
 
   return (
     <div>
+      {logIn && (roleLogIn == "user") && (id == idLogIn) && <div>
       <img src={LandingPhoto} />
       <img className="background-home" src={Background} />
       <div>
@@ -49,6 +65,7 @@ const Home = () => {
       </div>
       <img className="bg-home" src={LandingPhoto} />
       <FooterHome />
+      </div>}
     </div>
   )
 }

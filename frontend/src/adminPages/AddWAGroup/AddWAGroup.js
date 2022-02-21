@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import Axios from 'axios'
 
@@ -9,6 +9,22 @@ const AddUser = () => {
 
   const [WAGroupStatus, setWAGroupStatus] = useState('');
   const history = useHistory();
+
+  const [logIn, setLogIn] = useState(false);
+  const [roleLogIn, setRoleLogIn] = useState([]);
+
+  Axios.defaults.withCredentials = true;
+
+  useEffect(() => {
+    Axios.get('http://localhost:5000/login').then((response) => {
+    if (response.data.loggedIn) {
+        setRoleLogIn(response.data.user[0].role);
+        setLogIn(true);
+      } else {
+        setLogIn(false);
+      }
+    })
+  }, [])
 
   const addWAGroup = (e) => {
     e.preventDefault();
@@ -25,6 +41,7 @@ const AddUser = () => {
 
   return (
     <div>
+      {logIn && (roleLogIn == "admin") && <div>
       <Link to="/admin/user"><h2>Back</h2></Link>
       <div className="add-user">
           <form>
@@ -40,6 +57,7 @@ const AddUser = () => {
           </form>
           <h2>{WAGroupStatus}</h2>
       </div>
+      </div>}
     </div>
   )
 }

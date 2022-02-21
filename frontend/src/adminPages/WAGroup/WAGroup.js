@@ -5,20 +5,34 @@ import Axios from 'axios'
 import "./WAGroup.css"
 
 const WAGroup = () => {
-    const [WAGroup, setWAGroup] = useState([]);
+  const [WAGroup, setWAGroup] = useState([]);
 
-    const getWAGroup = () => {
-        Axios.get('http://localhost:5000/get-wagroup').then((response) => {
-            setWAGroup(response.data);
-        })
-    }
+  const [logIn, setLogIn] = useState(false);
+  const [roleLogIn, setRoleLogIn] = useState([]);
 
-    useEffect(() => {
-        getWAGroup();
-    }, [])
+  Axios.defaults.withCredentials = true;
+
+  const getWAGroup = () => {
+      Axios.get('http://localhost:5000/get-wagroup').then((response) => {
+          setWAGroup(response.data);
+      })
+  }
+
+  useEffect(() => {
+    Axios.get('http://localhost:5000/login').then((response) => {
+    if (response.data.loggedIn) {
+        setRoleLogIn(response.data.user[0].role);
+        setLogIn(true);
+      } else {
+        setLogIn(false);
+      }
+    })
+    getWAGroup();
+  }, [])
 
   return (
     <div>
+      {logIn && (roleLogIn == "admin") && <div>
       <div>
           <Link to="/admin"><h2>Back</h2></Link>
           <Link to="/admin/add-wagroup"><h2>Add WA Group</h2></Link>
@@ -34,6 +48,7 @@ const WAGroup = () => {
               })}
           </div>
       </div>
+      </div>}
     </div>
   )
 }

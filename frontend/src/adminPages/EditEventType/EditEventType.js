@@ -12,6 +12,11 @@ const EditEventType = () => {
   const {id} = useParams();
   const history = useHistory();
 
+  const [logIn, setLogIn] = useState(false);
+  const [roleLogIn, setRoleLogIn] = useState([]);
+
+  Axios.defaults.withCredentials = true;
+
   const updateEventType = (e) => {
     e.preventDefault();
     Axios.put('http://localhost:5000/edit-event-type', {
@@ -36,6 +41,14 @@ const EditEventType = () => {
   }
 
   useEffect(() => {
+    Axios.get('http://localhost:5000/login').then((response) => {
+    if (response.data.loggedIn) {
+        setRoleLogIn(response.data.user[0].role);
+        setLogIn(true);
+      } else {
+        setLogIn(false);
+      }
+    })
     getEventTypeId(id);
   }, [])
 
@@ -45,6 +58,7 @@ const EditEventType = () => {
     
   return (
     <div>
+      {logIn && (roleLogIn == "admin") && <div>
       <Link to="/admin/event-type"><h2>Back</h2></Link>
       <form className="editeventtype-admin">
             <div>
@@ -61,6 +75,7 @@ const EditEventType = () => {
             <h2>Update</h2>
       </form>
       <h1>{message}</h1>
+      </div>}
     </div>
   )
 }

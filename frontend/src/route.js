@@ -39,16 +39,16 @@ import InvalidEvent from "./adminPages/InvalidEvent/InvalidEvent"
 
 const RouteManager = () => {
     const [logIn, setLogIn] = useState(false);
-    const [id, setID] = useState([]);
-    const [role, setRole] = useState([]);
+    const [idLogIn, setIDLogIn] = useState([]);
+    const [roleLogIn, setRoleLogIn] = useState([]);
 
     Axios.defaults.withCredentials = true;
 
     useEffect(() => {
         Axios.get('http://localhost:5000/login').then((response) => {
           if (response.data.loggedIn) {
-            setID(response.data.user[0].id);
-            setRole(response.data.user[0].role);
+            setIDLogIn(response.data.user[0].id);
+            setRoleLogIn(response.data.user[0].role);
             setLogIn(true);
           } else {
             setLogIn(false);
@@ -56,153 +56,46 @@ const RouteManager = () => {
         })
     }, [])
 
-    if (logIn) {
-        if (role == "user") {
-            return (
-                <Router>
-                    <Switch>
-                        <Route path="/sign-up">
-                            <Register />
-                        </Route>
-                        <Route path="/login">
-                            <Login />
-                        </Route>
-                        <Route path="/profil/:id">
-                            <Profile />
-                        </Route>
-                        <Route path="/edit-profil/:id" exact>
-                            <EditProfile />
-                        </Route>
-                        <Route path="/edit-profil/email/:id">
-                            <EditProfileEmail />
-                        </Route>
-                        <Route path="/edit-profil/password/:id">
-                            <EditProfilePassword />
-                        </Route>
-                        <Route path="/homepage/:id">
-                            <Home />
-                        </Route>
-                        <Route path="/tambah-poin-reward/:id">
-                            <AddReward />
-                        </Route>
-                        <Route path="/submitted/:id">
-                            <Submitted />
-                        </Route>
-                        <Route path="/detail-poin-reward/:id">
-                            <DetailReward />
-                        </Route>
-                        <Route path="/kalender/:id">
-                            <Calendar />
-                        </Route>
-                        <Route path="/not-found/:id">
-                            <NotFound />
-                        </Route>
-                        <Route path="/admin">
-                            <Redirect to="/login" />
-                        </Route>
-                        <Route>
-                            <Redirect to={`/not-found/${id}`} />
-                        </Route>
-                    </Switch>
-                </Router>
-            )
-        } else {
-            return (
-                <Router>
-                    <Switch>
-                        <Route path="/login">
-                            <Login />
-                        </Route>
-                        <Route path="/admin" exact>
-                            <LandingAdmin />
-                        </Route>
-                        <Route path="/admin/user">
-                            <User />
-                        </Route>
-                        <Route path="/admin/add-user">
-                            <AddUser />
-                        </Route>
-                        <Route path="/admin/edit-user/:id">
-                            <EditUser />
-                        </Route>
-                        <Route path="/admin/delete-user/:id">
-                            <DeleteUser />
-                        </Route>
-                        <Route path="/admin/wagroup">
-                            <WAGroup />
-                        </Route>
-                        <Route path="/admin/add-wagroup">
-                            <AddWAGroup />
-                        </Route>
-                        <Route path="/admin/edit-wagroup/:id">
-                            <EditWAGroup />
-                        </Route>
-                        <Route path="/admin/delete-wagroup/:id">
-                            <DeleteWAGroup />
-                        </Route>
-                        <Route path="/admin/event-type">
-                            <EventType />
-                        </Route>
-                        <Route path="/admin/add-event-type">
-                            <AddEventType />
-                        </Route>
-                        <Route path="/admin/edit-event-type/:id">
-                            <EditEventType />
-                        </Route>
-                        <Route path="/admin/delete-event-type/:id">
-                            <DeleteEventType />
-                        </Route>
-                        <Route path="/admin/event">
-                            <Event />
-                        </Route>
-                        <Route path="/admin/add-event">
-                            <AddEvent />
-                        </Route>
-                        <Route path="/admin/edit-event/:id">
-                            <EditEvent />
-                        </Route>
-                        <Route path="/admin/delete-event/:id">
-                            <DeleteEvent />
-                        </Route>
-                        <Route path="/admin/event-form">
-                            <EventForm />
-                        </Route>
-                        <Route path="/admin/valid-event-form/:id">
-                            <ValidEvent />
-                        </Route>
-                        <Route path="/admin/invalid-event-form/:id">
-                            <InvalidEvent />
-                        </Route>
-                        <Route path="/homepage">
-                            <Redirect to="/login" />
-                        </Route>
-                        <Route>
-                            <Redirect to="/admin" />
-                        </Route>
-                    </Switch>
-                </Router>
-            )
-        }
-    } else {
-        return (
-            <Router>
-                <Switch>
-                    <Route path="/" exact>
-                        <Landing />
-                    </Route>
-                    <Route path="/sign-up">
-                        <Register />
-                    </Route>
-                    <Route path="/login">
-                        <Login />
-                    </Route>
-                    <Route>
-                        <Redirect to="/login" />
-                    </Route>
-                </Switch>
-            </Router>
-        )
-    }
+    return (
+        <Router>
+            <Switch>
+                <Route path="/" exact component={Landing} />
+                <Route path="/sign-up" component={Register} />
+                <Route path="/login" component={Login} />
+                <Route path="/profil/:id" component={Profile} />
+                <Route path="/edit-profil/:id" exact component={EditProfile} />
+                <Route path="/edit-profil/email/:id" component={EditProfileEmail} />
+                <Route path="/edit-profil/password/:id" component={EditProfilePassword} />
+                <Route path="/homepage/:id" component={Home} />
+                <Route path="/tambah-poin-reward/:id" component={AddReward} />
+                <Route path="/submitted/:id" component={Submitted} />
+                <Route path="/detail-poin-reward/:id" component={DetailReward} />
+                <Route path="/kalender/:id" component={Calendar} />
+                <Route path="/not-found/:id" component={NotFound} />
+
+                <Route path="/admin" exact component={LandingAdmin} />
+                <Route path="/admin/user" component={User} />
+                <Route path="/admin/add-user" component={AddUser} />
+                <Route path="/admin/edit-user/:id" component={EditUser} />
+                <Route path="/admin/delete-user/:id" component={DeleteUser} />
+                <Route path="/admin/wagroup" component={WAGroup} />
+                <Route path="/admin/add-wagroup" component={AddWAGroup} />
+                <Route path="/admin/edit-wagroup/:id" component={EditWAGroup} />
+                <Route path="/admin/delete-wagroup/:id" component={DeleteWAGroup} />
+                <Route path="/admin/event-type" component={EventType} />
+                <Route path="/admin/add-event-type" component={AddEventType} />
+                <Route path="/admin/edit-event-type/:id" component={EditEventType} />
+                <Route path="/admin/delete-event-type/:id" component={DeleteEventType} />
+                <Route path="/admin/event" component={Event} />
+                <Route path="/admin/add-event" component={AddEvent} />
+                <Route path="/admin/edit-event/:id" component={EditEvent} />
+                <Route path="/admin/delete-event/:id" component={DeleteEvent} />
+                <Route path="/admin/event-form" component={EventForm} />
+                <Route path="/admin/valid-event-form/:id" component={ValidEvent} />
+                <Route path="/admin/invalid-event-form/:id" component={InvalidEvent} />
+            </Switch>
+        </Router>
+    )
 }
 
 export default RouteManager

@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import Axios from 'axios'
 
-import DefaultPicture from '../../img/DefaultPicture.png'
 import './AddEventType.css'
 
 const AddEventType = () => {
@@ -11,6 +10,22 @@ const AddEventType = () => {
 
   const [eventStatus, setEventStatus] = useState('');
   const history = useHistory();
+
+  const [logIn, setLogIn] = useState(false);
+  const [roleLogIn, setRoleLogIn] = useState([]);
+
+  Axios.defaults.withCredentials = true;
+
+  useEffect(() => {
+    Axios.get('http://localhost:5000/login').then((response) => {
+    if (response.data.loggedIn) {
+        setRoleLogIn(response.data.user[0].role);
+        setLogIn(true);
+      } else {
+        setLogIn(false);
+      }
+    })
+  }, [])
 
   const addEventType = (e) => {
     e.preventDefault();
@@ -32,6 +47,7 @@ const AddEventType = () => {
 
   return (
     <div>
+      {logIn && (roleLogIn == "admin") && <div>
       <Link to="/admin/event-type"><h2>Back</h2></Link>
       <div className="add-eventtypeadmin">
           <form>
@@ -50,6 +66,7 @@ const AddEventType = () => {
           </form>
           <h1>{eventStatus}</h1>
       </div>
+      </div>}
     </div>
   )
 }

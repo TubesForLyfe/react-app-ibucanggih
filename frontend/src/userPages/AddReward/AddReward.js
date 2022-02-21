@@ -31,6 +31,12 @@ const AddReward = () => {
   const {id} = useParams();
   const history = useHistory();
 
+  const [logIn, setLogIn] = useState(false);
+  const [idLogIn, setIDLogIn] = useState([]);
+  const [roleLogIn, setRoleLogIn] = useState([]);
+
+  Axios.defaults.withCredentials = true;
+
   const addForm = (e) => {
       e.preventDefault();
       Axios.post('http://localhost:5000/add-eventform', {
@@ -51,10 +57,6 @@ const AddReward = () => {
     })
   }
 
-  useEffect(() => {
-      getEventType();
-  }, [])
-
   const getEventName = () => {
     Axios.get('http://localhost:5000/get-eventname').then((response) => {
         setListEventName(response.data);
@@ -62,7 +64,17 @@ const AddReward = () => {
   }
 
   useEffect(() => {
-      getEventName();
+    Axios.get('http://localhost:5000/login').then((response) => {
+      if (response.data.loggedIn) {
+        setIDLogIn(response.data.user[0].id);
+        setRoleLogIn(response.data.user[0].role);
+        setLogIn(true);
+      } else {
+        setLogIn(false);
+      }
+    })
+    getEventType();
+    getEventName();
   }, [])
 
   const imageHandler = (e) => {
@@ -78,6 +90,7 @@ const AddReward = () => {
 
   return (
     <div>
+      {logIn && (roleLogIn == "user") && (id == idLogIn) && <div>
       <div>
           <img src={Background} />
           <img className="bg-addreward" src={RewardBackground} />
@@ -150,6 +163,7 @@ const AddReward = () => {
       <div className="footer-addreward">
         <FooterAddReward />
       </div>
+      </div>}
     </div>
   )
 }

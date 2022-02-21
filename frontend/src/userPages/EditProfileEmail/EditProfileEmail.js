@@ -11,9 +11,14 @@ import "./EditProfileEmail.css"
 const EditProfileEmail = () => {
   const [email, setEmail] = useState([]);
   const [newEmail, setNewEmail] = useState('');
-  
   const {id} = useParams();
   const history = useHistory();
+
+  const [logIn, setLogIn] = useState(false);
+  const [idLogIn, setIDLogIn] = useState([]);
+  const [roleLogIn, setRoleLogIn] = useState([]);
+
+  Axios.defaults.withCredentials = true;
 
   const updateEmail = (e) => {
     e.preventDefault();
@@ -35,11 +40,21 @@ const EditProfileEmail = () => {
   }
 
   useEffect(() => {
+    Axios.get('http://localhost:5000/login').then((response) => {
+        if (response.data.loggedIn) {
+          setIDLogIn(response.data.user[0].id);
+          setRoleLogIn(response.data.user[0].role);
+          setLogIn(true);
+        } else {
+          setLogIn(false);
+        }
+    })
     getUserId(id);
   }, [])
 
   return (
     <div>
+      {logIn && (roleLogIn == "user") && (id == idLogIn) && <div>
       <img className="editemail-bg" src={Background} />
       <Link to={`/edit-profil/${id}`}><img className="back-email" src={Back} /></Link>
       <h2 className="editemail-text">Edit Email</h2>
@@ -56,6 +71,7 @@ const EditProfileEmail = () => {
           </form>
       </div>
       <FooterEditProfileEmail />
+      </div>}
     </div>
   )
 }

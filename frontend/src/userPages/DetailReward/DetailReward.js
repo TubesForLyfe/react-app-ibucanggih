@@ -20,6 +20,12 @@ const DetailReward = () => {
 
   const [listEventForm, setListEventForm] = useState([]);
   const {id} = useParams();  
+
+  const [logIn, setLogIn] = useState(false);
+  const [idLogIn, setIDLogIn] = useState([]);
+  const [roleLogIn, setRoleLogIn] = useState([]);
+
+  Axios.defaults.withCredentials = true;
   
   const getUserId = (id) => {
       Axios.post(`http://localhost:5000/profil`, {
@@ -38,12 +44,22 @@ const DetailReward = () => {
   }
 
   useEffect(() => {
+    Axios.get('http://localhost:5000/login').then((response) => {
+      if (response.data.loggedIn) {
+        setIDLogIn(response.data.user[0].id);
+        setRoleLogIn(response.data.user[0].role);
+        setLogIn(true);
+      } else {
+        setLogIn(false);
+      }
+    })
     getUserId(id);
     getDetailReward(id);
   }, [])
 
   return (
     <div>
+      {logIn && (roleLogIn == "user") && (id == idLogIn) && <div>
       <div>
           <img className="bg-detail" src={Background} />
           <img className="bg-detailreward" src={RewardBackground} />
@@ -90,6 +106,7 @@ const DetailReward = () => {
           })}
       </div>
       <FooterEvent />
+      </div>}
     </div>
   )
 }
