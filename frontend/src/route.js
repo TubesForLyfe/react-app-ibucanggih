@@ -93,6 +93,12 @@ const RouteManager = () => {
                 <Route path="/admin/event-form" component={EventForm} />
                 <Route path="/admin/valid-event-form/:id" component={ValidEvent} />
                 <Route path="/admin/invalid-event-form/:id" component={InvalidEvent} />
+
+                {!logIn && <div>
+                    <Route path="*">
+                        <Redirect to="/login" />
+                    </Route>
+                </div>}
             </Switch>
         </Router>
     )

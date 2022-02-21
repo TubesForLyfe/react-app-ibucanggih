@@ -4,5 +4,52 @@ body {
 
 .app {
     position: absolute;
-    left: 550px;
+}
+
+@media (min-width:400px) and (max-width: 450px) {
+    .app {
+        left: 5%;
+    }
+}
+
+@media (min-width:450px) and (max-width: 500px) {
+    .app {
+        left: 10%;
+    }
+}
+
+@media (min-width:500px) and (max-width:575px) {
+    .app {
+        left: 15%;
+    }
+}
+
+@media (min-width:575px) and (max-width:650px) {
+    .app {
+        left: 20%;
+    }
+}
+
+@media (min-width:650px) and (max-width:775px) {
+    .app {
+        left: 25%;
+    }
+}
+
+@media (min-width:775px) and (max-width:1000px) {
+    .app {
+        left: 30%;
+    }
+}
+
+@media (min-width:1000px) and (max-width:1200px) {
+    .app {
+        left: 35%;
+    }
+}
+
+@media (min-width:1200px) {
+    .app {
+        left: 40%;
+    }
 }
