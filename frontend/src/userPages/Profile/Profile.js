@@ -1,5 +1,5 @@
-import React, {useState, useEffect} from 'react'
-import { Link, useParams } from 'react-router-dom'
+import React, {useState, useEffect } from 'react'
+import { Link, useParams, useHistory } from 'react-router-dom'
 import Axios from 'axios'
 
 import Background from "../../img/Background.png";
@@ -19,7 +19,8 @@ const Profile = () => {
   const [address,setAddress] = useState([]);
   const [wagroup, setWagroup] = useState([]); 
   const [image, setImage] = useState([]);
-  const {id} = useParams(); 
+  const {id} = useParams();
+  const history = useHistory();
   
   const [logIn, setLogIn] = useState(false);
   const [idLogIn, setIDLogIn] = useState([]);
@@ -52,6 +53,13 @@ const Profile = () => {
       getUserId(id);
   }, [])
 
+  const logOut = (() => {
+    Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/logout`).then((response) => {
+      history.push('/');
+      window.location.reload(true);
+    })
+  })
+
   return (
     <div>
         {logIn && (roleLogIn == "user") && (id == idLogIn) && <div>
@@ -83,6 +91,10 @@ const Profile = () => {
                 <img className="wa-profile" src={Whatsapp} />
                 <p className="profile-text3">Asal Whatsapp Group</p>
                 <p className="profile-wa">{wagroup}</p>
+            </div>
+            <div className="logout-button" onClick={logOut}>
+              <p className="logout-bg"></p>
+              <p className="logout-text">Log Out</p>
             </div>
         </div>
         <FooterProfile />

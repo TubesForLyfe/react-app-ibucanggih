@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import Axios from 'axios'
 
 import './Landing.css'
 
 const Landing = () => {
+  const history = useHistory();
   const [logIn, setLogIn] = useState(false);
   const [roleLogIn, setRoleLogIn] = useState([]);
 
@@ -21,6 +22,13 @@ const Landing = () => {
     })
   }, [])
 
+  const logOut = (() => {
+    Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/logout`).then((response) => {
+      history.push('/');
+      window.location.reload(true);
+    })
+  })
+
   return (
     <div className="landing-admin">
       {logIn && (roleLogIn == "admin") && <div>
@@ -31,6 +39,7 @@ const Landing = () => {
       <Link to="/admin/event-type"><h3>Event Type Page</h3></Link>
       <Link to="/admin/event"><h3>Event Page</h3></Link>
       <Link to="/admin/event-form"><h3>Event Form</h3></Link>
+      <p onClick={logOut}>Log Out</p>
       </div>}
     </div>
   )

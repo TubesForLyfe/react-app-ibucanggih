@@ -6,3 +6,7 @@ body {
     text-align: center;
     padding: 30px;
 }
+
+.landing-admin p {
+    cursor: pointer;
+}

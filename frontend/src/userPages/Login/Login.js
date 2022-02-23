@@ -29,6 +29,7 @@ const Login = () => {
         } else {
           history.push('/admin')
         }
+        window.location.reload(true);
       }
     });
   };

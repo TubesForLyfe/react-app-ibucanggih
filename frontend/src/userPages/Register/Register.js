@@ -35,6 +35,7 @@ const Register = () => {
       } else {
         const id = response.data.insertId;
         history.push(`/homepage/${id}`);
+        window.location.reload(true);
       }
     });
   };
