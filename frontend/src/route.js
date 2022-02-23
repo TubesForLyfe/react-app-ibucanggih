@@ -80,7 +80,7 @@ const RouteManager = () => {
                 <Route path="/kalender/:id" component={Calendar} />
                 <Route path="/not-found/:id" component={NotFound} />
                 <Route path="*">
-                    <Redirect to={`/not-found/${idLogIn}`} />
+                    <Redirect to={`/homepage/${idLogIn}`} />
                 </Route>
                 </div>}
                 
