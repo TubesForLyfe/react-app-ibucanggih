@@ -22,7 +22,7 @@ const EditUser = () => {
 
   const updateUser = (e) => {
     e.preventDefault();
-    Axios.put('http://localhost:5000/edit-profil', {
+    Axios.put(`${process.env.REACT_APP_IBUCANGGIH_API}/edit-profil`, {
       id: id,
       name: name,
       phone: phone,

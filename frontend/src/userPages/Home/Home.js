@@ -32,7 +32,16 @@ const Home = () => {
     Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/profil`, {
         id: id
     }).then((response) => {
-        setName(response.data[0].name);
+        const fullname = response.data[0].name;
+        let length = 0;
+        while (length < fullname.length && fullname[length] != " ") {
+          length++;
+        }
+        let frontname = "";
+        for (let i = 0; i < length; i++) {
+          frontname += fullname[i];
+        }
+        setName(frontname);
         setImage(response.data[0].image);
         setPoin(response.data[0].poin);
     })
