@@ -59,9 +59,16 @@ const RouteManager = () => {
     return (
         <Router>
             <Switch>
+                {!logIn && <div>
                 <Route path="/" exact component={Landing} />
                 <Route path="/sign-up" component={Register} />
                 <Route path="/login" component={Login} />
+                <Route path="*">
+                    <Redirect to="/" />
+                </Route>
+                </div>}
+
+                {logIn && roleLogIn == "user" && <div>
                 <Route path="/profil/:id" component={Profile} />
                 <Route path="/edit-profil/:id" exact component={EditProfile} />
                 <Route path="/edit-profil/email/:id" component={EditProfileEmail} />
@@ -72,7 +79,12 @@ const RouteManager = () => {
                 <Route path="/detail-poin-reward/:id" component={DetailReward} />
                 <Route path="/kalender/:id" component={Calendar} />
                 <Route path="/not-found/:id" component={NotFound} />
-
+                <Route path="*">
+                    <Redirect to={`/homepage/${idLogIn}`} />
+                </Route>
+                </div>}
+                
+                {logIn && roleLogIn == "admin" && <div>
                 <Route path="/admin" exact component={LandingAdmin} />
                 <Route path="/admin/user" component={User} />
                 <Route path="/admin/add-user" component={AddUser} />
@@ -93,11 +105,9 @@ const RouteManager = () => {
                 <Route path="/admin/event-form" component={EventForm} />
                 <Route path="/admin/valid-event-form/:id" component={ValidEvent} />
                 <Route path="/admin/invalid-event-form/:id" component={InvalidEvent} />
-
-                {!logIn && <div>
-                    <Route path="*">
-                        <Redirect to="/login" />
-                    </Route>
+                <Route path="*">
+                    <Redirect to="/admin" />
+                </Route>
                 </div>}
             </Switch>
         </Router>

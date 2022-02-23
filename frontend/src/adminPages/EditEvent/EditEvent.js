@@ -21,7 +21,7 @@ const EditEvent = () => {
 
   const updateEvent = (e) => {
     e.preventDefault();
-    Axios.put('http://localhost:5000/edit-event', {
+    Axios.put(`${process.env.REACT_APP_IBUCANGGIH_API}/edit-event`, {
       id: id,
       name: name,
       type: type,
@@ -38,7 +38,7 @@ const EditEvent = () => {
   }
 
   const getEventId = (id) => {
-    Axios.post(`http://localhost:5000/get-eventid`, {
+    Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/get-eventid`, {
         id: id
     }).then((response) => {
         setName(response.data[0].name);
@@ -50,7 +50,7 @@ const EditEvent = () => {
   }
 
   useEffect(() => {
-    Axios.get('http://localhost:5000/login').then((response) => {
+    Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/login`).then((response) => {
     if (response.data.loggedIn) {
         setRoleLogIn(response.data.user[0].role);
         setLogIn(true);

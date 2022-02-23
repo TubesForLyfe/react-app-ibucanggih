@@ -15,13 +15,13 @@ const DeleteEventType = () => {
 
   const deleteEventType = (e) => {
       e.preventDefault();
-      Axios.delete(`http://localhost:5000/delete-event-type/${id}`).then((response) => {
+      Axios.delete(`${process.env.REACT_APP_IBUCANGGIH_API}/delete-event-type/${id}`).then((response) => {
           history.push('/admin/event-type');
       })
   }
 
   const getEventType = (id) => {
-    Axios.post(`http://localhost:5000/event-typeid`, {
+    Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/event-typeid`, {
         id: id
     }).then((response) => {
         setName(response.data[0].name);
@@ -29,7 +29,7 @@ const DeleteEventType = () => {
   }
 
   useEffect(() => {
-    Axios.get('http://localhost:5000/login').then((response) => {
+    Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/login`).then((response) => {
     if (response.data.loggedIn) {
         setRoleLogIn(response.data.user[0].role);
         setLogIn(true);

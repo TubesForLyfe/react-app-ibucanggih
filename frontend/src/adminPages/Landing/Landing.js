@@ -11,7 +11,7 @@ const Landing = () => {
   Axios.defaults.withCredentials = true;
 
   useEffect(() => {
-    Axios.get('http://localhost:5000/login').then((response) => {
+    Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/login`).then((response) => {
     if (response.data.loggedIn) {
         setRoleLogIn(response.data.user[0].role);
         setLogIn(true);

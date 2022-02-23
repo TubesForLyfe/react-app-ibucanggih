@@ -19,13 +19,13 @@ const Calendar = () => {
   Axios.defaults.withCredentials = true;
 
   const getEvent = () => {
-    Axios.get('http://localhost:5000/get-eventname').then((response) => {
+    Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/get-eventname`).then((response) => {
         setListEvent(response.data);
     })
   }
 
   useEffect(() => {
-    Axios.get('http://localhost:5000/login').then((response) => {
+    Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/login`).then((response) => {
         if (response.data.loggedIn) {
           setIDLogIn(response.data.user[0].id);
           setRoleLogIn(response.data.user[0].role);

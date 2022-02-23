@@ -1,12 +1,21 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Axios from 'axios'
 
 import Background from "../../img/Background.png";
 import LandingPhoto from "../../img/LandingPhoto.png";
+import Banner1 from "../../img/Banner2.jpg";
+import Banner2 from "../../img/Banner3.jpg";
+import RightArrow from "../../img/RightArrow.png";
 import FooterHome from "../../components/FooterHome/FooterHome" 
 import "./Home.css"
 
+const Image = [
+  Banner1,
+  Banner2
+];
+
+let slideInterval;
 const Home = () => {
   const [name, setName] = useState([]);
   const [image, setImage] = useState([]);
@@ -20,7 +29,7 @@ const Home = () => {
   Axios.defaults.withCredentials = true;
 
   const getUserId = (id) => {
-    Axios.post(`http://localhost:5000/profil`, {
+    Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/profil`, {
         id: id
     }).then((response) => {
         setName(response.data[0].name);
@@ -30,7 +39,7 @@ const Home = () => {
   }
 
   useEffect(() => {
-    Axios.get('http://localhost:5000/login').then((response) => {
+    Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/login`).then((response) => {
       if (response.data.loggedIn) {
         setIDLogIn(response.data.user[0].id);
         setRoleLogIn(response.data.user[0].role);
@@ -42,10 +51,56 @@ const Home = () => {
     getUserId(id);
   }, [])
 
+  const [index, setIndex] = useState(0);
+  const slideRef = useRef();
+
+  const handleNextClick = () => {
+    setIndex((index + 1) % Image.length);
+    slideRef.current.classList.add('fade-anim');
+  }
+  
+  const handlePrevClick = () => {
+    setIndex((index + Image.length - 1) % Image.length);
+    slideRef.current.classList.add('fade-anim');
+  }
+
+  const removeAnimation = () => {
+    slideRef.current.classList.remove('fade-anim');
+  }
+
+  const startSlider = () => {
+    slideInterval = setInterval(() => {
+      handleNextClick();
+    }, 4000);
+  }
+
+  const pauseSlider =() => {
+    clearInterval(slideInterval);
+  }
+
+  useEffect(() => {
+    slideRef.current.addEventListener('animationend', removeAnimation);
+    startSlider();
+    return () => {
+      pauseSlider();
+    }
+  })
+
   return (
     <div>
+      <div ref={slideRef}>
+        {index == 0 && <a href="https://bertsolution.com/our-community-ibu2canggih/" target="_blank">
+          <img src={Image[index]} />
+        </a>}
+        {index == 1 && <a href="http://wa.me/6281326035476" target="_blank">
+          <img src={Image[index]} />
+        </a>}
+      </div>
+      <div>
+        <img className="left-slide" src={RightArrow} onClick={handlePrevClick} />
+        <img className="right-slide" src={RightArrow} onClick={handleNextClick} />
+      </div>
       {logIn && (roleLogIn == "user") && (id == idLogIn) && <div>
-      <img src={LandingPhoto} />
       <img className="background-home" src={Background} />
       <div>
         <img className="img-home" src={image} />
@@ -63,7 +118,6 @@ const Home = () => {
             </Link>
         </div>
       </div>
-      <img className="bg-home" src={LandingPhoto} />
       <FooterHome />
       </div>}
     </div>

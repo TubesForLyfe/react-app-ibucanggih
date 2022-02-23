@@ -22,8 +22,8 @@ const ValidEvent = () => {
 
   const validEventForm = (e) => {
       e.preventDefault();
-      Axios.put(`http://localhost:5000/valid-eventform/${id}`).then((response) => {})
-      Axios.put(`http://localhost:5000/edit-user-poin/${userID}`, {
+      Axios.put(`${process.env.REACT_APP_IBUCANGGIH_API}/valid-eventform/${id}`).then((response) => {})
+      Axios.put(`${process.env.REACT_APP_IBUCANGGIH_API}/edit-user-poin/${userID}`, {
         poin: poin
       }).then((response) => {
         history.push('/admin/event-form');
@@ -31,7 +31,7 @@ const ValidEvent = () => {
   }
 
   const getEventFormId = (id) => {
-    Axios.post(`http://localhost:5000/get-eventformid`, {
+    Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/get-eventformid`, {
         id: id
     }).then((response) => {
         setName(response.data[0].name);
@@ -46,7 +46,7 @@ const ValidEvent = () => {
   }
 
   useEffect(() => {
-    Axios.get('http://localhost:5000/login').then((response) => {
+    Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/login`).then((response) => {
     if (response.data.loggedIn) {
         setRoleLogIn(response.data.user[0].role);
         setLogIn(true);

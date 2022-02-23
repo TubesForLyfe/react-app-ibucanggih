@@ -20,7 +20,7 @@ const Register = () => {
 
   const regist = (e) => {
     e.preventDefault();
-    Axios.post('http://localhost:5000/register', {
+    Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/register`, {
       name: nameReg,
       email: emailReg,
       phone: phoneReg,

@@ -15,13 +15,13 @@ const DeleteWAGroup = () => {
 
   const deleteWAGroup = (e) => {
       e.preventDefault();
-      Axios.delete(`http://localhost:5000/delete-wagroup/${id}`).then((response) => {
+      Axios.delete(`${process.env.REACT_APP_IBUCANGGIH_API}/delete-wagroup/${id}`).then((response) => {
           history.push('/admin/wagroup');
       })
   }
 
   const getWAGroup = (id) => {
-    Axios.post(`http://localhost:5000/get-wagroupid`, {
+    Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/get-wagroupid`, {
         id: id
     }).then((response) => {
         setName(response.data[0].name);
@@ -29,7 +29,7 @@ const DeleteWAGroup = () => {
   }
 
   useEffect(() => {
-    Axios.get('http://localhost:5000/login').then((response) => {
+    Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/login`).then((response) => {
     if (response.data.loggedIn) {
         setRoleLogIn(response.data.user[0].role);
         setLogIn(true);

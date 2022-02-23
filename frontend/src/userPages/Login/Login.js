@@ -16,7 +16,7 @@ const Login = () => {
 
   const login = (e) => {
     e.preventDefault();
-    Axios.post('http://localhost:5000/login', {
+    Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/login`, {
       phone: phone,
       password: password
     }).then((response) => {

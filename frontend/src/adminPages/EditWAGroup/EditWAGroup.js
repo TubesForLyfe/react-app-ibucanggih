@@ -16,7 +16,7 @@ const EditWAGroup = () => {
 
   const updateWAGroup = (e) => {
     e.preventDefault();
-    Axios.put(`http://localhost:5000/edit-wagroup/`, {
+    Axios.put(`${process.env.REACT_APP_IBUCANGGIH_API}/edit-wagroup/`, {
       id: id,
       name: name
     }).then((response) => {
@@ -29,7 +29,7 @@ const EditWAGroup = () => {
   }
 
   const getWAGroup = (id) => {
-    Axios.post(`http://localhost:5000/get-wagroupid`, {
+    Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/get-wagroupid`, {
         id: id
     }).then((response) => {
         setName(response.data[0].name);
@@ -37,7 +37,7 @@ const EditWAGroup = () => {
   }
 
   useEffect(() => {
-    Axios.get('http://localhost:5000/login').then((response) => {
+    Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/login`).then((response) => {
     if (response.data.loggedIn) {
         setRoleLogIn(response.data.user[0].role);
         setLogIn(true);

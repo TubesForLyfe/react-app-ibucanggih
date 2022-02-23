@@ -29,7 +29,7 @@ const EditProfile = () => {
 
   const update = (e) => {
     e.preventDefault();
-    Axios.put('http://localhost:5000/edit-profil/half', {
+    Axios.put(`${process.env.REACT_APP_IBUCANGGIH_API}/edit-profil/half`, {
       id: id,
       name: name,
       phone: phone,
@@ -51,7 +51,7 @@ const EditProfile = () => {
   }
 
   const getUserId = (id) => {
-    Axios.post(`http://localhost:5000/profil`, {
+    Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/profil`, {
         id: id
     }).then((response) => {
         setName(response.data[0].name);
@@ -64,13 +64,13 @@ const EditProfile = () => {
   }
 
   const getWAGroup = () => {
-    Axios.get('http://localhost:5000/get-wagroup').then((response) => {
+    Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/get-wagroup`).then((response) => {
         setListWAGroup(response.data);
     })
   }
 
   useEffect(() => {
-    Axios.get('http://localhost:5000/login').then((response) => {
+    Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/login`).then((response) => {
         if (response.data.loggedIn) {
           setIDLogIn(response.data.user[0].id);
           setRoleLogIn(response.data.user[0].role);

@@ -4,17 +4,16 @@ import { Link } from 'react-router-dom'
 import Logo from "../../img/Logo.png";
 import Background from "../../img/Background.png";
 import LandingPhoto from "../../img/LandingPhoto.png";
-import Banner2 from "../../img/Banner2.jpg";
-import Banner3 from "../../img/Banner3.jpg";
+import Banner1 from "../../img/Banner2.jpg";
+import Banner2 from "../../img/Banner3.jpg";
 import RightArrow from "../../img/RightArrow.png";
 import LandingDesc from "../../img/LandingDesc.png";
 import "./Landing.css";
 import FooterLanding from "../../components/FooterLanding/FooterLanding";
 
 const Image = [
-  LandingPhoto,
-  Banner2,
-  Banner3
+  Banner1,
+  Banner2
 ];
 
 let slideInterval;
@@ -57,15 +56,12 @@ const Landing = () => {
   return (
     <div>
       <div ref={slideRef}>
-        {index == 0 && <a href="https://bertsolution.com/our-community-ibu2canggih/">
+        {index == 0 && <a href="https://bertsolution.com/our-community-ibu2canggih/" target="_blank">
           <img className="landing-top" src={Image[index]} />
         </a>}
-        {index == 1 && <a href="http://wa.me/6281326035476">
+        {index == 1 && <a href="http://wa.me/6281326035476" target="_blank">
           <img className="landing-top" src={Image[index]} />
         </a>}
-        {index == 2 &&
-          <img className="landing-top" src={Image[index]} />
-        }
       </div>
       <div>
         <img className="left-slide" src={RightArrow} onClick={handlePrevClick} />

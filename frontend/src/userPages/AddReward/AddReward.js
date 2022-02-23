@@ -39,7 +39,7 @@ const AddReward = () => {
 
   const addForm = (e) => {
       e.preventDefault();
-      Axios.post('http://localhost:5000/add-eventform', {
+      Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/add-eventform`, {
           id: id,
           date: date,
           month: month,
@@ -52,19 +52,19 @@ const AddReward = () => {
   }
 
   const getEventType = () => {
-    Axios.get('http://localhost:5000/get-eventtype').then((response) => {
+    Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/get-eventtype`).then((response) => {
         setListEventType(response.data);
     })
   }
 
   const getEventName = () => {
-    Axios.get('http://localhost:5000/get-eventname').then((response) => {
+    Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/get-eventname`).then((response) => {
         setListEventName(response.data);
     })
   }
 
   useEffect(() => {
-    Axios.get('http://localhost:5000/login').then((response) => {
+    Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/login`).then((response) => {
       if (response.data.loggedIn) {
         setIDLogIn(response.data.user[0].id);
         setRoleLogIn(response.data.user[0].role);

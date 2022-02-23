@@ -17,7 +17,7 @@ const AddEventType = () => {
   Axios.defaults.withCredentials = true;
 
   useEffect(() => {
-    Axios.get('http://localhost:5000/login').then((response) => {
+    Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/login`).then((response) => {
     if (response.data.loggedIn) {
         setRoleLogIn(response.data.user[0].role);
         setLogIn(true);
@@ -29,7 +29,7 @@ const AddEventType = () => {
 
   const addEventType = (e) => {
     e.preventDefault();
-    Axios.post('http://localhost:5000/add-eventtype', {
+    Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/add-eventtype`, {
       name: name,
       image: image
     }).then((response) => {

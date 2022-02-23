@@ -28,7 +28,7 @@ const DetailReward = () => {
   Axios.defaults.withCredentials = true;
   
   const getUserId = (id) => {
-      Axios.post(`http://localhost:5000/profil`, {
+      Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/profil`, {
           id: id
       }).then((response) => {
           setName(response.data[0].name);
@@ -38,13 +38,13 @@ const DetailReward = () => {
   }
 
   const getDetailReward = () => {
-    Axios.get(`http://localhost:5000/get-eventform/${id}`).then((response) => {
+    Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/get-eventform/${id}`).then((response) => {
         setListEventForm(response.data);
     })
   }
 
   useEffect(() => {
-    Axios.get('http://localhost:5000/login').then((response) => {
+    Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/login`).then((response) => {
       if (response.data.loggedIn) {
         setIDLogIn(response.data.user[0].id);
         setRoleLogIn(response.data.user[0].role);

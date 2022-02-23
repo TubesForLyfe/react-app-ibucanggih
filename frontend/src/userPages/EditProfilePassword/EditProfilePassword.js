@@ -22,7 +22,7 @@ const EditProfilePassword = () => {
   Axios.defaults.withCredentials = true;
 
   useEffect(() => {
-    Axios.get('http://localhost:5000/login').then((response) => {
+    Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/login`).then((response) => {
         if (response.data.loggedIn) {
           setIDLogIn(response.data.user[0].id);
           setRoleLogIn(response.data.user[0].role);
@@ -35,7 +35,7 @@ const EditProfilePassword = () => {
 
   const updatePassword = (e) => {
     e.preventDefault();
-    Axios.put('http://localhost:5000/edit-profil/password', {
+    Axios.put(`${process.env.REACT_APP_IBUCANGGIH_API}/edit-profil/password`, {
       id: id,
       password: password,
       pwconfirm: pwconfirm     

@@ -13,13 +13,13 @@ const WAGroup = () => {
   Axios.defaults.withCredentials = true;
 
   const getWAGroup = () => {
-      Axios.get('http://localhost:5000/get-wagroup').then((response) => {
+      Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/get-wagroup`).then((response) => {
           setWAGroup(response.data);
       })
   }
 
   useEffect(() => {
-    Axios.get('http://localhost:5000/login').then((response) => {
+    Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/login`).then((response) => {
     if (response.data.loggedIn) {
         setRoleLogIn(response.data.user[0].role);
         setLogIn(true);
