@@ -1,55 +1,89 @@
 body {
     margin: 0;
+    background-color: #dae4eb;
 }
 
 .app {
     position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    width: 100%;
+    max-width: 375px;
+    background-color: #F2FAFF;
 }
 
-@media (min-width:400px) and (max-width: 450px) {
-    .app {
-        left: 3%;
-    }
+/* PADDING & MARGIN */
+.margin-vertical {
+    margin-top: 32px;
+    margin-bottom: 32px;
 }
 
-@media (min-width:450px) and (max-width: 500px) {
-    .app {
-        left: 10%;
-    }
+.margin-top {
+    margin-top: 32px;
 }
 
-@media (min-width:500px) and (max-width:575px) {
-    .app {
-        left: 15%;
-    }
+.margin-bot-8 {
+    margin-bottom: 8px;
 }
 
-@media (min-width:575px) and (max-width:650px) {
-    .app {
-        left: 20%;
-    }
+.margin-bot-16 {
+    margin-bottom: 16px;
 }
 
-@media (min-width:650px) and (max-width:775px) {
-    .app {
-        left: 25%;
-    }
+.margin-right-16 {
+    margin-right: 16px;
 }
 
-@media (min-width:775px) and (max-width:1000px) {
-    .app {
-        left: 30%;
-    }
+.margin-horizontal {
+    margin-right: 32px;
+    margin-left: 32px;
 }
 
-@media (min-width:1000px) and (max-width:1200px) {
-    .app {
-        left: 35%;
-    }
+.margin {
+    margin: 32px;
 }
 
-@media (min-width:1200px) {
-    .app {
-        left: 40%;
-    }
+.padding {
+    padding: 32px;
+}
+
+/* TEXT */
+.default-text {
+    font-family: Avenir;
+    font-style: normal;
+    font-size: 14px;
+    text-align: center;
+    color: #000000;
+}
+
+.text-title {
+    color: #85296B;
+    font-size: 18px;
+}
+
+/* OTHER */
+.full-width {
+    width: 100%;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-between {
+    justify-content: space-between;
+}
+
+.center-horizontal {
+    align-self: center;
+}
+
+.bg-purple {
+    background-color: #85296B;
 }
