@@ -1,17 +1,19 @@
-import express from "express";
-import mysql from "mysql";
-import cors from 'cors';
-import bcrypt from 'bcrypt';
-import bodyParser from 'body-parser';
-import cookieParser from 'cookie-parser';
-import session from 'express-session';
+const express = require("express");
+const mysql = require("mysql");
+const cors = require('cors');
+const bcrypt = require('bcrypt');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+const dotenv = require('dotenv');
 
 const saltRounds = 10;
 const app = express();
+dotenv.config()
 
 app.use(express.json());
 app.use(cors({
-    origin: ['http://localhost:3000'],
+    origin: [process.env.CLIENT_URL],
     methods: ['GET', 'POST', 'DELETE', 'PUT'],
     credentials: true
 }));
@@ -24,18 +26,28 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        expires: 60 * 60 * 24
+        expires: Number(process.env.EXPIRE)
     }
 }));
 
 const db = mysql.createConnection({
-    user: "root",
-    host: "localhost",
-    password: "",
-    database: "ibucanggih_db"
+    user: process.env.DB_USER,
+    host: process.env.DB_HOST,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME
 });
 
-app.post("/register", (req, res) => {
+const base = process.env.BASE_ROUTE
+
+app.get(`${base}`, (req, res) => {
+    db.connect(function(err) {
+        if (err) res.send({data: "not connected"});
+        res.send({data: "connected"});
+      });
+    
+})
+
+app.post(`${base}/register`, (req, res) => {
     const nama = req.body.name;
     const email = req.body.email;
     const phone = req.body.phone;
@@ -48,7 +60,7 @@ app.post("/register", (req, res) => {
     if (password == pwconfirm) {
         bcrypt.hash(password, saltRounds, (err, hash) => {
             if (err) {
-                console.log(err);
+                res.send({message: err.message});
             }
     
             db.query (
@@ -69,7 +81,7 @@ app.post("/register", (req, res) => {
     }
 });
 
-app.post('/login', (req, res) => {
+app.post(`${base}/login`, (req, res) => {
     const phone = req.body.phone;
     const password = req.body.password;
 
@@ -97,7 +109,7 @@ app.post('/login', (req, res) => {
     );
 });
 
-app.get('/login', (req, res) => {
+app.get(`${base}/login`, (req, res) => {
     if (req.session.user) {
         res.send({loggedIn: true, user: req.session.user});
     } else {
@@ -105,7 +117,7 @@ app.get('/login', (req, res) => {
     }
 })
 
-app.post('/profil', (req, res) => {
+app.post(`${base}/profil`, (req, res) => {
     const id = req.body.id;
 
     db.query (
@@ -113,7 +125,7 @@ app.post('/profil', (req, res) => {
         id,
         (err, result) => {
             if (err) {
-                console.log(err);
+                res.send({message: err.message});
             } else {
                 res.send(result);
             }
@@ -121,7 +133,7 @@ app.post('/profil', (req, res) => {
     )
 });
 
-app.put("/edit-profil", (req, res) => {
+app.put(`${base}/edit-profil`, (req, res) => {
     const id = req.body.id;
     const name = req.body.name;
     const phone = req.body.phone;
@@ -132,7 +144,7 @@ app.put("/edit-profil", (req, res) => {
 
     bcrypt.hash(password, saltRounds, (err, hash) => {
         if (err) {
-            console.log(err);
+            res.send({message: err.message});
         }
 
         db.query(
@@ -140,7 +152,7 @@ app.put("/edit-profil", (req, res) => {
             [name, phone, address, wagroup, email, hash, id],
             (err, result) => {
                 if (err) {
-                    console.log(err);
+                    res.send({message: err.message});
                 } else {
                     res.send(id);
                 }
@@ -149,7 +161,7 @@ app.put("/edit-profil", (req, res) => {
     })
 })
 
-app.put("/edit-profil/half", (req, res) => {
+app.put(`${base}/edit-profil/half`, (req, res) => {
     const id = req.body.id;
     const name = req.body.name;
     const phone = req.body.phone;
@@ -162,7 +174,7 @@ app.put("/edit-profil/half", (req, res) => {
         [name, phone, address, wagroup, image, id],
         (err, result) => {
             if (err) {
-                console.log(err);
+                res.send({message: err.message});
             } else {
                 res.send(id);
             }
@@ -170,7 +182,7 @@ app.put("/edit-profil/half", (req, res) => {
     )
 })
 
-app.put("/edit-profil/email", (req, res) => {
+app.put(`${base}/edit-profil/email`, (req, res) => {
     const id = req.body.id;
     const email = req.body.email;
     
@@ -179,7 +191,7 @@ app.put("/edit-profil/email", (req, res) => {
         [email, id],
         (err, result) => {
             if (err) {
-                console.log(err);
+                res.send({message: err.message});
             } else {
                 res.send(id);
             }
@@ -187,7 +199,7 @@ app.put("/edit-profil/email", (req, res) => {
     )
 })
 
-app.put("/edit-profil/password", (req, res) => {
+app.put(`${base}/edit-profil/password`, (req, res) => {
     const id = req.body.id;
     const password = req.body.password;
     const pwconfirm = req.body.pwconfirm;
@@ -195,7 +207,7 @@ app.put("/edit-profil/password", (req, res) => {
     if (password == pwconfirm) {
         bcrypt.hash(password, saltRounds, (err, hash) => {
             if (err) {
-                console.log(err);
+                res.send({message: err.message});
             }
     
             db.query (
@@ -211,12 +223,12 @@ app.put("/edit-profil/password", (req, res) => {
     }
 });
 
-app.get('/get-user', (req, res) => {
+app.get(`${base}/get-user`, (req, res) => {
     db.query (
         "SELECT * FROM users",
         (err, result) => {
             if (err) {
-                console.log(err);
+                res.send({message: err.message});
             } else {
                 res.send(result);
             }
@@ -224,14 +236,14 @@ app.get('/get-user', (req, res) => {
     )
 });
 
-app.delete('/delete-user/:id', (req, res) => {
+app.delete(`${base}/delete-user/:id`, (req, res) => {
     const id = req.params.id;
 
     db.query (
         "DELETE FROM users WHERE id = ?", id,
         (err, result) => {
             if (err) {
-                console.log(err);
+                res.send({message: err.message});
             } else {
                 res.send(result);
             }
@@ -239,12 +251,12 @@ app.delete('/delete-user/:id', (req, res) => {
     )
 })
 
-app.get('/get-wagroup', (req, res) => {
+app.get(`${base}/get-wagroup`, (req, res) => {
     db.query (
         "SELECT * FROM wagroups",
         (err, result) => {
             if (err) {
-                console.log(err);
+                res.send({message: err.message});
             } else {
                 res.send(result);
             }
@@ -252,7 +264,7 @@ app.get('/get-wagroup', (req, res) => {
     )
 });
 
-app.post("/add-wagroup", (req, res) => {
+app.post(`${base}/add-wagroup`, (req, res) => {
     const nama = req.body.name;
     
     db.query (
@@ -268,7 +280,7 @@ app.post("/add-wagroup", (req, res) => {
     );
 });
 
-app.put("/edit-wagroup", (req, res) => {
+app.put(`${base}/edit-wagroup`, (req, res) => {
     const id = req.body.id;
     const name = req.body.name;
     
@@ -277,7 +289,7 @@ app.put("/edit-wagroup", (req, res) => {
         [name, id],
         (err, result) => {
             if (err) {
-                console.log(err);
+                res.send({message: err.message});
             } else {
                 res.send(id);
             }
@@ -285,7 +297,7 @@ app.put("/edit-wagroup", (req, res) => {
     )
 })
 
-app.post('/get-wagroupid', (req, res) => {
+app.post(`${base}/get-wagroupid`, (req, res) => {
     const id = req.body.id;
     
     db.query (
@@ -293,7 +305,7 @@ app.post('/get-wagroupid', (req, res) => {
         id,
         (err, result) => {
             if (err) {
-                console.log(err);
+                res.send({message: err.message});
             } else {
                 res.send(result);
             }
@@ -301,14 +313,14 @@ app.post('/get-wagroupid', (req, res) => {
     )
 });
 
-app.delete('/delete-wagroup/:id', (req, res) => {
+app.delete(`${base}/delete-wagroup/:id`, (req, res) => {
     const id = req.params.id;
 
     db.query (
         "DELETE FROM wagroups WHERE id = ?", id,
         (err, result) => {
             if (err) {
-                console.log(err);
+                res.send({message: err.message});
             } else {
                 res.send(result);
             }
@@ -316,12 +328,12 @@ app.delete('/delete-wagroup/:id', (req, res) => {
     )
 })
 
-app.get('/get-eventtype', (req, res) => {
+app.get(`${base}/get-eventtype`, (req, res) => {
     db.query (
         "SELECT * FROM eventtype",
         (err, result) => {
             if (err) {
-                console.log(err);
+                res.send({message: err.message});
             } else {
                 res.send(result);
             }
@@ -329,12 +341,12 @@ app.get('/get-eventtype', (req, res) => {
     )
 });
 
-app.get('/get-eventname', (req, res) => {
+app.get(`${base}/get-eventname`, (req, res) => {
     db.query (
         "SELECT * FROM eventname",
         (err, result) => {
             if (err) {
-                console.log(err);
+                res.send({message: err.message});
             } else {
                 res.send(result);
             }
@@ -342,7 +354,7 @@ app.get('/get-eventname', (req, res) => {
     )
 });
 
-app.post("/add-eventform", (req, res) => {
+app.post(`${base}/add-eventform`, (req, res) => {
     const user_id = req.body.id;
     const date = req.body.date;
     const month = req.body.month;
@@ -359,7 +371,7 @@ app.post("/add-eventform", (req, res) => {
     );
 });
 
-app.post("/add-eventtype", (req, res) => {
+app.post(`${base}/add-eventtype`, (req, res) => {
     const nama = req.body.name;
     const image = req.body.image;
     
@@ -376,7 +388,7 @@ app.post("/add-eventtype", (req, res) => {
     );
 });
 
-app.post('/event-typeid', (req, res) => {
+app.post(`${base}/event-typeid`, (req, res) => {
     const id = req.body.id;
 
     db.query (
@@ -384,7 +396,7 @@ app.post('/event-typeid', (req, res) => {
         id,
         (err, result) => {
             if (err) {
-                console.log(err);
+                res.send({message: err.message});
             } else {
                 res.send(result);
             }
@@ -392,7 +404,7 @@ app.post('/event-typeid', (req, res) => {
     )
 });
 
-app.put("/edit-event-type", (req, res) => {
+app.put(`${base}/edit-event-type`, (req, res) => {
     const id = req.body.id;
     const name = req.body.name;
     const image = req.body.image;
@@ -410,14 +422,14 @@ app.put("/edit-event-type", (req, res) => {
     )
 });
 
-app.delete('/delete-event-type/:id', (req, res) => {
+app.delete(`${base}/delete-event-type/:id`, (req, res) => {
     const id = req.params.id;
 
     db.query (
         "DELETE FROM eventtype WHERE id = ?", id,
         (err, result) => {
             if (err) {
-                console.log(err);
+                res.send({message: err.message});
             } else {
                 res.send(result);
             }
@@ -425,7 +437,7 @@ app.delete('/delete-event-type/:id', (req, res) => {
     )
 });
 
-app.post("/add-eventname", (req, res) => {
+app.post(`${base}/add-eventname`, (req, res) => {
     const nama = req.body.name;
     const type = req.body.type;
     const date = req.body.date;
@@ -441,7 +453,7 @@ app.post("/add-eventname", (req, res) => {
     );
 });
 
-app.put("/edit-event", (req, res) => {
+app.put(`${base}/edit-event`, (req, res) => {
     const id = req.body.id;
     const name = req.body.name;
     const type = req.body.type;
@@ -454,7 +466,7 @@ app.put("/edit-event", (req, res) => {
         [name, type, date, month, poin, id],
         (err, result) => {
             if (err) {
-                console.log(err);
+                res.send({message: err.message});
             } else {
                 res.send(id);
             }
@@ -462,7 +474,7 @@ app.put("/edit-event", (req, res) => {
     )
 });
 
-app.post('/get-eventid', (req, res) => {
+app.post(`${base}/get-eventid`, (req, res) => {
     const id = req.body.id;
 
     db.query (
@@ -470,7 +482,7 @@ app.post('/get-eventid', (req, res) => {
         id,
         (err, result) => {
             if (err) {
-                console.log(err);
+                res.send({message: err.message});
             } else {
                 res.send(result);
             }
@@ -478,14 +490,14 @@ app.post('/get-eventid', (req, res) => {
     )
 });
 
-app.delete('/delete-event/:id', (req, res) => {
+app.delete(`${base}/delete-event/:id`, (req, res) => {
     const id = req.params.id;
 
     db.query (
         "DELETE FROM eventname WHERE id = ?", id,
         (err, result) => {
             if (err) {
-                console.log(err);
+                res.send({message: err.message});
             } else {
                 res.send(result);
             }
@@ -493,7 +505,7 @@ app.delete('/delete-event/:id', (req, res) => {
     )
 })
 
-app.get('/get-eventform/:id', (req, res) => {
+app.get(`${base}/get-eventform/:id`, (req, res) => {
     const id = req.params.id;
 
     db.query (
@@ -501,7 +513,7 @@ app.get('/get-eventform/:id', (req, res) => {
         id,
         (err, result) => {
             if (err) {
-                console.log(err);
+                res.send({message: err.message});
             } else {
                 res.send(result);
             }
@@ -509,12 +521,12 @@ app.get('/get-eventform/:id', (req, res) => {
     )
 });
 
-app.get('/get-eventform', (req, res) => {
+app.get(`${base}/get-eventform`, (req, res) => {
     db.query (
         "SELECT f.id, u.name, user_id, eventtype, f.eventname, f.date, f.month, f.image FROM eventform f, eventname n, users u WHERE u.id = f.user_id AND eventtype = type AND f.eventname = n.name AND f.date = n.date AND f.month = n.month AND review = 99",
         (err, result) => {
             if (err) {
-                console.log(err);
+                res.send({message: err.message});
             } else {
                 res.send(result);
             }
@@ -522,14 +534,14 @@ app.get('/get-eventform', (req, res) => {
     )
 });
 
-app.post('/get-eventformid', (req, res) => {
+app.post(`${base}/get-eventformid`, (req, res) => {
     const id = req.body.id;
 
     db.query (
         "SELECT u.name, user_id, eventtype, f.eventname, f.date, f.month, f.image, n.poin FROM eventform f, eventname n, users u WHERE u.id = f.user_id AND eventtype = type AND f.eventname = n.name AND f.date = n.date AND f.month = n.month AND review = 99 AND f.id = ?", id,
         (err, result) => {
             if (err) {
-                console.log(err);
+                res.send({message: err.message});
             } else {
                 res.send(result);
             }
@@ -537,14 +549,14 @@ app.post('/get-eventformid', (req, res) => {
     )
 });
 
-app.put("/valid-eventform/:id", (req, res) => {
+app.put(`${base}/valid-eventform/:id`, (req, res) => {
     const id = req.params.id;
 
     db.query(
         "UPDATE eventform SET review = 1 WHERE id = ?", id,
         (err, result) => {
             if (err) {
-                console.log(err);
+                res.send({message: err.message});
             } else {
                 res.send(id);
             }
@@ -552,14 +564,14 @@ app.put("/valid-eventform/:id", (req, res) => {
     )
 });
 
-app.put("/invalid-eventform/:id", (req, res) => {
+app.put(`${base}/invalid-eventform/:id`, (req, res) => {
     const id = req.params.id;
 
     db.query(
         "UPDATE eventform SET review = 0 WHERE id = ?", id,
         (err, result) => {
             if (err) {
-                console.log(err);
+                res.send({message: err.message});
             } else {
                 res.send(id);
             }
@@ -567,7 +579,7 @@ app.put("/invalid-eventform/:id", (req, res) => {
     )
 });
 
-app.put("/edit-user-poin/:id", (req, res) => {
+app.put(`${base}/edit-user-poin/:id`, (req, res) => {
     const id = req.params.id;
     const poin = req.body.poin;
 
@@ -576,7 +588,7 @@ app.put("/edit-user-poin/:id", (req, res) => {
         [poin, id],
         (err, result) => {
             if (err) {
-                console.log(err);
+                res.send({message: err.message});
             } else {
                 res.send(id);
             }
@@ -584,4 +596,4 @@ app.put("/edit-user-poin/:id", (req, res) => {
     )
 })
 
-app.listen(5000, () => console.log('Server running at port 5000'));
+app.listen(process.env.PORT, () => console.log(`Server running at port ${process.env.PORT}`));
