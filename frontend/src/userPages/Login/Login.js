@@ -15,22 +15,26 @@ const Login = () => {
 
   const login = (e) => {
     e.preventDefault();
-    Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/login`, {
-      phone: phone,
-      password: password
-    }).then((response) => {
-      if (response.data.message) {
-        setLoginStatus(response.data.message);
-      } else {
-        if (response.data[0].role === "user") {
-          const id = response.data[0].id;
-          history.push(`/homepage/${id}`);
+    if (phone == "" || password == "") {
+      setLoginStatus("Data belum diisi");
+    } else {
+      Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/login`, {
+        phone: phone,
+        password: password
+      }).then((response) => {
+        if (response.data.message) {
+          setLoginStatus(response.data.message);
         } else {
-          history.push('/admin')
+          if (response.data[0].role === "user") {
+            const id = response.data[0].id;
+            history.push(`/homepage/${id}`);
+          } else {
+            history.push('/admin')
+          }
+          window.location.reload(true);
         }
-        window.location.reload(true);
-      }
-    });
+      });
+    }
   };
 
   return (

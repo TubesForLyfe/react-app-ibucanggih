@@ -19,24 +19,32 @@ const Register = () => {
 
   const regist = (e) => {
     e.preventDefault();
-    Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/register`, {
-      name: nameReg,
-      email: emailReg,
-      phone: phoneReg,
-      password: passwordReg,
-      pwconfirm: pwConfirmReg,
-      address: '-',
-      wagroup: '-',
-      image: DefaultPicture
-    }).then((response) => {
-      if (response.data.message) {
-        setRegisterStatus(response.data.message);
-      } else {
-        const id = response.data.insertId;
-        history.push(`/homepage/${id}`);
-        window.location.reload(true);
-      }
-    });
+    if (nameReg == "" 
+    || emailReg == "" 
+    || phoneReg == "" 
+    || passwordReg == "" 
+    || pwConfirmReg == "") {
+      setRegisterStatus("Data belum diisi");
+    } else {
+      Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/register`, {
+        name: nameReg,
+        email: emailReg,
+        phone: phoneReg,
+        password: passwordReg,
+        pwconfirm: pwConfirmReg,
+        address: '-',
+        wagroup: '-',
+        image: DefaultPicture
+      }).then((response) => {
+        if (response.data.message) {
+          setRegisterStatus(response.data.message);
+        } else {
+          const id = response.data.insertId;
+          history.push(`/homepage/${id}`);
+          window.location.reload(true);
+        }
+      });
+    }
   };
 
   return (
