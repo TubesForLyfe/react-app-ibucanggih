@@ -2,8 +2,6 @@ import React, { useState, useEffect, useRef } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Axios from 'axios'
 
-import Background from "../../img/Background.png";
-import LandingPhoto from "../../img/LandingPhoto.png";
 import Banner1 from "../../img/Banner2.jpg";
 import Banner2 from "../../img/Banner3.jpg";
 import RightArrow from "../../img/RightArrow.png";
@@ -96,39 +94,33 @@ const Home = () => {
   })
 
   return (
-    <div>
+    <div className='flex-column'>
       <div ref={slideRef}>
         {index == 0 && <a href="https://bertsolution.com/our-community-ibu2canggih/" target="_blank">
-          <img src={Image[index]} />
+          <img className="full-width" src={Image[index]} />
         </a>}
         {index == 1 && <a href="http://wa.me/6281326035476" target="_blank">
-          <img src={Image[index]} />
+          <img className="full-width" src={Image[index]} />
         </a>}
       </div>
       <div>
         <img className="left-slide" src={RightArrow} onClick={handlePrevClick} />
         <img className="right-slide" src={RightArrow} onClick={handleNextClick} />
       </div>
-      {logIn && (roleLogIn == "user") && (id == idLogIn) && <div>
-      <img className="background-home" src={Background} />
-      <div>
-        <img className="img-home" src={image} />
-        <p className="txt1-home">Halo, Ibu Canggih</p>
-        <p className="name-home">{name}</p>
-        <div>
-            <p className="bg-poin-home"></p>
-            <p className="txt2-home">Poin Ibu sekarang:</p>
-            <p className="poin-home">{poin}</p>
-            <Link to={`/tambah-poin-reward/${id}`}>
-                <p className="bg-pluspoin-home"><p className="txt-pluspoin-home">Tambah Poin Reward</p></p>
-            </Link>
-            <Link to={`/detail-poin-reward/${id}`}>
-                <p className="bg-pluspoin-home2"><p className="txt-pluspoin-home2">Detail Poin Reward</p></p>
-            </Link>
-        </div>
+      <img className="img-home center-horizontal margin-top" src={image} />
+      <div className="txt1-home center-horizontal margin-top-16">Halo, Ibu Canggih</div>
+      <div className="name-home center-horizontal margin-horizontal margin-bot-16">{name}</div>
+      <div className='bg-poin-home center-horizontal flex-column margin-bot'>
+        <div className="txt2-home margin-top-8">Poin Ibu sekarang:</div>
+        <div className="poin-home">{poin}</div>
+        <Link className="bg-pluspoin-home center-horizontal margin-bot-16" to={`/tambah-poin-reward/${id}`}>
+            Tambah Poin Reward
+        </Link>
+        <Link className="bg-pluspoin-home2 center-horizontal margin-bot-16" to={`/detail-poin-reward/${id}`}>
+            Detail Poin Reward
+        </Link>
       </div>
-      <FooterHome />
-      </div>}
+      <FooterHome active="home"/>
     </div>
   )
 }

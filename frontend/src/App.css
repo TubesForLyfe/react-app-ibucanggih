@@ -18,6 +18,14 @@ body {
     margin-bottom: 32px;
 }
 
+.margin-top-8 {
+    margin-top: 8px;
+}
+
+.margin-top-16 {
+    margin-top: 16px;
+}
+
 .margin-top {
     margin-top: 32px;
 }

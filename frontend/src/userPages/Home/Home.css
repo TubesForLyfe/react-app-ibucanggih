@@ -29,30 +29,14 @@ body {
     cursor: pointer;
 }
 
-.background-home {
-    position: absolute;
-    left: 0px;
-    top: 212px;
-}
-
 .img-home {
-    position: absolute;
     width: 92px;
     height: 92px;
-    left: 142px;
-    top: 244px;
 
     border-radius: 100%;
 }
 
 .txt1-home {
-    position: absolute;
-    width: 131px;
-    height: 25px;
-    left: 122px;
-    top: 342px;
-    text-align: center;
-    
     font-family: Avenir;
     font-style: normal;
     font-weight: 500;
@@ -63,13 +47,6 @@ body {
 }
 
 .name-home {
-    position: absolute;
-    width: 91px;
-    height: 57px;
-    left: 142px;
-    top: 348px;
-    text-align: center;
-    
     font-family: Avenir;
     font-style: normal;
     font-weight: 900;
@@ -80,11 +57,7 @@ body {
 }
 
 .bg-poin-home {
-    position: absolute;
-    width: 333px;
-    height: 235px;
-    left: 20px;
-    top: 450px;
+    width: 90%;
     
     background: #FFFFFF;
     
@@ -93,11 +66,6 @@ body {
 }
 
 .txt2-home {
-    position: absolute;
-    width: 134px;
-    height: 25px;
-    left: 122px;
-    top: 465px;
     text-align: center;
     
     font-family: Avenir;
@@ -111,77 +79,51 @@ body {
 }
 
 .poin-home {
-    position: absolute;
-    width: 22px;
-    height: 57px;
-    left: 168px;
-    top: 475px;
-    
     font-family: Avenir;
     font-style: normal;
     font-weight: 900;
     font-size: 36px;
     line-height: 57px;
     
-    display: flex;
-    align-items: center;
+    text-align: center;
     
     color: #85296B;
 }
 
 .bg-pluspoin-home {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 101px;
-    text-align: center;
-    
-    position: absolute;
-    width: 73px;
-    height: 20px;
-    left: 49px;
-    top: 565px;
+    width: 70%;
     
     background: #85296B;
     box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.15);
     border-radius: 77px;
-}
 
-.txt-pluspoin-home {
-    position: static;
-    width: 257px;
-    height: 22px;
-    left: 575px;
-    top: 9px;
-    
     font-family: Avenir;
     font-style: normal;
-    font-weight: 850;
+    font-weight: 750;
     font-size: 16px;
     line-height: 25px;
-    
+    text-decoration: none;
+    text-align: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
+
     color: #FFFFFF;
-    
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-    margin: 0px 10px;
 }
 
 .bg-pluspoin-home2 {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 10px 101px;
+    width: 70%;
+
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 750;
+    font-size: 16px;
+    line-height: 25px;
+    text-decoration: none;
     text-align: center;
-    
-    position: absolute;
-    width: 73px;
-    height: 20px;
-    left: 49px;
-    top: 625px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+
+    color: #FFFFFF;
     
     background: #D36EB7;
     box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.15);

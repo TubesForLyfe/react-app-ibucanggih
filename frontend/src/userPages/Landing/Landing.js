@@ -2,8 +2,6 @@ import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 
 import Logo from "../../img/Logo.png";
-import Background from "../../img/Background.png";
-import LandingPhoto from "../../img/LandingPhoto.png";
 import Banner1 from "../../img/Banner2.jpg";
 import Banner2 from "../../img/Banner3.jpg";
 import RightArrow from "../../img/RightArrow.png";
