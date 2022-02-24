@@ -5,7 +5,7 @@ import Kalender from 'react-calendar'
 
 import Background from "../../img/Background.png";
 import LineCalendar from "../../img/LineDetailReward.png";
-import FooterCalendar from "../../components/FooterCalendar/FooterCalendar";
+import FooterHome from "../../components/FooterHome/FooterHome";
 import "./Calendar.css";
 
 const Calendar = () => {
@@ -38,9 +38,8 @@ const Calendar = () => {
   }, [])
 
   return (
-    <div>
+    <div className='flex-column'>
       {logIn && (roleLogIn == "user") && (id == idLogIn) && <div>
-      <img className="calendar-bg" src={Background} />
       <p className="title-calendar">Event Kalender</p>
       <div className="calendar-main">
           <Kalender />
@@ -60,7 +59,7 @@ const Calendar = () => {
               )
           })}
       </div>
-      <FooterCalendar />
+      <FooterHome active="calendar"/>
       </div>}
     </div>
   )

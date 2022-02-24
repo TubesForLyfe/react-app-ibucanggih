@@ -8,12 +8,7 @@ body {
 }
 
 .title-calendar {
-    position: absolute;
-    width: 176px;
-    height: 38px;
-    left: 21px;
-    top: 0px;
-    
+    margin-left: 16px;
     font-family: Avenir;
     font-style: normal;
     font-weight: 900;
@@ -24,19 +19,12 @@ body {
 }
 
 .calendar-main {
-    position: absolute;
-    top: 90px;
     zoom: 107%;
     color: #85296B;
 }
 
 .event-calendar {
-    position: absolute;
-    width: 115px;
-    height: 38px;
-    left: 22px;
-    top: 376px;
-    
+    margin-left: 16px;
     font-family: Avenir;
     font-style: normal;
     font-weight: 900;
