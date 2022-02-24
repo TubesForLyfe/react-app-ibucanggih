@@ -3,9 +3,8 @@ import { Link, useHistory, Redirect } from 'react-router-dom';
 import Axios from 'axios';
 
 import Logo from "../../img/Logo.png";
-import Background from "../../img/Background.png";
 import "./Login.css";
-import FooterLogin from "../../components/FooterLogin/FooterLogin";
+import FooterLanding from "../../components/FooterLanding/FooterLanding";
 
 const Login = () => {
   const [phone, setPhone] = useState("");
@@ -35,24 +34,22 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <img className="background-login" src={Background} />
-      <div>
-        <img className="logo-login" src={Logo} />
-      </div>
-      <div>
+    <div className='flex-column padding-horizontal full-height'>
+      <img className='logo-login center-horizontal margin-bot margin-top' src={Logo} />
+      <div className='full-width'>
         <form onSubmit={login}>
           <div>
-            <input className="phone-login" type="number" name="phone" placeholder="No Handphone"
+            <input className="form-login margin-bot-16" type="number" name="phone" placeholder="No Handphone"
               onChange={(e) => {
                 setPhone(e.target.value);
               }}
             />
-            <input className="password-login" type="password" name="password" placeholder="Kata Sandi" 
+            <input className="form-login" type="password" name="password" placeholder="Kata Sandi" 
               onChange={(e) => {
                 setPassword(e.target.value);
               }}
             />
+            <p class="login-status">{loginStatus}</p>
           </div>
           <button type="submit" className="submit-login"><p className="submit-text-login">Masuk</p></button>
         </form>
@@ -60,8 +57,9 @@ const Login = () => {
       <p className="bottom-text-login">
         Belum punya Akun Ibu-Ibu Canggih? <Link to="/sign-up">Daftar disini</Link>
       </p>
-      <p class="login-status">{loginStatus}</p>
-      <FooterLogin />
+      <div className="footer-login">
+        <FooterLanding />
+      </div>
     </div>
   )
 }
