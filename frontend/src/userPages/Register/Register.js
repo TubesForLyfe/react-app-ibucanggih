@@ -3,10 +3,9 @@ import { Link, useHistory } from 'react-router-dom';
 import Axios from 'axios';
 
 import Logo from "../../img/Logo.png";
-import Background from "../../img/Background.png";
 import DefaultPicture from "../../img/Mother.png";
 import "./Register.css";
-import FooterRegister from "../../components/FooterRegister/FooterRegister";
+import FooterLanding from "../../components/FooterLanding/FooterLanding";
 
 const Register = () => {
   const [nameReg, setNameReg] = useState("");
@@ -41,48 +40,48 @@ const Register = () => {
   };
 
   return (
-    <div>
-      <img className="background" src={Background} />
-      <div>
-        <img className="logo" src={Logo} />
-      </div>
-      <div>
+    <div className='flex-column padding-horizontal'>
+      <img className='logo-register center-horizontal margin-bot margin-top' src={Logo} />
+      <div className='full-width'>
         <form>
-          <input className="name" type="text" name="name" placeholder="Nama Lengkap" 
+          <input className="form-register margin-bot-16" type="text" name="name" placeholder="Nama Lengkap" 
             onChange={(e) => {
               setNameReg(e.target.value);
             }}
           />
-          <div className="form">
-            <input className="email" type="email" name="email" placeholder="Email" 
+          <div>
+            <input className="form-register margin-bot-16" type="email" name="email" placeholder="Email" 
               onChange={(e) => {
                 setEmailReg(e.target.value);
               }}
             />
-            <input className="number" type="number" name="number" placeholder="No Handphone" 
+            <input className="form-register margin-bot-16" type="number" name="number" placeholder="No Handphone" 
               onChange={(e) => {
                 setPhoneReg(e.target.value);
               }}
             />
-            <input className="password" type="password" name="password" placeholder="Kata Sandi" 
+            <input className="form-register margin-bot-16" type="password" name="password" placeholder="Kata Sandi" 
               onChange={(e) => {
                 setPasswordReg(e.target.value);
               }}
             />
-            <input className="pwconfirm" type="password" name="pwconfirm" placeholder="Ulangi Kata Sandi" 
+            <input className="form-register" type="password" name="pwconfirm" placeholder="Ulangi Kata Sandi" 
               onChange={(e) => {
                 setPwConfirmReg(e.target.value);
               }}
             />
+            <p class="register-status">{registerStatus}</p>
           </div>
-          <button type="submit" className="submit" onClick={regist}><p className="submit-text">Daftar</p></button>
+          <button type="submit" className="submit-register" onClick={regist}><p className="submit-text-register">Daftar</p></button>
         </form>
       </div>
-      <p className="bottom-text">
+      <p className="bottom-text-register">
         Sudah punya Akun Ibu-Ibu Canggih? <Link to="/login">Masuk disini</Link>
       </p>
-      <p class="register-status">{registerStatus}</p>
-      <FooterRegister />
+      <div className='footer-register'>
+        <FooterLanding />
+      </div>
+      
     </div>
   )
 }
