@@ -18,5 +18,9 @@ npm start
 ```
 5. Untuk menjalankan server, buka folder backend dan jalankan perintah berikut pada terminal
 ```
+npm install
+```
+Lalu, jalankan
+```
 nodemon index
 ```
