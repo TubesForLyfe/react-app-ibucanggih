@@ -1,17 +1,18 @@
-import express from "express";
-import mysql from "mysql";
-import cors from 'cors';
-import bcrypt from 'bcrypt';
-import bodyParser from 'body-parser';
-import cookieParser from 'cookie-parser';
-import session from 'express-session';
+const express = require("express");
+const mysql = require("mysql2");
+const cors = require('cors');
+const bcrypt = require('bcrypt');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const session = require('express-session');
+require('dotenv').config();
 
 const saltRounds = 10;
 const app = express();
 
 app.use(express.json());
 app.use(cors({
-    origin: ['http://localhost:3000'],
+    origin: [`${process.env.FRONTEND_SERVER}`],
     methods: ['GET', 'POST', 'DELETE', 'PUT'],
     credentials: true
 }));
@@ -24,15 +25,15 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        expires: 60 * 60 * 24
+        expires: false
     }
 }));
 
 const db = mysql.createConnection({
-    user: "root",
-    host: "localhost",
-    password: "",
-    database: "ibucanggih_db"
+    user: `${process.env.DB_USER}`,
+    host: `${process.env.DB_HOST}`,
+    password: `${process.env.DB_PASSWORD}`,
+    database: `${process.env.DB_DATABASE}`
 });
 
 app.post("/register", (req, res) => {
@@ -44,28 +45,44 @@ app.post("/register", (req, res) => {
     const address = req.body.address;
     const wagroup = req.body.wagroup;
     const image = req.body.image;
+
+    let i = 0;
+    let isEmail = false;
+    while (i < email.length && !isEmail) {
+        if (email[i] == "@") {
+            isEmail = true;
+        } else {
+            i++;
+        }
+    }
     
-    if (password == pwconfirm) {
-        bcrypt.hash(password, saltRounds, (err, hash) => {
-            if (err) {
-                console.log(err);
-            }
-    
-            db.query (
-                "INSERT INTO users (name, email, phone, password, role, address, wagroup, image, poin) VALUES (?,?,?,?,?,?,?,?,?)",
-                [nama, email, phone, hash, "user", address, wagroup, image, 0],
-                (err, result) => {
-                    if (result == null) {
-                        res.send({message: "Nomor handphone sudah digunakan."});
-                    } else {
-                        req.session.user = [{id : result.insertId, role: "user"}];
-                        res.send(result);
-                    }
+    if (isEmail) {
+        if (password == pwconfirm) {
+            bcrypt.hash(password, saltRounds, (err, hash) => {
+                if (err) {
+                    console.log(err);
                 }
-            );
-        })
+        
+                db.query (
+                    "INSERT INTO users (name, email, phone, password, role, address, wagroup, image, poin) VALUES (?,?,?,?,?,?,?,?,?)",
+                    [nama, email, phone, hash, "user", address, wagroup, image, 0],
+                    (err, result) => {
+                        if (result == null) {
+                            res.send({message: "Nomor handphone sudah digunakan."});
+                        } else {
+                            if (!req.session.user) {
+                                req.session.user = [{id : result.insertId, role: "user"}];
+                            }
+                            res.send(result);
+                        }
+                    }
+                );
+            })
+        } else {
+            res.send({message: "Mohon masukkan password dengan benar."})
+        }
     } else {
-        res.send({message: "Mohon masukkan password dengan benar."})
+        res.send({message: "Mohon masukkan email dengan benar."})
     }
 });
 
@@ -103,6 +120,11 @@ app.get('/login', (req, res) => {
     } else {
         res.send({loggedIn: false});
     }
+})
+
+app.get('/logout', (req, res) => {
+    req.session.destroy();
+    res.send(true);
 })
 
 app.post('/profil', (req, res) => {
@@ -229,6 +251,21 @@ app.delete('/delete-user/:id', (req, res) => {
 
     db.query (
         "DELETE FROM users WHERE id = ?", id,
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result);
+            }
+        }
+    )
+})
+
+app.delete('/reset-poin/:id', (req, res) => {
+    const id = req.params.id;
+
+    db.query (
+        "UPDATE users SET poin = 0 WHERE id = ?", id,
         (err, result) => {
             if (err) {
                 console.log(err);
