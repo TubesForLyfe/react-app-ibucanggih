@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body {
     margin: 0;
 }
@@ -52,4 +53,119 @@ body {
     .app {
         left: 40%;
     }
+=======
+body {
+    margin: 0;
+    background-color: #dae4eb;
+}
+
+.app {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    width: 100%;
+    max-width: 375px;
+    background-color: #F2FAFF;
+}
+
+/* PADDING & MARGIN */
+.margin-vertical {
+    margin-top: 32px;
+    margin-bottom: 32px;
+}
+
+.margin-top-8 {
+    margin-top: 8px;
+}
+
+.margin-top-16 {
+    margin-top: 16px;
+}
+
+.margin-top {
+    margin-top: 32px;
+}
+
+.margin-bot-8 {
+    margin-bottom: 8px;
+}
+
+.margin-bot-16 {
+    margin-bottom: 16px;
+}
+
+.margin-bot {
+    margin-bottom: 32px;
+}
+
+.margin-right-16 {
+    margin-right: 16px;
+}
+
+.margin-horizontal {
+    margin-right: 32px;
+    margin-left: 32px;
+}
+
+.margin {
+    margin: 32px;
+}
+
+.padding-horizontal {
+    padding-right: 32px;
+    padding-left: 32px;
+}
+
+.padding {
+    padding: 32px;
+}
+
+/* TEXT */
+.default-text {
+    font-family: Avenir;
+    font-style: normal;
+    font-size: 14px;
+    text-align: center;
+    color: #000000;
+}
+
+.text-title {
+    color: #85296B;
+    font-size: 18px;
+}
+
+/* OTHER */
+.full-width {
+    width: 100%;
+}
+
+.ninety-width {
+    width: 90%;
+}
+
+.full-height {
+    height: 100vh;
+}
+
+.flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.flex-between {
+    justify-content: space-between;
+}
+
+.center-horizontal {
+    align-self: center;
+}
+
+.bg-purple {
+    background-color: #85296B;
+>>>>>>> 7870f2f7d2bc82e99136dcb91ce3900fcb98e852
 }

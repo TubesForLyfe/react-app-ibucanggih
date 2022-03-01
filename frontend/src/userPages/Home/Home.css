@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body {
     margin: 0;
 }
@@ -213,4 +214,163 @@ body {
     position: absolute;
     left: 0px;
     top: 742px;
+=======
+body {
+    margin: 0;
+}
+
+.fade-anim {
+    animation: fadeAnim 0.5s ease-out;
+}
+
+@keyframes fadeAnim {
+    from {
+        opacity: 0;
+    } to {
+        opacity: 1;
+    }
+}
+
+.left-slide {
+    position: absolute;
+    transform: rotate(180deg);
+    top: 96px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.right-slide {
+    position: absolute;
+    left: 357px;
+    top: 96px;
+    cursor: pointer;
+}
+
+.img-home {
+    width: 92px;
+    height: 92px;
+
+    border-radius: 100%;
+}
+
+.txt1-home {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 25px;
+    
+    color: #295985;    
+}
+
+.name-home {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 36px;
+    line-height: 57px;
+    
+    color: #295985;
+}
+
+.bg-poin-home {
+    width: 90%;
+    
+    background: #FFFFFF;
+    
+    box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.08);
+    border-radius: 24px;
+}
+
+.txt2-home {
+    text-align: center;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 25px;
+    
+    
+    color: #295985;
+}
+
+.poin-home {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 36px;
+    line-height: 57px;
+    
+    text-align: center;
+    
+    color: #85296B;
+}
+
+.bg-pluspoin-home {
+    width: 70%;
+    
+    background: #85296B;
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 77px;
+
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 750;
+    font-size: 16px;
+    line-height: 25px;
+    text-decoration: none;
+    text-align: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
+
+    color: #FFFFFF;
+}
+
+.bg-pluspoin-home2 {
+    width: 70%;
+
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 750;
+    font-size: 16px;
+    line-height: 25px;
+    text-decoration: none;
+    text-align: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
+
+    color: #FFFFFF;
+    
+    background: #D36EB7;
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.15);
+    border-radius: 77px;
+}
+
+.txt-pluspoin-home2 {
+    position: static;
+    width: 244px;
+    height: 22px;
+    left: 44.5px;
+    top: 9px;
+    
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 850;
+    font-size: 16px;
+    line-height: 25px;
+    
+    color: #FFFFFF;
+    
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0px 10px;
+}
+
+.bg-home {
+    position: absolute;
+    left: 0px;
+    top: 742px;
+>>>>>>> 7870f2f7d2bc82e99136dcb91ce3900fcb98e852
 }

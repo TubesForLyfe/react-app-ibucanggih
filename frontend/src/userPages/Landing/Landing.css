@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 body {
     margin: 0;
 }
@@ -227,4 +228,74 @@ body {
     order: 0;
     flex-grow: 0;
     margin: 0px 10px;
+=======
+body {
+    margin: 0;
+}
+
+.fade-anim {
+    animation: fadeAnim 0.5s ease-out;
+}
+
+@keyframes fadeAnim {
+    from {
+        opacity: 0;
+    } to {
+        opacity: 1;
+    }
+}
+
+.left-slide {
+    position: absolute;
+    transform: rotate(180deg);
+    top: 96px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.right-slide {
+    position: absolute;
+    left: 357px;
+    top: 96px;
+    cursor: pointer;
+}
+
+.landing-logo {
+    width: 73px;
+    height: 82px;
+}
+
+.landing-bottom {
+    background-color: #85296B;
+}
+
+.landing-bottomtext {
+    font-weight: 900;
+    font-size: 18px !important;
+    color: #FFFFFF !important;
+}
+
+.btn-purple {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 9px 39px;
+    width: 140px;
+    height: 40px;
+
+    background: #85296B;
+    border: 2px solid #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 20px;
+
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 850;
+    font-size: 16px;
+    line-height: 18px;
+    color: #FFFFFF;
+
+    text-decoration: none;
+>>>>>>> 7870f2f7d2bc82e99136dcb91ce3900fcb98e852
 }
