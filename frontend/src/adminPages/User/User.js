@@ -47,6 +47,7 @@ const User = () => {
                         <p>Asal Grup Whatsapp: {val.wagroup}</p>
                         <Link to={`/admin/edit-user/${val.id}`}><button>Edit</button></Link>
                         <Link to={`/admin/delete-user/${val.id}`}><button>Delete</button></Link>
+                        <Link to={`/admin/reset-poin-user/${val.id}`}><button>Reset Poin</button></Link>
                     </div>
                   )
               })}

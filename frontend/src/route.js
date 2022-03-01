@@ -21,6 +21,7 @@ import User from "./adminPages/User/User"
 import AddUser from "./adminPages/AddUser/AddUser"
 import EditUser from "./adminPages/EditUser/EditUser"
 import DeleteUser from "./adminPages/DeleteUser/DeleteUser"
+import ResetPoin from "./adminPages/ResetPoin/ResetPoin"
 import WAGroup from "./adminPages/WAGroup/WAGroup"
 import AddWAGroup from "./adminPages/AddWAGroup/AddWAGroup"
 import EditWAGroup from "./adminPages/EditWAGroup/EditWAGroup"
@@ -90,6 +91,7 @@ const RouteManager = () => {
                 <Route path="/admin/add-user" component={AddUser} />
                 <Route path="/admin/edit-user/:id" component={EditUser} />
                 <Route path="/admin/delete-user/:id" component={DeleteUser} />
+                <Route path="/admin/reset-poin-user/:id" component={ResetPoin} />
                 <Route path="/admin/wagroup" component={WAGroup} />
                 <Route path="/admin/add-wagroup" component={AddWAGroup} />
                 <Route path="/admin/edit-wagroup/:id" component={EditWAGroup} />
