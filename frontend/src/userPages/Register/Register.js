@@ -40,8 +40,10 @@ const Register = () => {
           setRegisterStatus(response.data.message);
         } else {
           const id = response.data.insertId;
-          history.push(`/homepage/${id}`);
-          window.location.reload(true);
+          Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/set-cookies`, {id: id}).then((respCookies) => {
+            history.push(`/homepage/${id}`);
+            window.location.reload(true);
+          });
         }
       });
     }

@@ -25,13 +25,16 @@ const Login = () => {
         if (response.data.message) {
           setLoginStatus(response.data.message);
         } else {
-          if (response.data[0].role === "user") {
-            const id = response.data[0].id;
-            history.push(`/homepage/${id}`);
-          } else {
-            history.push('/admin')
-          }
-          window.location.reload(true);
+          const id = response.data[0].id;
+          Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/set-cookies`, {id: id}).then((respCookies) => {
+            if (response.data[0].role === "user") {
+              history.push(`/homepage/${id}`);
+            } else {
+              history.push('/admin')
+            }
+            window.location.reload(true);
+          });
+          
         }
       });
     }

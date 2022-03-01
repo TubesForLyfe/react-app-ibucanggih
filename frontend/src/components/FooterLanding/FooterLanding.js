@@ -27,7 +27,7 @@ const FooterLanding = () => {
                 </div>
                 <div className='whitespace margin-right-16'></div>
                 <div>
-                    <a href="http://wa.me/6281326035476" target="_blank" className="footer-white-text"><p>
+                    <a href="https://wa.me/6281323663240?text=Halo%2C%20saya%20ingin%20bekerjasama%20dengan%20Ibu2Canggih" target="_blank" className="footer-white-text"><p>
                         Kontak<br/>Via Whatsapp
                     </p></a>
                 </div>

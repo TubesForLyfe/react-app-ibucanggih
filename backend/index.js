@@ -26,7 +26,7 @@ app.use(session({
     resave: false,
     saveUninitialized: false,
     cookie: {
-        expires: Number(process.env.EXPIRE)
+        expires: 2592000000
     }
 }));
 
@@ -110,11 +110,67 @@ app.post(`${base}/login`, (req, res) => {
 });
 
 app.get(`${base}/login`, (req, res) => {
-    if (req.session.user) {
-        res.send({loggedIn: true, user: req.session.user});
+    if (req.headers.cookie) {
+        db.query (
+            "SELECT * FROM auth where cookies = ?;",
+            req.headers.cookie,
+            (err, result) => {
+                if (err) {
+                    res.send({err: err});
+                } else {
+                    if (result.length > 0) {
+                        res.send({loggedIn: true, user: result});
+                    } else {
+                        res.send({loggedIn: false});
+                    }
+                }
+            }
+        );
     } else {
         res.send({loggedIn: false});
     }
+})
+
+app.post(`${base}/set-cookies`, (req, res) => {
+    if (req.headers.cookie) {
+        let role = "user";
+        if (req.body.id == 1) {
+            role = "admin";
+        }
+        db.query (
+            "INSERT INTO auth (id,cookies,role) VALUES (?,?,?);",
+            [req.body.id, req.headers.cookie, role],
+            (err, result) => {
+                if (err) {
+                    res.send({err: err});
+                } else {
+                    res.send({data:true});
+                }
+            }
+        );
+    } else {
+        res.send({data:req.headers})
+    }
+    
+})
+
+app.delete(`${base}/delete-cookies`, (req, res) => {
+    if (req.headers.cookie) {
+        db.query (
+            "DELETE FROM auth WHERE cookies=?;",
+            req.headers.cookie,
+            (err, result) => {
+                if (err) {
+                    res.send({err: err});
+                } else {
+                    res.send({data:true});
+                }
+            }
+        );
+    } else {
+        res.send({data:false})
+    }
+    
 })
 
 app.post(`${base}/profil`, (req, res) => {

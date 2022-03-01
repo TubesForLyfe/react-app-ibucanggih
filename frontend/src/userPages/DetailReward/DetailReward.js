@@ -10,6 +10,9 @@ import LineDetailReward from "../../img/LineDetailReward.png";
 import Valid from "../../img/Valid.png";
 import NotValid from "../../img/NotValid.PNG";
 import Review from "../../img/Review.PNG";
+import YoutubeLive from "../../img/youtubeLiveIcon.png";
+import KuliahWhatsapp from "../../img/WhatsappKuliahIcon.png";
+import InternetChallenge from "../../img/InternetChallenge.png";
 import FooterEvent from "../../components/FooterEvent/FooterEvent"
 import './DetailReward.css'
 
@@ -80,10 +83,19 @@ const DetailReward = () => {
       <div>
           <img className="bg-detail2" src={Background} />
           {listEventForm.map((val, key) => {
+            console.log(val.type);
+            let iconType = InternetChallenge;
+              if (val.type === "Youtube Live") {
+                iconType = YoutubeLive;
+              } else if (val.type === "Kuliah Whatsapp") {
+                iconType = KuliahWhatsapp;
+              }
+
               return (
                   <div className="list-detailreward">
                       <img className="listdetail-bg" src={Background} />
-                      <img className="img-listdetail" src={val.image} />
+
+                      <img className="img-listdetail" src={iconType} />
                       <p className="type-listdetail">{val.type}</p>
                       <p className="name-listdetail">{val.name}</p>
                       {val.review == 99 && <div>
@@ -105,7 +117,7 @@ const DetailReward = () => {
               )
           })}
       </div>
-      <FooterEvent />
+      {/* <FooterEvent /> */}
       </div>}
     </div>
   )

@@ -35,8 +35,6 @@ const FooterProfile = () => {
           </p>
           <Link to={`/kalender/${id}`}><p className="footer-txt3">Kalender</p></Link>
       </div>
-      <img className="footer-bottom" src={FooterLongRectangle} />
-      <img className="footer-lineprofil" src={FooterProfileLine} />
     </div>
   )
 }

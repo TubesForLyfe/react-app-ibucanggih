@@ -91,7 +91,7 @@ const EditProfile = () => {
         <div>
             <Link to={`/profil/${id}`}><img className="back-editprofile" src={Back} /></Link>
             <img className="default-editprofile" src={image} />
-            <label for="image" className="ganti-foto">Ganti Foto</label>
+            {/* <label for="image" className="ganti-foto">Ganti Foto</label> */}
         </div>
         <form className="form-edit">
             <input className="edit-image" type="file" name="image" id="image" accept="image/*" onChange={imageHandler} />

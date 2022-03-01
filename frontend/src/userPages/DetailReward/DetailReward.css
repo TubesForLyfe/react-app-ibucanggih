@@ -171,7 +171,6 @@ body {
 
 .type-listdetail {
     position: absolute;
-    width: 70px;
     height: 16px;
     left: 16.25%;
     top: 8%;
@@ -187,7 +186,7 @@ body {
 
 .name-listdetail {
     position: absolute;
-    width: 168px;
+    width: 200px;
     height: 44px;
     left: 16.25%;
     top: 18%;
@@ -230,7 +229,6 @@ body {
 
 .txtreview {
     position: absolute;
-    width: 73px;
     height: 16px;
     left: 23%;
     top: 55.67%;
@@ -273,7 +271,6 @@ body {
 
 .txtvalid {
     position: absolute;
-    width: 100px;
     height: 16px;
     left: 23%;
     top: 55.67%;
@@ -300,7 +297,6 @@ body {
 
 .txtinvalid {
     position: absolute;
-    width: 100px;
     height: 16px;
     left: 23%;
     top: 55.67%;

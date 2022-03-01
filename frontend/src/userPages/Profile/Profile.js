@@ -54,7 +54,7 @@ const Profile = () => {
   }, [])
 
   const logOut = (() => {
-    Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/logout`).then((response) => {
+    Axios.delete(`${process.env.REACT_APP_IBUCANGGIH_API}/delete-cookies`).then((response) => {
       history.push('/');
       window.location.reload(true);
     })
@@ -70,7 +70,7 @@ const Profile = () => {
             <img className="defaultprofile-pic" src={image} />
             <p className="defaultprofile-text">{name}</p>
         </div>
-        {/* <div>
+        <div>
             <div>
                 <img className="profile-rectangle1" src={Rectangle} />
                 <img className="profile-smallrectangle1" src={SmallRectangle} />
@@ -96,8 +96,8 @@ const Profile = () => {
               <p className="logout-bg"></p>
               <p className="logout-text">Log Out</p>
             </div>
-        </div> */}
-        {/* <FooterProfile /> */}
+        </div>
+        <FooterProfile />
         </div>}
     </div>
   )
