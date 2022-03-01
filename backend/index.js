@@ -56,28 +56,44 @@ app.post(`${base}/register`, (req, res) => {
     const address = req.body.address;
     const wagroup = req.body.wagroup;
     const image = req.body.image;
-    
-    if (password == pwconfirm) {
-        bcrypt.hash(password, saltRounds, (err, hash) => {
-            if (err) {
-                res.send({message: err.message});
-            }
-    
-            db.query (
-                "INSERT INTO users (name, email, phone, password, role, address, wagroup, image, poin) VALUES (?,?,?,?,?,?,?,?,?)",
-                [nama, email, phone, hash, "user", address, wagroup, image, 0],
-                (err, result) => {
-                    if (result == null) {
-                        res.send({message: "Nomor handphone sudah digunakan."});
-                    } else {
-                        req.session.user = [{id : result.insertId, role: "user"}];
-                        res.send(result);
-                    }
+
+    let i = 0;
+    let isEmail = false;
+    while (i < email.length && !isEmail) {
+        if (email[i] == "@") {
+            isEmail = true;
+        } else {
+            i++;
+        }
+    }
+
+    if (isEmail) {
+        if (password == pwconfirm) {
+            bcrypt.hash(password, saltRounds, (err, hash) => {
+                if (err) {
+                    console.log(err);
                 }
-            );
-        })
+        
+                db.query (
+                    "INSERT INTO users (name, email, phone, password, role, address, wagroup, image, poin) VALUES (?,?,?,?,?,?,?,?,?)",
+                    [nama, email, phone, hash, "user", address, wagroup, image, 0],
+                    (err, result) => {
+                        if (result == null) {
+                            res.send({message: "Nomor handphone sudah digunakan."});
+                        } else {
+                            if (!req.session.user) {
+                                req.session.user = [{id : result.insertId, role: "user"}];
+                            }
+                            res.send(result);
+                        }
+                    }
+                );
+            })
+        } else {
+            res.send({message: "Mohon masukkan password dengan benar."})
+        }
     } else {
-        res.send({message: "Mohon masukkan password dengan benar."})
+        res.send({message: "Mohon masukkan email dengan benar."})
     }
 });
 
@@ -307,7 +323,22 @@ app.delete(`${base}/delete-user/:id`, (req, res) => {
     )
 })
 
-app.get(`${base}/get-wagroup`, (req, res) => {
+app.delete('/reset-poin/:id', (req, res) => {
+    const id = req.params.id;
+
+    db.query (
+        "UPDATE users SET poin = 0 WHERE id = ?", id,
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send(result);
+            }
+        }
+    )
+})
+
+app.get('/get-wagroup', (req, res) => {
     db.query (
         "SELECT * FROM wagroups",
         (err, result) => {
