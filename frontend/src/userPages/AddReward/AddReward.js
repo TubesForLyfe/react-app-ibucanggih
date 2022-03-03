@@ -51,18 +51,6 @@ const AddReward = () => {
       })
   }
 
-  const getEventType = () => {
-    Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/get-eventtype`).then((response) => {
-        setListEventType(response.data);
-    })
-  }
-
-  const getEventName = () => {
-    Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/get-eventname`).then((response) => {
-        setListEventName(response.data);
-    })
-  }
-
   useEffect(() => {
     Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/login`).then((response) => {
       if (response.data.loggedIn) {
@@ -73,8 +61,6 @@ const AddReward = () => {
         setLogIn(false);
       }
     })
-    getEventType();
-    getEventName();
   }, [])
 
   const imageHandler = (e) => {
@@ -82,11 +68,38 @@ const AddReward = () => {
   }
 
   const changeCalendar = (e) => {
+    if (date != e.toString().substring(8,10) || month != e.toString().substring(4,7)) {
+      setEventName([]);
+      setEventType([]);
+    }
     setActiveCalendar(false);
+    setActiveEventType(false);
+    setActiveEventName(false);
     setDate(e.toString().substring(8,10));
     setMonth(e.toString().substring(4,7));
     setYear(e.toString().substring(11,15));
+    Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/get-eventtypebycalendar`, {
+      date: e.toString().substring(8,10),
+      month: e.toString().substring(4,7)
+    }).then((response) => {
+      setListEventType(response.data);
+    })
   }
+
+  const changeEventType = (type) => {
+    if (type != eventType) {
+      setEventName([]);
+    }
+    setActiveEventType(false);
+    setActiveEventName(false);
+    Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/get-eventnamebycalendar`, {
+      date: date,
+      month: month,
+      type: type
+    }).then((response) => {
+      setListEventName(response.data);
+    })
+  } 
 
   return (
     <div>
@@ -120,10 +133,10 @@ const AddReward = () => {
             {activeEventType && listEventType.map((val,key) => {
               return (
                 <p className="eventtype-list" onClick={(e) => {
-                  setEventType(val.name);
-                  setActiveEventType(false);
+                  setEventType(val.type);
+                  changeEventType(val.type);
                 }}>
-                  <p className="eventtype-name">{val.name}</p>                  
+                  <p className="eventtype-name">{val.type}</p>                  
                 </p>
               )
             })}

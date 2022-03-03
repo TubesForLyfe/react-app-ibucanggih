@@ -19,7 +19,7 @@ const ResetPoin = () => {
 
   const reset = (e) => {
       e.preventDefault();
-      Axios.delete(`${process.env.REACT_APP_IBUCANGGIH_API}/reset-poin/${id}`).then((response) => {
+      Axios.put(`${process.env.REACT_APP_IBUCANGGIH_API}/reset-poin/${id}`).then((response) => {
           history.push('/admin/user');
       })
   }
