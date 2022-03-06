@@ -354,7 +354,7 @@ app.delete(`${base}/delete-user/:id`, (req, res) => {
     )
 })
 
-app.delete('/reset-poin/:id', (req, res) => {
+app.put('/reset-poin/:id', (req, res) => {
     const id = req.params.id;
 
     db.query (
@@ -459,9 +459,59 @@ app.get(`${base}/get-eventtype`, (req, res) => {
     )
 });
 
+app.post(`${base}/get-eventtypebycalendar`, (req, res) => {
+    const date = req.body.date;
+    const month = req.body.month;
+
+    db.query (
+        "SELECT DISTINCT type FROM eventname WHERE date = ? AND month = ?",
+        [date, month],
+        (err, result) => {
+            if (err) {
+                res.send({message: err.message});
+            } else {
+                res.send(result);
+            }
+        }
+    )
+});
+
 app.get(`${base}/get-eventname`, (req, res) => {
     db.query (
         "SELECT * FROM eventname",
+        (err, result) => {
+            if (err) {
+                res.send({message: err.message});
+            } else {
+                res.send(result);
+            }
+        }
+    )
+});
+
+app.post(`${base}/get-eventnamebycalendar`, (req, res) => {
+    const date = req.body.date;
+    const month = req.body.month;
+    const type = req.body.type;
+
+    db.query (
+        "SELECT name FROM eventname WHERE date = ? AND month = ? AND type = ?",
+        [date, month, type],
+        (err, result) => {
+            if (err) {
+                res.send({message: err.message});
+            } else {
+                res.send(result);
+            }
+        }
+    )
+});
+
+app.post(`${base}/get-calendar`, (req, res) => {
+    const month = req.body.month;
+
+    db.query (
+        "SELECT * FROM eventname WHERE month = ?", month,
         (err, result) => {
             if (err) {
                 res.send({message: err.message});

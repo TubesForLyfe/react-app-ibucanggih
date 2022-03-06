@@ -47,7 +47,17 @@ const EditProfile = () => {
   }
 
   const imageHandler = (e) => {
-    setImage(URL.createObjectURL(e.target.files[0]));
+    const file = e.target.files[0];
+    const fileReader = new FileReader();
+    if (file) {
+      fileReader.readAsDataURL(file);
+      fileReader.onload = () => {
+        setImage(fileReader.result);
+      };
+      fileReader.onerror = (error) => {
+        console.log(error);
+      }
+    }
   }
 
   const getUserId = (id) => {
@@ -91,7 +101,7 @@ const EditProfile = () => {
         <div>
             <Link to={`/profil/${id}`}><img className="back-editprofile" src={Back} /></Link>
             <img className="default-editprofile" src={image} />
-            {/* <label for="image" className="ganti-foto">Ganti Foto</label> */}
+            <label for="image" className="ganti-foto">Ganti Foto</label>
         </div>
         <form className="form-edit">
             <input className="edit-image" type="file" name="image" id="image" accept="image/*" onChange={imageHandler} />

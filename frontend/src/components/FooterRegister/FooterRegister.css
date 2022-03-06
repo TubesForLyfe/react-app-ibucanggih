@@ -1,0 +1,121 @@
+body {
+    margin: 0;
+}
+
+.footer {
+    position: absolute;
+    width: 375px;
+    height: 244px;
+    left: 0px;
+    top: 660px;
+}
+
+.logo-ellipse {
+    position: absolute;
+    width: 62px;
+    height: 62px;
+    left: 17px;
+    top: 74px;
+}
+
+.logo-footer {
+    position: absolute;
+    width: 40px;
+    height: 44px;
+    left: 28px;
+    top: 83px;
+}
+
+.email-footer {
+    position: absolute;
+    width: 133px;
+    height: 34px;
+    left: 91px;
+    top: 76px;
+
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 850;
+    font-size: 12px;
+    line-height: 19px;
+
+    color: #FFFFFF;
+}
+
+.footer-small-line {
+    position: absolute;
+    width: 36px;
+    height: 0px;
+    left: 220px;
+    top: 105px;
+
+    border: 1px solid #FFFFFF;
+    transform: rotate(90deg);
+}
+
+.whatsapp-footer {
+    position: absolute;
+    width: 90px;
+    height: 34px;
+    left: 256px;
+    top: 76px;
+
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 850;
+    font-size: 12px;
+    line-height: 19px;
+
+    color: #FFFFFF;
+}
+
+.facebook-footer {
+    position: absolute;
+    left: 125px;
+    right: 0%;
+    top: 150px;
+    bottom: 0%;
+}
+
+.instagram-footer {
+    position: absolute;
+    left: 175px;
+    right: 0%;
+    top: 150px;
+    bottom: 0%;
+}
+
+.youtube-footer {
+    position: absolute;
+    left: 225px;
+    right: 0%;
+    top: 150px;
+    bottom: 0%;
+}
+
+.footer-text {
+    position: absolute;
+    width: 113px;
+    height: 16px;
+    left: 131px;
+    top: 193px;
+
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 16px;
+
+    color: #FFFFFF;
+}
+
+.footer-line {
+    position: absolute;
+    width: 134px;
+    height: 5px;
+    left: calc(50% - 134px/2 + 0.5px);
+    bottom: 8px;
+
+    background: #FFFFFF;
+    border-radius: 100px;
+}

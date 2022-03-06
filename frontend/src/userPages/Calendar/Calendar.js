@@ -18,12 +18,6 @@ const Calendar = () => {
 
   Axios.defaults.withCredentials = true;
 
-  const getEvent = () => {
-    Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/get-eventname`).then((response) => {
-        setListEvent(response.data);
-    })
-  }
-
   useEffect(() => {
     Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/login`).then((response) => {
         if (response.data.loggedIn) {
@@ -34,15 +28,28 @@ const Calendar = () => {
           setLogIn(false);
         }
     })
-    getEvent();
+    const nowMonth = new Date().toString().substring(4,7);
+    Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/get-calendar`, {
+      month: nowMonth
+    }).then((response) => {
+      setListEvent(response.data);
+    })
   }, [])
+
+  const setEvent = (e) => {
+    Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/get-calendar`, {
+      month: e.toString().substring(4,7)
+    }).then((response) => {
+      setListEvent(response.data);
+    })
+  }
 
   return (
     <div className='flex-column'>
       {logIn && (roleLogIn == "user") && (id == idLogIn) && <div>
       <p className="title-calendar">Event Kalender</p>
       <div className="calendar-main">
-          <Kalender />
+          <Kalender onChange={setEvent} />
       </div>
       <p className="event-calendar">All Events</p>
       <div>
