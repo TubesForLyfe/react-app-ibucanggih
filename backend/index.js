@@ -127,9 +127,19 @@ app.post(`${base}/login`, (req, res) => {
 
 app.get(`${base}/login`, (req, res) => {
     if (req.headers.cookie) {
+        const cookies = req.headers.cookie.split("; ");
+        let userIdCookie = "";
+
+        for (let cookie of cookies) {
+            const parsing = cookie.split("=");
+            if (parsing[0] === "userId") {
+                userIdCookie = cookie
+            }
+        }
+
         db.query (
             "SELECT * FROM auth where cookies = ?;",
-            req.headers.cookie,
+            userIdCookie,
             (err, result) => {
                 if (err) {
                     res.send({err: err});
@@ -153,9 +163,20 @@ app.post(`${base}/set-cookies`, (req, res) => {
         if (req.body.id == 1) {
             role = "admin";
         }
+
+        const cookies = req.headers.cookie.split("; ");
+        let userIdCookie = "";
+
+        for (let cookie of cookies) {
+            const parsing = cookie.split("=");
+            if (parsing[0] === "userId") {
+                userIdCookie = cookie
+            }
+        }
+
         db.query (
             "INSERT INTO auth (id,cookies,role) VALUES (?,?,?);",
-            [req.body.id, req.headers.cookie, role],
+            [req.body.id, userIdCookie, role],
             (err, result) => {
                 if (err) {
                     res.send({err: err});
@@ -172,9 +193,19 @@ app.post(`${base}/set-cookies`, (req, res) => {
 
 app.delete(`${base}/delete-cookies`, (req, res) => {
     if (req.headers.cookie) {
+        const cookies = req.headers.cookie.split("; ");
+        let userIdCookie = "";
+
+        for (let cookie of cookies) {
+            const parsing = cookie.split("=");
+            if (parsing[0] === "userId") {
+                userIdCookie = cookie
+            }
+        }
+
         db.query (
             "DELETE FROM auth WHERE cookies=?;",
-            req.headers.cookie,
+            userIdCookie,
             (err, result) => {
                 if (err) {
                     res.send({err: err});
