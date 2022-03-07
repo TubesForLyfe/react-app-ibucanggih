@@ -79,7 +79,7 @@ const AddReward = () => {
     setMonth(e.toString().substring(4,7));
     setYear(e.toString().substring(11,15));
     Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/get-eventtypebycalendar`, {
-      date: e.toString().substring(8,10),
+      date: parseInt(e.toString().substring(8,10)),
       month: e.toString().substring(4,7)
     }).then((response) => {
       setListEventType(response.data);
@@ -93,7 +93,7 @@ const AddReward = () => {
     setActiveEventType(false);
     setActiveEventName(false);
     Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/get-eventnamebycalendar`, {
-      date: date,
+      date: parseInt(date),
       month: month,
       type: type
     }).then((response) => {
