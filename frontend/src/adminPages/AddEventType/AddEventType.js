@@ -6,7 +6,6 @@ import './AddEventType.css'
 
 const AddEventType = () => {
   const [name, setName] = useState('');
-  const [image, setImage] = useState('');
 
   const [eventStatus, setEventStatus] = useState('');
   const history = useHistory();
@@ -31,7 +30,7 @@ const AddEventType = () => {
     e.preventDefault();
     Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/add-eventtype`, {
       name: name,
-      image: image
+      image: "uploads/DefaultPicture.png"
     }).then((response) => {
       if (response.data.message) {
         setEventStatus(response.data.message);
@@ -40,10 +39,6 @@ const AddEventType = () => {
       }
     });
   };
-
-  const imageHandler = (e) => {
-    setImage(URL.createObjectURL(e.target.files[0]));
-  }
 
   return (
     <div>
@@ -57,9 +52,6 @@ const AddEventType = () => {
                   setName(e.target.value);
                 }}
               />
-            </div>
-            <div>
-                <input type="file" name="image" accept="image/*" onChange={imageHandler} />
             </div>
             <button type="submit" onClick={addEventType}></button>
             <h2>Tambah</h2>

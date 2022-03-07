@@ -42,7 +42,7 @@ const AddUser = () => {
       pwconfirm: password,
       address: address,
       wagroup: wagroup,
-      image: DefaultPicture
+      image: "uploads/DefaultPicture.png"
     }).then((response) => {
       if (response.data.message) {
         setRegisterStatus(response.data.message);

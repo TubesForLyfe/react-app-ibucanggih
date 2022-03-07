@@ -40,7 +40,6 @@ const Home = () => {
           frontname += fullname[i];
         }
         setName(frontname);
-        setImage(response.data[0].image);
         setPoin(response.data[0].poin);
     })
   }
@@ -56,6 +55,16 @@ const Home = () => {
       }
     })
     getUserId(id);
+    fetch(`${process.env.REACT_APP_IBUCANGGIH_API}/image/${id}`, {
+      method: 'GET',
+      headers: {
+        "Content-Type": 'application/json, charset=UTF-8',
+        'Accept': 'application/json, text/html'
+      },
+      credentials: 'include'
+    }).then(data => data.json()).then((data) => {
+      setImage(`${process.env.REACT_APP_IBUCANGGIH_API}/` + data.image);
+    })
   }, [])
 
   const [index, setIndex] = useState(0);
@@ -107,6 +116,7 @@ const Home = () => {
         <img className="left-slide" src={RightArrow} onClick={handlePrevClick} />
         <img className="right-slide" src={RightArrow} onClick={handleNextClick} />
       </div>
+      
       <img className="img-home center-horizontal margin-top" src={image} />
       <div className="txt1-home center-horizontal margin-top-16">Halo, Ibu Canggih</div>
       <div className="name-home center-horizontal margin-horizontal margin-bot-16">{name}</div>

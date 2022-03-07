@@ -35,7 +35,6 @@ const DetailReward = () => {
           id: id
       }).then((response) => {
           setName(response.data[0].name);
-          setImage(response.data[0].image);
           setPoin(response.data[0].poin);
       })
   }
@@ -58,6 +57,16 @@ const DetailReward = () => {
     })
     getUserId(id);
     getDetailReward(id);
+    fetch(`${process.env.REACT_APP_IBUCANGGIH_API}/image/${id}`, {
+      method: 'GET',
+      headers: {
+        "Content-Type": 'application/json, charset=UTF-8',
+        'Accept': 'application/json, text/html'
+      },
+      credentials: 'include'
+    }).then(data => data.json()).then((data) => {
+      setImage(`${process.env.REACT_APP_IBUCANGGIH_API}/` + data.image);
+    })
   }, [])
 
   return (

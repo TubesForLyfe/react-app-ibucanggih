@@ -16,6 +16,7 @@ const EditProfile = () => {
   const [wagroup, setWagroup] = useState([]);
   const [email, setEmail] = useState([]);
   const [image, setImage] = useState([]);
+  const [imageView, setImageView] = useState([]);
   const [listWAGroup, setListWAGroup] = useState([]);
   const [activeWA, setActiveWA] = useState(false);
   const {id} = useParams();
@@ -27,6 +28,15 @@ const EditProfile = () => {
 
   Axios.defaults.withCredentials = true;
 
+  const back = (e) => {
+    e.preventDefault();
+    Axios.put(`${process.env.REACT_APP_IBUCANGGIH_API}/image-directory/${id}`, {
+      image: image
+    }).then((response) => {
+      history.push(`/profil/${id}`);
+    })
+  }
+
   const update = (e) => {
     e.preventDefault();
     Axios.put(`${process.env.REACT_APP_IBUCANGGIH_API}/edit-profil/half`, {
@@ -35,7 +45,6 @@ const EditProfile = () => {
       phone: phone,
       address: address,
       wagroup: wagroup,
-      image: image
     }).then((response) => {
       if (response.data.message) {
         
@@ -48,16 +57,28 @@ const EditProfile = () => {
 
   const imageHandler = (e) => {
     const file = e.target.files[0];
-    const fileReader = new FileReader();
-    if (file) {
-      fileReader.readAsDataURL(file);
-      fileReader.onload = () => {
-        setImage(fileReader.result);
-      };
-      fileReader.onerror = (error) => {
-        console.log(error);
-      }
-    }
+    const formData = new FormData();
+    formData.append('image', file);
+    
+    fetch(`${process.env.REACT_APP_IBUCANGGIH_API}/image/${id}`, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'multipart/form-data',
+      },
+      credentials: 'include'
+    }).then(res => res.json()).then(res => {
+      fetch(`${process.env.REACT_APP_IBUCANGGIH_API}/image/${id}`, {
+        method: 'GET',
+        headers: {
+          "Content-Type": 'application/json, charset=UTF-8',
+          'Accept': 'application/json, text/html'
+        },
+        credentials: 'include'
+      }).then(data => data.json()).then((data) => {
+        setImageView(`${process.env.REACT_APP_IBUCANGGIH_API}/` + data.image);
+      })
+    });
   }
 
   const getUserId = (id) => {
@@ -69,7 +90,6 @@ const EditProfile = () => {
         setAddress(response.data[0].address);
         setWagroup(response.data[0].wagroup);
         setEmail(response.data[0].email);
-        setImage(response.data[0].image);
     })
   }
 
@@ -91,6 +111,17 @@ const EditProfile = () => {
     })
     getUserId(id);
     getWAGroup();
+    fetch(`${process.env.REACT_APP_IBUCANGGIH_API}/image/${id}`, {
+      method: 'GET',
+      headers: {
+        "Content-Type": 'application/json, charset=UTF-8',
+        'Accept': 'application/json, text/html'
+      },
+      credentials: 'include'
+    }).then(data => data.json()).then((data) => {
+      setImage(data.image);
+      setImageView(`${process.env.REACT_APP_IBUCANGGIH_API}/` + data.image);
+    })
   }, [])
 
   return (
@@ -99,8 +130,8 @@ const EditProfile = () => {
       <div>
         <img className="editprofile-bg" src={Background} />
         <div>
-            <Link to={`/profil/${id}`}><img className="back-editprofile" src={Back} /></Link>
-            <img className="default-editprofile" src={image} />
+            <img className="back-editprofile" src={Back} onClick={back} />
+            <img className="default-editprofile" src={imageView} />
             <label for="image" className="ganti-foto">Ganti Foto</label>
         </div>
         <form className="form-edit">

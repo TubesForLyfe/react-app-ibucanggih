@@ -50,6 +50,16 @@ const EditEventType = () => {
       }
     })
     getEventTypeId(id);
+    fetch(`${process.env.REACT_APP_IBUCANGGIH_API}/image-eventtype/${id}`, {
+      method: 'GET',
+      headers: {
+        "Content-Type": 'application/json, charset=UTF-8',
+        'Accept': 'application/json, text/html'
+      },
+      credentials: 'include'
+    }).then(data => data.json()).then((data) => {
+      setImage(`${process.env.REACT_APP_IBUCANGGIH_API}/` + data.image);
+    })
   }, [])
 
   const imageHandler = (e) => {
@@ -71,6 +81,7 @@ const EditEventType = () => {
             <div>
                 <input type="file" name="image" accept="image/*" onChange={imageHandler} />
             </div>
+            <img className="imageeventtype-admin" src={image} />
             <button onClick={updateEventType}></button>
             <h2>Update</h2>
       </form>
