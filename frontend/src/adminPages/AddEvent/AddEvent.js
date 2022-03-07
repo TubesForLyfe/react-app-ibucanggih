@@ -65,7 +65,11 @@ const AddEvent = () => {
             <div>
               <input type="number" name="phone" placeholder=" Tanggal (Format: dd)" 
                 onChange={(e) => {
-                  setDate(e.target.value);
+                  if (e.target.value < 10) {
+                    setDate("0" + e.target.value);
+                  } else {
+                    setDate(e.target.value);
+                  }
                 }}
               />
             </div>

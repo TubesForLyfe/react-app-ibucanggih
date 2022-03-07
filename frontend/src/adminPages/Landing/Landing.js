@@ -23,7 +23,7 @@ const Landing = () => {
   }, [])
 
   const logOut = (() => {
-    Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/logout`).then((response) => {
+    Axios.delete(`${process.env.REACT_APP_IBUCANGGIH_API}/delete-cookies`).then((response) => {
       history.push('/');
       window.location.reload(true);
     })
