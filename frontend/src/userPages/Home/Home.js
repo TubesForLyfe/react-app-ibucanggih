@@ -87,7 +87,7 @@ const Home = () => {
   const startSlider = () => {
     slideInterval = setInterval(() => {
       handleNextClick();
-    }, 4000);
+    }, 6000);
   }
 
   const pauseSlider =() => {
