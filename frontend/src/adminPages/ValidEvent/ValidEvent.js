@@ -66,7 +66,7 @@ const ValidEvent = () => {
       <p>Nama Event: {eventname}</p>
       <p>Tanggal: {date} {month}</p>
       <p>Bukti:</p>
-      <img src={image} />
+      <img src={`${process.env.REACT_APP_IBUCANGGIH_API}/` + image} />
       <h2>Valid?</h2>
       <button onClick={validEventForm}>Yes</button>
       </div>}

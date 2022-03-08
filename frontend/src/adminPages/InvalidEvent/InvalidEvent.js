@@ -59,7 +59,7 @@ const InvalidEvent = () => {
       <p>Nama Event: {eventname}</p>
       <p>Tanggal: {date} {month}</p>
       <p>Bukti:</p>
-      <img src={image} />
+      <img src={`${process.env.REACT_APP_IBUCANGGIH_API}/` + image} />
       <h2>Tidak Valid?</h2>
       <button onClick={invalidEventForm}>Yes</button>
       </div>}

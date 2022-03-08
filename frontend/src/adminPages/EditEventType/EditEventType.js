@@ -6,7 +6,8 @@ import './EditEventType.css'
 
 const EditEventType = () => {
   const [name, setName] = useState([]);
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState([]);
+  const [imageView, setImageView] = useState([]);
   const [message, setMessage] = useState([]);
 
   const {id} = useParams();
@@ -17,12 +18,20 @@ const EditEventType = () => {
 
   Axios.defaults.withCredentials = true;
 
+  const back = (e) => {
+    e.preventDefault();
+    Axios.put(`${process.env.REACT_APP_IBUCANGGIH_API}/imageeventtype-directory/${id}`, {
+      image: image
+    }).then((response) => {
+      history.push(`/admin/event-type`);
+    })
+  }
+
   const updateEventType = (e) => {
     e.preventDefault();
     Axios.put(`${process.env.REACT_APP_IBUCANGGIH_API}/edit-event-type`, {
       id: id,
-      name: name,
-      image: image
+      name: name
     }).then((response) => {
       if (response.data.message) {
         setMessage(response.data.message);
@@ -58,18 +67,41 @@ const EditEventType = () => {
       },
       credentials: 'include'
     }).then(data => data.json()).then((data) => {
-      setImage(`${process.env.REACT_APP_IBUCANGGIH_API}/` + data.image);
+      setImage(data.image);
+      setImageView(`${process.env.REACT_APP_IBUCANGGIH_API}/` + data.image);
     })
   }, [])
 
   const imageHandler = (e) => {
-    setImage(URL.createObjectURL(e.target.files[0]));
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append('image', file);
+    
+    fetch(`${process.env.REACT_APP_IBUCANGGIH_API}/image-eventtype/${id}`, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'multipart/form-data',
+      },
+      credentials: 'include'
+    }).then(res => res.json()).then(res => {
+      fetch(`${process.env.REACT_APP_IBUCANGGIH_API}/image-eventtype/${id}`, {
+        method: 'GET',
+        headers: {
+          "Content-Type": 'application/json, charset=UTF-8',
+          'Accept': 'application/json, text/html'
+        },
+        credentials: 'include'
+      }).then(data => data.json()).then((data) => {
+        setImageView(`${process.env.REACT_APP_IBUCANGGIH_API}/` + data.image);
+      })
+    });
   }
     
   return (
     <div>
       {logIn && (roleLogIn == "admin") && <div>
-      <Link to="/admin/event-type"><h2>Back</h2></Link>
+      <h2 onClick={back}>Back</h2>
       <form className="editeventtype-admin">
             <div>
               <input type="text" name="name" placeholder=" Nama Tipe Event" value={name}
@@ -81,7 +113,7 @@ const EditEventType = () => {
             <div>
                 <input type="file" name="image" accept="image/*" onChange={imageHandler} />
             </div>
-            <img className="imageeventtype-admin" src={image} />
+            <img className="imageeventtype-admin" src={imageView} />
             <button onClick={updateEventType}></button>
             <h2>Update</h2>
       </form>

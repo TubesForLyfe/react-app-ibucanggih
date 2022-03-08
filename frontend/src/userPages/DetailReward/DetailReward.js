@@ -13,7 +13,6 @@ import Review from "../../img/Review.PNG";
 import YoutubeLive from "../../img/youtubeLiveIcon.png";
 import KuliahWhatsapp from "../../img/WhatsappKuliahIcon.png";
 import InternetChallenge from "../../img/InternetChallenge.png";
-import FooterEvent from "../../components/FooterEvent/FooterEvent"
 import './DetailReward.css'
 
 const DetailReward = () => {
@@ -42,7 +41,6 @@ const DetailReward = () => {
             }
           }
           setName(nameResult);
-          setImage(response.data[0].image);
           setPoin(response.data[0].poin);
       })
   }
@@ -100,7 +98,6 @@ const DetailReward = () => {
       <div>
           <img className="bg-detail2" src={Background} />
           {listEventForm.map((val, key) => {
-            console.log(val.type);
             let iconType = InternetChallenge;
               if (val.type === "Youtube Live") {
                 iconType = YoutubeLive;

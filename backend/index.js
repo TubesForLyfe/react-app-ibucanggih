@@ -693,6 +693,25 @@ app.get(`${base}/image-eventtype/:id`, (req, res) => {
     )
 })
 
+app.put(`${base}/imageeventtype-directory/:id`, (req, res) => {
+    const id = req.params.id;
+    const image = req.body.image;
+
+    db.query(
+        "UPDATE eventtype SET image = ? WHERE id = ?",
+        [image, id],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send({
+                    data: result
+                });
+            }
+        }
+    )
+})
+
 app.post(`${base}/event-typeid`, (req, res) => {
     const id = req.body.id;
 
@@ -712,11 +731,10 @@ app.post(`${base}/event-typeid`, (req, res) => {
 app.put(`${base}/edit-event-type`, (req, res) => {
     const id = req.body.id;
     const name = req.body.name;
-    const image = req.body.image;
 
     db.query(
-        "UPDATE eventtype SET name = ?, image = ? WHERE id = ?",
-        [name, image, id],
+        "UPDATE eventtype SET name = ? WHERE id = ?",
+        [name, id],
         (err, result) => {
             if (result == null) {
                 res.send({message: "Nama Tipe Event sudah digunakan."});
