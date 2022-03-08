@@ -102,7 +102,7 @@ const AddReward = () => {
   } 
 
   return (
-    <div>
+    <div className='full-height'>
       {logIn && (roleLogIn == "user") && (id == idLogIn) && <div>
       <div>
           <img src={Background} />
@@ -173,9 +173,7 @@ const AddReward = () => {
             </button>
           </form>
       </div>
-      <div className="footer-addreward">
-        <FooterAddReward />
-      </div>
+      
       </div>}
     </div>
   )

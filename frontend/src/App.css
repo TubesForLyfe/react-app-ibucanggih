@@ -12,6 +12,11 @@ body {
     background-color: #F2FAFF;
 }
 
+.on-bottom {
+    position: absolute;
+    bottom: 0px;
+}
+
 /* PADDING & MARGIN */
 .margin-vertical {
     margin-top: 32px;

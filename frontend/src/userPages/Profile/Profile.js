@@ -10,7 +10,7 @@ import SmallRectangle from "../../img/SmallRectangle.png";
 import Handphone from "../../img/Handphone.png";
 import House from "../../img/House.png";
 import Whatsapp from "../../img/Whatsapp.png";
-import FooterProfile from "../../components/FooterProfile/FooterProfile";
+import FooterHome from "../../components/FooterHome/FooterHome";
 import "./Profile.css"
 
 const Profile = () => {
@@ -70,7 +70,7 @@ const Profile = () => {
   })
 
   return (
-    <div>
+    <div className='full-height'>
         {logIn && (roleLogIn == "user") && (id == idLogIn) && <div>
         <img className="profile-bg" src={Background} />
         <Link to={`/edit-profil/${id}`}><img className="edit-profile" src={EditProfile} /></Link>
@@ -106,7 +106,9 @@ const Profile = () => {
               <p className="logout-text">Log Out</p>
             </div>
         </div>
-        <FooterProfile />
+        <div className='on-bottom full-width'>
+          <FooterHome active="profile"/>
+        </div>
         </div>}
     </div>
   )

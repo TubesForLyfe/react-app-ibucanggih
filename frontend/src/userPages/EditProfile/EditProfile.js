@@ -6,7 +6,7 @@ import Background from "../../img/Background.png";
 import Back from "../../img/Back.png";
 import SubmitEditProfile from "../../img/SubmitEditProfile.png";
 import RightArrow from "../../img/RightArrow.png"
-import FooterEditProfile from "../../components/FooterEditProfile/FooterEditProfile";
+import FooterHome from "../../components/FooterHome/FooterHome";
 import "./EditProfile.css"
 
 const EditProfile = () => {
@@ -179,7 +179,7 @@ const EditProfile = () => {
         </Link>
         </p>}
       </div>
-      <FooterEditProfile />
+      <FooterHome active="profile"/>
       </div>}
     </div>
   )

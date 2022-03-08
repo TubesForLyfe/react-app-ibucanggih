@@ -64,7 +64,7 @@ const Login = () => {
       <p className="bottom-text-login">
         Belum punya Akun Ibu-Ibu Canggih? <Link to="/sign-up">Daftar disini</Link>
       </p>
-      <div className="footer-login">
+      <div className="footer-login full-width">
         <FooterLanding />
       </div>
     </div>
