@@ -46,7 +46,9 @@ const upload = multer({
     storage: storage
 });
 
-app.use('/', express.static(path.join(__dirname, '/')));
+const base = process.env.BASE_ROUTE
+
+app.use(`${base}/uploads`, express.static(path.join(__dirname, '/uploads')));
 
 const db = mysql.createConnection({
     user: process.env.DB_USER,
@@ -54,8 +56,6 @@ const db = mysql.createConnection({
     password: process.env.DB_PASSWORD,
     database: process.env.DB_NAME
 });
-
-const base = process.env.BASE_ROUTE
 
 app.get(`${base}`, (req, res) => {
     db.connect(function(err) {
@@ -425,7 +425,7 @@ app.delete(`${base}/delete-user/:id`, (req, res) => {
     )
 })
 
-app.put('/reset-poin/:id', (req, res) => {
+app.put(`${base}/reset-poin/:id`, (req, res) => {
     const id = req.params.id;
 
     db.query (
@@ -440,7 +440,7 @@ app.put('/reset-poin/:id', (req, res) => {
     )
 })
 
-app.get('/get-wagroup', (req, res) => {
+app.get(`${base}/get-wagroup`, (req, res) => {
     db.query (
         "SELECT * FROM wagroups",
         (err, result) => {

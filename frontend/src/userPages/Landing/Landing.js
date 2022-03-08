@@ -37,7 +37,7 @@ const Landing = () => {
   const startSlider = () => {
     slideInterval = setInterval(() => {
       handleNextClick();
-    }, 4000);
+    }, 6000);
   }
 
   const pauseSlider =() => {
@@ -54,17 +54,20 @@ const Landing = () => {
 
   return (
     <div>
-      <div ref={slideRef}>
-        {index == 0 && <a href="https://bertsolution.com/our-community-ibu2canggih/" target="_blank">
-          <img className="full-width" src={Image[index]} />
-        </a>}
-        {index == 1 && <a href="http://wa.me/6281326035476" target="_blank">
-          <img className="full-width" src={Image[index]} />
-        </a>}
+      <div>
+        <div className='carousels' ref={slideRef}>
+          {index == 0 && <a href="https://bertsolution.com/our-community-ibu2canggih/" target="_blank">
+            <img className="full-width" src={Image[index]} />
+          </a>}
+          {index == 1 && <a href="http://wa.me/6281326035476" target="_blank">
+            <img className="full-width" src={Image[index]} />
+          </a>}
+        </div>
+        <img className="left-slide-landing" src={RightArrow} onClick={handlePrevClick} />
+        <img className="right-slide-landing" src={RightArrow} onClick={handleNextClick} />
       </div>
       <div>
-        <img className="left-slide" src={RightArrow} onClick={handlePrevClick} />
-        <img className="right-slide" src={RightArrow} onClick={handleNextClick} />
+        
       </div>
       <div className="full-width flex-column margin-top">
         <img className="landing-logo center-horizontal" src={Logo} />

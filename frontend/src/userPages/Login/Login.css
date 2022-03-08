@@ -78,6 +78,8 @@ body {
 }
 
 .footer-login {
+    position: absolute;
+    bottom: 0px;
     padding-top: 40px;
     margin-left: -32px;
 }
