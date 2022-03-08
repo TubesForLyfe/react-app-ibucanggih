@@ -610,6 +610,38 @@ app.post(`${base}/add-eventform`, (req, res) => {
     );
 });
 
+app.post(`${base}/image-eventform/:id`, upload.single('image'), (req, res, err) => {
+    const image = req.file.filename;
+
+    db.query(
+        "INSERT INTO imageform (image) VALUES (?)", image,
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send({
+                    data: result
+                });
+            }
+        }
+    )
+})
+
+app.get(`${base}/image-eventform/:id`, (req, res) => {
+    const id = req.params.id;
+
+    db.query(
+        "SELECT * FROM imageform WHERE id = ?", id,
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send({image: result[0].image})
+            }
+        }
+    )
+})
+
 app.post(`${base}/add-eventtype`, (req, res) => {
     const nama = req.body.name;
     const image = req.body.image;

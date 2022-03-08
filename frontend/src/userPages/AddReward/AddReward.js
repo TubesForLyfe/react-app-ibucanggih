@@ -64,7 +64,30 @@ const AddReward = () => {
   }, [])
 
   const imageHandler = (e) => {
-    setImage(URL.createObjectURL(e.target.files[0]));
+    const file = e.target.files[0];
+    const formData = new FormData();
+    formData.append('image', file);
+    
+    fetch(`${process.env.REACT_APP_IBUCANGGIH_API}/image-eventform/${id}`, {
+      method: 'POST',
+      body: formData,
+      headers: {
+        'Accept': 'multipart/form-data',
+      },
+      credentials: 'include'
+    }).then(res => res.json()).then(res => {
+      console.log(res.data.insertId)
+      fetch(`${process.env.REACT_APP_IBUCANGGIH_API}/image-eventform/${res.data.insertId}`, {
+        method: 'GET',
+        headers: {
+          "Content-Type": 'application/json, charset=UTF-8',
+          'Accept': 'application/json, text/html'
+        },
+        credentials: 'include'
+      }).then(data => data.json()).then((data) => {
+        setImage(data.image);
+      })
+    });
   }
 
   const changeCalendar = (e) => {

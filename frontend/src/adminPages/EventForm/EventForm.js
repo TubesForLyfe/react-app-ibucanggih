@@ -45,7 +45,7 @@ const EventForm = () => {
                         <p>Tipe Event: {val.eventtype}</p>
                         <p>Tanggal: {val.date} {val.month}</p>
                         <p>Bukti:</p>
-                        <img className="eventform-img" src={val.image} />
+                        <img className="eventform-img" src={`${process.env.REACT_APP_IBUCANGGIH_API}/` + val.image} />
                         <Link to={`/admin/valid-event-form/${val.id}`}><button>Valid</button></Link>
                         <Link to={`/admin/invalid-event-form/${val.id}`}><button>Tidak Valid</button></Link>
                     </div>
