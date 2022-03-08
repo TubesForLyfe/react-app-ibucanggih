@@ -36,7 +36,6 @@ const Profile = () => {
           setPhone(response.data[0].phone);
           setAddress(response.data[0].address);
           setWagroup(response.data[0].wagroup);
-          setImage(response.data[0].image);
       })
   }
 
@@ -51,6 +50,16 @@ const Profile = () => {
         }
       })
       getUserId(id);
+      fetch(`${process.env.REACT_APP_IBUCANGGIH_API}/image/${id}`, {
+        method: 'GET',
+        headers: {
+          "Content-Type": 'application/json, charset=UTF-8',
+          'Accept': 'application/json, text/html'
+        },
+        credentials: 'include'
+      }).then(data => data.json()).then((data) => {
+        setImage(`${process.env.REACT_APP_IBUCANGGIH_API}/` + data.image);
+      })
   }, [])
 
   const logOut = (() => {

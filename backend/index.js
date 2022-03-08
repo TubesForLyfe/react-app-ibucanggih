@@ -6,6 +6,8 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const dotenv = require('dotenv');
+const multer = require('multer');
+const path = require('path');
 
 const saltRounds = 10;
 const app = express();
@@ -29,6 +31,22 @@ app.use(session({
         expires: 2592000000
     }
 }));
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "./");
+    },
+    filename: function(req, file, cb) {
+        const ext = file.mimetype.split("/")[1];
+        cb(null, `uploads/${file.originalname}-${Date.now()}.${ext}`);
+    }
+});
+
+const upload = multer({
+    storage: storage
+});
+
+app.use('/', express.static(path.join(__dirname, '/')));
 
 const db = mysql.createConnection({
     user: process.env.DB_USER,
@@ -270,16 +288,69 @@ app.put(`${base}/edit-profil/half`, (req, res) => {
     const phone = req.body.phone;
     const address = req.body.address;
     const wagroup = req.body.wagroup;
-    const image = req.body.image;
    
     db.query(
-        "UPDATE users SET name = ?, phone = ?, address = ?, wagroup = ?, image = ? WHERE id = ?",
-        [name, phone, address, wagroup, image, id],
+        "UPDATE users SET name = ?, phone = ?, address = ?, wagroup = ? WHERE id = ?",
+        [name, phone, address, wagroup, id],
         (err, result) => {
             if (err) {
+                console.log(err)
                 res.send({message: err.message});
             } else {
                 res.send(id);
+            }
+        }
+    )
+})
+
+app.post(`${base}/image/:id`, upload.single('image'), (req, res, err) => {
+    const id = req.params.id;
+    const image = req.file.filename;
+
+    db.query(
+        "UPDATE users SET image = ? WHERE id = ?",
+        [image, id],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send({
+                    data: result
+                });
+            }
+        }
+    )
+})
+
+app.get(`${base}/image/:id`, (req, res) => {
+    const id = req.params.id;
+
+    db.query(
+        "SELECT * FROM users WHERE id = ?", id,
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send({image: result[0].image})
+            }
+        }
+    )
+})
+
+app.put(`${base}/image-directory/:id`, (req, res) => {
+    const id = req.params.id;
+    const image = req.body.image;
+
+    db.query(
+        "UPDATE users SET image = ? WHERE id = ?",
+        [image, id],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send({
+                    data: result
+                });
             }
         }
     )
@@ -555,6 +626,40 @@ app.post(`${base}/add-eventtype`, (req, res) => {
         }
     );
 });
+
+app.post(`${base}/image-eventtype/:id`, upload.single('image'), (req, res, err) => {
+    const id = req.params.id;
+    const image = req.file.filename;
+
+    db.query(
+        "UPDATE eventtype SET image = ? WHERE id = ?",
+        [image, id],
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send({
+                    data: result
+                });
+            }
+        }
+    )
+})
+
+app.get(`${base}/image-eventtype/:id`, (req, res) => {
+    const id = req.params.id;
+
+    db.query(
+        "SELECT * FROM eventtype WHERE id = ?", id,
+        (err, result) => {
+            if (err) {
+                console.log(err);
+            } else {
+                res.send({image: result[0].image})
+            }
+        }
+    )
+})
 
 app.post(`${base}/event-typeid`, (req, res) => {
     const id = req.body.id;

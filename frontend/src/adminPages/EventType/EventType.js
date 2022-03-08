@@ -41,7 +41,6 @@ const EventType = () => {
                   return (
                     <div className="eventtype-admin">
                         <p>Event Type: {val.name}</p>
-                        <img className="eventtype-img" src={val.image} />
                         <Link to={`/admin/edit-event-type/${val.id}`}><button>Edit</button></Link>
                         <Link to={`/admin/delete-event-type/${val.id}`}><button>Delete</button></Link>
                     </div>

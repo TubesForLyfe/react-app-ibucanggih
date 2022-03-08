@@ -34,7 +34,7 @@ const Register = () => {
         pwconfirm: pwConfirmReg,
         address: '-',
         wagroup: '-',
-        image: DefaultPicture
+        image: "uploads/DefaultPicture.png"
       }).then((response) => {
         if (response.data.message) {
           setRegisterStatus(response.data.message);
