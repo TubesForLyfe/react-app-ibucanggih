@@ -34,7 +34,14 @@ const DetailReward = () => {
       Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/profil`, {
           id: id
       }).then((response) => {
-          setName(response.data[0].name);
+          const arr = response.data[0].name.split(" ");
+          let nameResult = ""
+          for (let i in arr) {
+            if (i < 2) {
+              nameResult = nameResult + arr[i] + " "
+            }
+          }
+          setName(nameResult);
           setImage(response.data[0].image);
           setPoin(response.data[0].poin);
       })
