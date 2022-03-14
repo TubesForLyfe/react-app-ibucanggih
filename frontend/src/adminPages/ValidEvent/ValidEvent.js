@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Link, useParams, useHistory } from 'react-router-dom'
 import Axios from 'axios'
 
+import Logo from "../../img/icon_white_circle.png"
+
 const ValidEvent = () => {
   const [name, setName] = useState([]);
   const [userID, setUserID] = useState([]);
@@ -58,17 +60,24 @@ const ValidEvent = () => {
   }, [])
 
   return (
-    <div>
+    <div className="landing-admin">
       {logIn && (roleLogIn == "admin") && <div>
-      <Link to="/admin/event-form"><h2>Back</h2></Link>  
-      <p>Nama Ibu: {name}</p>
-      <p>Tipe Event: {eventtype}</p>
-      <p>Nama Event: {eventname}</p>
-      <p>Tanggal: {date} {month}</p>
-      <p>Bukti:</p>
-      <img src={`${process.env.REACT_APP_IBUCANGGIH_API}/` + image} />
-      <h2>Valid?</h2>
-      <button onClick={validEventForm}>Yes</button>
+      <img className="imageadmin" src={Logo} />
+      <Link to="/admin/user"><h3 className="linkadmin">User</h3></Link>
+      <Link to="/admin/wagroup"><h3 className="linkadmin">WA Group</h3></Link>
+      <Link to="/admin/event-type"><h3 className="linkadmin">Event Type</h3></Link>
+      <Link to="/admin/event"><h3 className="linkadmin">Event</h3></Link>
+      <Link to="/admin/event-form"><h3 className="linkadmin">Event Form</h3></Link>
+      <div className="delete-admin">
+        <p>Nama Ibu: {name}</p>
+        <p>Tipe Event: {eventtype}</p>
+        <p>Nama Event: {eventname}</p>
+        <p>Tanggal: {date} {month}</p>
+        <p>Bukti:</p>
+        <img src={`${process.env.REACT_APP_IBUCANGGIH_API}/` + image} />
+        <h2>Valid?</h2>
+        <button onClick={validEventForm}>Yes</button>
+      </div>
       </div>}
     </div>
   )

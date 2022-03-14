@@ -3,10 +3,26 @@ body {
 }
 
 .landing-admin {
-    text-align: center;
-    padding: 30px;
+    position: relative;
+    background-color: #85296B;
+    display: flex;
+    left: -375px;
 }
 
-.landing-admin p {
-    cursor: pointer;
+.imageadmin {
+    position: relative;
+    left: 132.5px;
+    width: 100px;
+    height: 100px;
+}
+
+.linkadmin {
+    font-family: Avenir;
+    font-style: normal;
+    color: #FFFFFF;
+}
+
+.logout-button-admin {
+    position: relative;
+    top: -500px;
 }

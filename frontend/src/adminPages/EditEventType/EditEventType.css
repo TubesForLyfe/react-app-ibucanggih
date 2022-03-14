@@ -6,8 +6,8 @@ body {
     position: relative;
     width: 320px;
     height: 40px;
-    left: 27px;
-    top: 25px;
+    left: 397px;
+    top: -250px;
 
     background: #FFFFFF;
     /* shadow 1 */
@@ -26,7 +26,7 @@ body {
     position: absolute;
     width: 320px;
     height: 40px;
-    left: 28px;
+    left: 398px;
     top: 320px;
     
     background: #85296B;
@@ -38,7 +38,7 @@ body {
     position: absolute;
     width: 43px;
     height: 22px;
-    left: 138.5px;
+    left: 508.5px;
     top: 330px;
     
     font-family: Avenir;
@@ -57,8 +57,8 @@ body {
 
 .imageeventtype-admin {
     position: relative;
-    top: 50px;
+    top: -250px;
     width: 100px;
     height: 100px;
-    left: 30px;
+    left: 400px;
 }

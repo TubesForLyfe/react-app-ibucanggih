@@ -2,6 +2,7 @@ import React, { useState, useEffect} from 'react'
 import { Link, useParams, useHistory } from 'react-router-dom'
 import Axios from 'axios'
 
+import Logo from "../../img/icon_white_circle.png"
 import './EditEventType.css'
 
 const EditEventType = () => {
@@ -99,9 +100,14 @@ const EditEventType = () => {
   }
     
   return (
-    <div>
+    <div className="landing-admin">
       {logIn && (roleLogIn == "admin") && <div>
-      <h2 onClick={back}>Back</h2>
+      <img className="imageadmin" src={Logo} />
+      <Link to="/admin/user" onClick={back}><h3 className="linkadmin">User</h3></Link>
+      <Link to="/admin/wagroup" onClick={back}><h3 className="linkadmin">WA Group</h3></Link>
+      <Link to="/admin/event-type" onClick={back}><h3 className="linkadmin">Event Type</h3></Link>
+      <Link to="/admin/event" onClick={back}><h3 className="linkadmin">Event</h3></Link>
+      <Link to="/admin/event-form" onClick={back}><h3 className="linkadmin">Event Form</h3></Link>
       <form className="editeventtype-admin">
             <div>
               <input type="text" name="name" placeholder=" Nama Tipe Event" value={name}

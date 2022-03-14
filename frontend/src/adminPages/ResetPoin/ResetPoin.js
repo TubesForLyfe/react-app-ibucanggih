@@ -2,12 +2,15 @@ import React, { useState, useEffect } from 'react'
 import { Link, useParams, useHistory } from 'react-router-dom'
 import Axios from 'axios'
 
+import Logo from "../../img/icon_white_circle.png"
+
 const ResetPoin = () => {
   const [name, setName] = useState([]);
   const [phone, setPhone] = useState([]);
   const [address, setAddress] = useState([]);
   const [wagroup, setWagroup] = useState([]);
   const [email, setEmail] = useState([]);
+  const [poin, setPoin] = useState([]);
   
   const {id} = useParams();
   const history = useHistory();
@@ -33,6 +36,7 @@ const ResetPoin = () => {
         setAddress(response.data[0].address);
         setWagroup(response.data[0].wagroup);
         setEmail(response.data[0].email);
+        setPoin(response.data[0].poin);
     })
   }
 
@@ -49,16 +53,24 @@ const ResetPoin = () => {
   }, [])
 
   return (
-    <div>
+    <div className="landing-admin">
       {logIn && (roleLogIn == "admin") && <div>
-      <Link to="/admin/user"><h2>Back</h2></Link>  
-      <p>Nama: {name}</p>
-      <p>Email: {email}</p>
-      <p>No Handphone: {phone}</p>
-      <p>Alamat: {address}</p>
-      <p>Asal Grup Whatsapp: {wagroup}</p>
-      <h2>Reset poin?</h2>
-      <button onClick={reset}>Yes</button>
+      <img className="imageadmin" src={Logo} />
+      <Link to="/admin/user"><h3 className="linkadmin">User</h3></Link>
+      <Link to="/admin/wagroup"><h3 className="linkadmin">WA Group</h3></Link>
+      <Link to="/admin/event-type"><h3 className="linkadmin">Event Type</h3></Link>
+      <Link to="/admin/event"><h3 className="linkadmin">Event</h3></Link>
+      <Link to="/admin/event-form"><h3 className="linkadmin">Event Form</h3></Link>
+      <div className="delete-admin">
+        <p>Nama: {name}</p>
+        <p>Email: {email}</p>
+        <p>No Handphone: {phone}</p>
+        <p>Alamat: {address}</p>
+        <p>Asal Grup Whatsapp: {wagroup}</p>
+        <p>Poin: {poin}</p>
+        <h2>Reset poin?</h2>
+        <button onClick={reset}>Yes</button>
+      </div>
       </div>}
     </div>
   )

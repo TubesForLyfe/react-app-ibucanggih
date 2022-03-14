@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import Axios from 'axios'
 
+import Logo from "../../img/icon_white_circle.png"
 import './AddEventType.css'
 
 const AddEventType = () => {
@@ -41,10 +42,15 @@ const AddEventType = () => {
   };
 
   return (
-    <div>
+    <div className="landing-admin">
       {logIn && (roleLogIn == "admin") && <div>
-      <Link to="/admin/event-type"><h2>Back</h2></Link>
-      <div className="add-eventtypeadmin">
+      <img className="imageadmin" src={Logo} />
+      <Link to="/admin/user"><h3 className="linkadmin">User</h3></Link>
+      <Link to="/admin/wagroup"><h3 className="linkadmin">WA Group</h3></Link>
+      <Link to="/admin/event-type"><h3 className="linkadmin">Event Type</h3></Link>
+      <Link to="/admin/event"><h3 className="linkadmin">Event</h3></Link>
+      <Link to="/admin/event-form"><h3 className="linkadmin">Event Form</h3></Link>
+      <div className="add-admin">
           <form>
             <div>
               <input type="text" name="name" placeholder=" Nama Tipe Event" 
@@ -53,10 +59,12 @@ const AddEventType = () => {
                 }}
               />
             </div>
-            <button type="submit" onClick={addEventType}></button>
-            <h2>Tambah</h2>
+            <div className="add-eventtypeadmin">
+              <button type="submit" onClick={addEventType}></button>
+              <h2>Tambah</h2>
+            </div>
           </form>
-          <h1>{eventStatus}</h1>
+          <h1 className="addstatus-admin">{eventStatus}</h1>
       </div>
       </div>}
     </div>

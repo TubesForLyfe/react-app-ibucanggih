@@ -6,8 +6,8 @@ body {
     position: relative;
     width: 320px;
     height: 40px;
-    left: 27px;
-    top: 25px;
+    left: 397px;
+    top: -250px;
 
     background: #FFFFFF;
     /* shadow 1 */
@@ -26,8 +26,8 @@ body {
     position: absolute;
     width: 320px;
     height: 40px;
-    left: 28px;
-    top: 400px;
+    left: 398px;
+    top: 450px;
     
     background: #85296B;
     box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.15);
@@ -38,8 +38,8 @@ body {
     position: absolute;
     width: 43px;
     height: 22px;
-    left: 138.5px;
-    top: 410px;
+    left: 508.5px;
+    top: 460px;
     
     font-family: Avenir;
     font-style: normal;
