@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import Axios from 'axios'
 
+import Logo from "../../img/icon_white_circle.png"
 import './AddWAGroup.css'
 
 const AddUser = () => {
@@ -40,10 +41,15 @@ const AddUser = () => {
   };
 
   return (
-    <div>
+    <div className="landing-admin">
       {logIn && (roleLogIn == "admin") && <div>
-      <Link to="/admin/user"><h2>Back</h2></Link>
-      <div className="add-user">
+      <img className="imageadmin" src={Logo} />
+      <Link to="/admin/user"><h3 className="linkadmin">User</h3></Link>
+      <Link to="/admin/wagroup"><h3 className="linkadmin">WA Group</h3></Link>
+      <Link to="/admin/event-type"><h3 className="linkadmin">Event Type</h3></Link>
+      <Link to="/admin/event"><h3 className="linkadmin">Event</h3></Link>
+      <Link to="/admin/event-form"><h3 className="linkadmin">Event Form</h3></Link>
+      <div className="add-admin">
           <form>
             <div>
               <input type="text" name="name" placeholder=" Nama Grup Whatsapp" 
@@ -52,10 +58,12 @@ const AddUser = () => {
                 }}
               />
             </div>
-            <button type="submit" onClick={addWAGroup}></button>
-            <h2>Tambah</h2>
+            <div className='add-wagroup-admin'>
+              <button type="submit" onClick={addWAGroup}></button>
+              <h2>Tambah</h2>
+            </div>
           </form>
-          <h2>{WAGroupStatus}</h2>
+          <h2 className="addstatus-admin">{WAGroupStatus}</h2>
       </div>
       </div>}
     </div>

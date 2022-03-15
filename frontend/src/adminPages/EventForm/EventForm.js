@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import { Link, useHistory } from 'react-router-dom'
 import Axios from 'axios'
 
+import Logo from "../../img/icon_white_circle.png"
+import { ExportFile } from '../../components/ExportFile/ExportFile'
 import "./EventForm.css"
 
 const EventForm = () => {
@@ -19,6 +21,15 @@ const EventForm = () => {
       })
   }
 
+  const fileName = "IbuCanggih_EventForm"
+
+  const logOut = (() => {
+    Axios.delete(`${process.env.REACT_APP_IBUCANGGIH_API}/delete-cookies`).then((response) => {
+      history.push('/');
+      window.location.reload(true);
+    })
+  })
+
   useEffect(() => {
     Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/login`).then((response) => {
     if (response.data.loggedIn) {
@@ -32,10 +43,22 @@ const EventForm = () => {
   }, [])
 
   return (
-    <div>
+    <div className="landing-admin">
       {logIn && (roleLogIn == "admin") && <div>
       <div>
-          <Link to="/admin"><h2>Back</h2></Link>
+          <img className="imageadmin" src={Logo} />
+          <Link to="/admin/user"><h3 className="linkadmin">User</h3></Link>
+          <Link to="/admin/wagroup"><h3 className="linkadmin">WA Group</h3></Link>
+          <Link to="/admin/event-type"><h3 className="linkadmin">Event Type</h3></Link>
+          <Link to="/admin/event"><h3 className="linkadmin">Event</h3></Link>
+          <Link to="/admin/event-form"><h3 className="linkadmin">Event Form</h3></Link>
+          <div className="userexport-admin">
+            <ExportFile csvData={eventForm} fileName={fileName} />
+          </div>
+          <div className="logout-button-admin" onClick={logOut}>
+            <p className="logout-bg"></p>
+            <p className="logout-text">Log Out</p>
+          </div>
           <div>
               {eventForm.map((val, key) => {
                   return (
