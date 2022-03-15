@@ -2,15 +2,13 @@ import React, { useState, useEffect, useRef } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Axios from 'axios'
 
-import Banner1 from "../../img/Banner2.jpg";
-import Banner2 from "../../img/Banner3.jpg";
+import BannerWelcome from "../../img/BannerWelcome.jpg";
 import RightArrow from "../../img/RightArrow.png";
 import FooterHome from "../../components/FooterHome/FooterHome" 
 import "./Home.css"
 
 const Image = [
-  Banner1,
-  Banner2
+  BannerWelcome
 ];
 
 let slideInterval;
@@ -106,10 +104,7 @@ const Home = () => {
     <div className=''>
       <div className='flex-column'>
         <div ref={slideRef}>
-          {index == 0 && <a href="https://bertsolution.com/our-community-ibu2canggih/" target="_blank">
-            <img className="full-width" src={Image[index]} />
-          </a>}
-          {index == 1 && <a href="http://wa.me/6281326035476" target="_blank">
+          {index == 0 && <a href="https://bit.ly/PemenangIbuCanggih-A" target="_blank">
             <img className="full-width" src={Image[index]} />
           </a>}
         </div>

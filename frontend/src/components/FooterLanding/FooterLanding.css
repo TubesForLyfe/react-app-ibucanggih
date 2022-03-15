@@ -11,10 +11,11 @@ body {
     position: absolute;
     left: 0;
     top: 0;
+    width: 100%;
 }
 
 .margin-top-footer {
-    margin-top: 76px;
+    margin-top: 92px;
 }
 
 .icon {
@@ -22,11 +23,22 @@ body {
     height: 62px;
 }
 
+.footer-inquiries {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 900;
+    font-size: 14px;
+
+    color: #FFFFFF;
+    text-decoration: none !important;
+    text-align: center;
+}
+
 .footer-white-text {
     font-family: Avenir;
     font-style: normal;
-    font-weight: 850;
-    font-size: 12px;
+    font-weight: 750;
+    font-size: 11px;
     line-height: 19px;
 
     color: #FFFFFF;

@@ -76,7 +76,7 @@ const DetailReward = () => {
   }, [])
 
   return (
-    <div>
+    <div className='min-full-height'>
       {logIn && (roleLogIn == "user") && (id == idLogIn) && <div>
       <div>
           <img className="bg-detail" src={Background} />
@@ -96,7 +96,6 @@ const DetailReward = () => {
           <p className="poindetail">{poin}</p>
       </div>
       <div>
-          <img className="bg-detail2" src={Background} />
           {listEventForm.map((val, key) => {
             let iconType = InternetChallenge;
               if (val.type === "Youtube Live") {
@@ -106,12 +105,38 @@ const DetailReward = () => {
               }
 
               return (
-                  <div className="list-detailreward">
-                      <img className="listdetail-bg" src={Background} />
+                  <div className="full-width flex-row">
+                      <img className="margin-left-20 margin-right-8 img-listdetail" src={iconType} />
+                      <div className='flex-column padding-right-20'>
+                        <div className='flex-row flex-between flex-center'>
+                          <div>
+                            <div className="type-listdetail">{val.type}</div>
+                            <div className="name-listdetail">{val.name}</div>
+                            {val.review == 99 && <div className='flex-row margin-top-8'>
+                                <img className="imgreview" src={Review} />
+                                <div className="txtreview margin-left-8">Dalam Review</div>
+                            </div>}
+                            {val.review == 1 && <div className='flex-row margin-top-8'>
+                                <img className="imgvalid" src={Valid} />
+                                <div className="txtvalid margin-left-8">Berhasil Diterima</div>
+                            </div>}
+                            {val.review == 0 && <div className='flex-row margin-top-8'>
+                                <img className="imginvalid" src={NotValid} />
+                                <div className="txtinvalid margin-left-8">Tidak Valid</div>
+                            </div>}
+                          </div>
 
-                      <img className="img-listdetail" src={iconType} />
-                      <p className="type-listdetail">{val.type}</p>
-                      <p className="name-listdetail">{val.name}</p>
+                          <div>
+                            {val.review == 99 &&
+                              <div className="poinreview-listdetail">{val.poin}</div>}
+                            {val.review == 1 &&
+                              <div className="poinvalid-listdetail">{val.poin}</div>}
+                          </div>
+                        </div>
+                        <img className="margin-top-16 margin-bot-16" src={LineDetailReward} />
+                      </div>
+                      {/* 
+                      
                       {val.review == 99 && <div>
                           <p className="poinreview-listdetail">{val.poin}</p>
                           <img className="imgreview" src={Review} />
@@ -125,8 +150,7 @@ const DetailReward = () => {
                       {val.review == 0 && <div>
                           <img className="imginvalid" src={NotValid} />
                           <p className="txtinvalid">Tidak Valid</p>
-                      </div>}
-                      <img className="line-listdetail" src={LineDetailReward} />
+                      </div>} */}
                   </div>
               )
           })}

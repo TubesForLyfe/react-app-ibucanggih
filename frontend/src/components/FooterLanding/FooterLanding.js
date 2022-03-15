@@ -17,7 +17,8 @@ const FooterLanding = () => {
     <div className='full-width bg-footer'>
         <img className='child' src={FooterBackground1} />
         <div className='full-width flex-column child margin-top-footer'>
-            <div className='center-horizontal flex-row margin-bot-8'>
+            <div className='footer-inquiries margin-bot-16'>FOR BUSINESS INQUIRIES</div>
+            <div className='center-horizontal flex-row margin-bot'>
                 <img className='icon margin-right-16' src={iconWhiteCircle}/>
                 <div className='margin-right-16'>
                     <a href="https://lynk.id/link/redirect/to?n=email&link=mailto:community@bertsolution.com&u=@ibu2canggih" className="footer-white-text" target="_blank"><p>
@@ -27,8 +28,8 @@ const FooterLanding = () => {
                 </div>
                 <div className='whitespace margin-right-16'></div>
                 <div>
-                    <a href="https://wa.me/6281323663240?text=Halo%2C%20saya%20ingin%20bekerjasama%20dengan%20Ibu2Canggih" target="_blank" className="footer-white-text"><p>
-                        Kontak<br/>Via Whatsapp
+                    <a href="https://wa.me/6281326035476?text=Halo%2C%20saya%20ingin%20bekerjasama%20dengan%20Ibu2Canggih" target="_blank" className="footer-white-text"><p>
+                        Whatsapp<br/>(+62) 813-2603-5476
                     </p></a>
                 </div>
             </div>

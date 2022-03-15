@@ -98,7 +98,7 @@ const AddReward = () => {
     setActiveCalendar(false);
     setActiveEventType(false);
     setActiveEventName(false);
-    setDate(e.toString().substring(8,10));
+    setDate(e.toString().substring(8,10) + " " + e.toString().substring(4,7) + " " + e.toString().substring(11,15));
     setMonth(e.toString().substring(4,7));
     setYear(e.toString().substring(11,15));
     Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/get-eventtypebycalendar`, {
@@ -141,8 +141,6 @@ const AddReward = () => {
             <p className="datetxt-add">Tanggal</p>
             <p className="date-active" onClick={(e) => setActiveCalendar(!activeCalendar)}>
               <p className="date-txt">{date}</p>
-              <p className="month-txt">{month}</p>
-              <p className="year-txt">{year}</p>
             </p>
             {activeCalendar && <div className="date-picker">
               <CalendarForm onChange={changeCalendar} />

@@ -158,11 +158,6 @@ body {
 }
 
 .img-listdetail {
-    position: absolute;
-    left: 6.25%;
-    right: 6.25%;
-    top: 18.27%;
-    bottom: 18.27%;
     width: 32px;
     height: 32px;
 
@@ -170,42 +165,25 @@ body {
 }
 
 .type-listdetail {
-    position: absolute;
-    height: 16px;
-    left: 16.25%;
-    top: 8%;
-    
     font-family: Avenir;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
-    line-height: 16px;
     
     color: #7A7A7A;
 }
 
 .name-listdetail {
-    position: absolute;
-    width: 200px;
-    height: 44px;
-    left: 16.25%;
-    top: 18%;
-    
+
     font-family: Avenir;
     font-style: normal;
     font-weight: 850;
     font-size: 14px;
-    line-height: 22px;
     
     color: #2F2F2F;
 }
 
 .poinreview-listdetail {
-    position: absolute;
-    width: 29px;
-    height: 38px;
-    left: 90%;
-    top: 13%;
     
     font-family: Avenir;
     font-style: normal;
@@ -217,37 +195,22 @@ body {
 }
 
 .imgreview {
-    position: absolute;
-    left: 16.17%;
-    right: 25%;
-    top: 65.67%;
-    bottom: 25%;
 
-    width: 16.5px;
+    width: 16px;
     height: 16px;
 }
 
 .txtreview {
-    position: absolute;
-    height: 16px;
-    left: 23%;
-    top: 55.67%;
     
     font-family: Avenir;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
-    line-height: 16px;
     
     color: #85296B;
 }
 
 .poinvalid-listdetail {
-    position: absolute;
-    width: 29px;
-    height: 38px;
-    left: 90%;
-    top: 13%;
     
     font-family: Avenir;
     font-style: normal;
@@ -259,53 +222,32 @@ body {
 }
 
 .imgvalid {
-    position: absolute;
-    left: 16.67%;
-    right: 25%;
-    top: 66.67%;
-    bottom: 25%;
-
-    width: 11.5px;
-    height: 11px;
+    width: 12px;
+    height: 12px;
 }
 
 .txtvalid {
-    position: absolute;
-    height: 16px;
-    left: 23%;
-    top: 55.67%;
     
     font-family: Avenir;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
-    line-height: 16px;
     
     color: #26D809;
 }
 
 .imginvalid {
-    position: absolute;
-    left: 16.67%;
-    right: 25%;
-    top: 66.67%;
-    bottom: 25%;
 
-    width: 13.5px;
-    height: 13px;
+    width: 12px;
+    height: 12px;
 }
 
 .txtinvalid {
-    position: absolute;
-    height: 16px;
-    left: 23%;
-    top: 55.67%;
     
     font-family: Avenir;
     font-style: normal;
     font-weight: normal;
     font-size: 12px;
-    line-height: 16px;
     
     color: #E62828;
 }

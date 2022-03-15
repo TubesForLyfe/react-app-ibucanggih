@@ -2,10 +2,12 @@ import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
 
 import Logo from "../../img/Logo.png";
-import Banner1 from "../../img/Banner2.jpg";
-import Banner2 from "../../img/Banner3.jpg";
+import Banner1 from "../../img/Banner2.png";
+import Banner2 from "../../img/Banner3.png";
 import RightArrow from "../../img/RightArrow.png";
-import LandingDesc from "../../img/LandingDesc.png";
+import WhyIbuCanggih from "../../img/WhyIbuCanggih.png";
+import BenefitIbuCanggih from "../../img/BenefitIbuCanggih.png";
+import EventIbuCanggih from "../../img/EventIbuCanggih.png";
 import "./Landing.css";
 import "../../App.css";
 import FooterLanding from "../../components/FooterLanding/FooterLanding";
@@ -69,20 +71,24 @@ const Landing = () => {
       <div>
         
       </div>
-      <div className="full-width flex-column margin-top">
-        <img className="landing-logo center-horizontal" src={Logo} />
-        <p className="default-text margin-horizontal">
-          <span className="text-title">Ibu-ibu Canggih</span> adalah Komunitas ibu-ibu yang bercita menjadi ibu modern multitalenta yang memiliki skill cukup untuk menaklukan dunia digital.
-        </p>
+      <div className="full-width flex-column">
         
-        <img className="full-width" src={LandingDesc} />
+        <img className="full-width" src={WhyIbuCanggih} />
+        <img className="full-width" src={EventIbuCanggih} />
+        <img className="full-width" src={BenefitIbuCanggih} />
         <div className='landing-bottom padding'>
-            <p className="default-text landing-bottomtext">
-                Ayo Nikmati Reward Program dengan cara mendaftar Akun<br/>Ibu-Ibu Canggih!
-            </p>
-            <div className='flex-row flex-between'>
-                <Link to="/login" className="btn-purple">Masuk</Link>
-                <Link to="/sign-up" className="btn-purple">Registrasi</Link>
+            <div className="default-text landing-bottomtext">
+            Ayo dapatkan berbagai manfaat<br/>dan keuntungan dengan bergabung<br/>di Ibu2Canggih!
+            </div>
+            <div className='flex-row flex-between margin-top'>
+              <div className='flex-column'>
+                <div className='auth-text'>Sudah punya akun?</div>
+                <Link to="/login" className="btn-purple margin-top-8">Masuk</Link>
+              </div>
+              <div className='flex-column'>
+                <div className='auth-text'>Belum punya akun?</div>
+                <Link to="/sign-up" className="btn-white margin-top-8">Registrasi</Link>
+              </div>
             </div>
         </div>
         <div className='bg-purple'>

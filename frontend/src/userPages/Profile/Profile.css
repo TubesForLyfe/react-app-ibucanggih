@@ -40,9 +40,8 @@ body {
 
 .defaultprofile-text {
     position: absolute;
-    width: 145px;
-    height: 38px;
-    left: 115px;
+    width: 100%;
+    left: 0px;
     top: 170px;
     text-align: center;
 
@@ -170,7 +169,7 @@ body {
 
 .profile-house {
     position: absolute;
-    width: 223px;
+    width: 250px;
     height: 44px;
     left: 92px;
     top: 350px;

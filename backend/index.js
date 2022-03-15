@@ -582,7 +582,7 @@ app.post(`${base}/get-calendar`, (req, res) => {
     const month = req.body.month;
 
     db.query (
-        "SELECT * FROM eventname WHERE month = ?", month,
+        "SELECT * FROM eventname WHERE month = ? order by date", month,
         (err, result) => {
             if (err) {
                 res.send({message: err.message});

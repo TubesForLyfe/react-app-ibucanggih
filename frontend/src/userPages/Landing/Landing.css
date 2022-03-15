@@ -55,6 +55,14 @@ body {
     color: #FFFFFF !important;
 }
 
+.auth-text {
+    color: white;
+    font-size: 12px;
+    font-family: Avenir;
+    font-style: normal;
+    text-align: center;
+}
+
 .btn-purple {
     display: flex;
     flex-direction: row;
@@ -71,10 +79,33 @@ body {
 
     font-family: Avenir;
     font-style: normal;
-    font-weight: 850;
+    font-weight: 800;
     font-size: 16px;
     line-height: 18px;
     color: #FFFFFF;
+
+    text-decoration: none;
+}
+
+.btn-white {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 9px 39px;
+    width: 140px;
+    height: 40px;
+
+    background: #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 20px;
+
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 16px;
+    line-height: 18px;
+    color: #85296B;
 
     text-decoration: none;
 }

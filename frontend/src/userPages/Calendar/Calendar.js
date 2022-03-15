@@ -45,23 +45,28 @@ const Calendar = () => {
   }
 
   return (
-    <div className='flex-column'>
+    <div className='flex-column min-full-height'>
       {logIn && (roleLogIn == "user") && (id == idLogIn) && <div>
       <p className="title-calendar">Event Kalender</p>
       <div className="calendar-main">
           <Kalender onChange={setEvent} />
       </div>
       <p className="event-calendar">All Events</p>
-      <div>
+      <div className='padding-horizontal-20'>
         {listEvent.map((val, key) => {
               return (
-                  <div className="eventlist-calendar">
-                      <img className="bgcalendar" src={Background} />
-                      <p className="date-calendar">{val.date}</p>
-                      <p className="month-calendar">{val.month}</p>
-                      <p className="type-calendar">{val.type}</p>
-                      <p className="name-calendar">{val.name}</p>
-                      <img className="line-calendar" src={LineCalendar} />
+                  <div className="full-width flex-column">
+                    <div className='flex-row flex-center'>
+                      <div className='flex-column flex-center'>
+                        <div className="date-calendar">{val.date}</div>
+                        <div className="month-calendar">{val.month}</div>
+                      </div>
+                      <div className='margin-left flex-column'>
+                        <div className="type-calendar">{val.type}</div>
+                        <div className="name-calendar">{val.name}</div>
+                      </div>
+                    </div>
+                      <img className="margin-top-16 margin-bot-16" src={LineCalendar} />
                   </div>
               )
           })}
