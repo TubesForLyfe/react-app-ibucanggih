@@ -8,6 +8,10 @@ import RightArrow from "../../img/RightArrow.png";
 import WhyIbuCanggih from "../../img/WhyIbuCanggih.png";
 import BenefitIbuCanggih from "../../img/BenefitIbuCanggih.png";
 import EventIbuCanggih from "../../img/EventIbuCanggih.png";
+import ArtikelHead from "../../img/Artikel-head.png";
+import Artikel1 from "../../img/artikel-1.png";
+import Artikel2 from "../../img/artikel-2.png";
+import Artikel3 from "../../img/artikel-3.png";
 import "./Landing.css";
 import "../../App.css";
 import FooterLanding from "../../components/FooterLanding/FooterLanding";
@@ -91,7 +95,15 @@ const Landing = () => {
               </div>
             </div>
         </div>
-        <div className='bg-purple'>
+        <div className='flex-column full-width'>
+          <img className='margin-left-20 margin-top margin-bot' src={ArtikelHead} />
+          <div className='margin-left-12'>
+            <img src={Artikel1} />
+            <img src={Artikel2} />
+            <img src={Artikel3} />
+          </div>
+        </div>
+        <div>
         <FooterLanding />
         </div>
       </div>
