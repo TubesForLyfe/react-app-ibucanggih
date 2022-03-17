@@ -108,6 +108,8 @@ const EditEventType = () => {
       <Link to="/admin/event-type" onClick={back}><h3 className="linkadmin">Event Type</h3></Link>
       <Link to="/admin/event" onClick={back}><h3 className="linkadmin">Event</h3></Link>
       <Link to="/admin/event-form" onClick={back}><h3 className="linkadmin">Event Form</h3></Link>
+      <Link to="/admin/banner" onClick={back}><h3 className="linkadmin">Banner</h3></Link>
+      <Link to="/admin/artikel" onClick={back}><h3 className="linkadmin">Artikel</h3></Link>
       <form className="editeventtype-admin">
             <div>
               <input type="text" name="name" placeholder=" Nama Tipe Event" value={name}

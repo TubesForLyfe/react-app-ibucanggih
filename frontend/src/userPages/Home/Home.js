@@ -7,11 +7,6 @@ import RightArrow from "../../img/RightArrow.png";
 import FooterHome from "../../components/FooterHome/FooterHome" 
 import "./Home.css"
 
-const Image = [
-  BannerWelcome
-];
-
-let slideInterval;
 const Home = () => {
   const [name, setName] = useState([]);
   const [image, setImage] = useState([]);
@@ -23,6 +18,20 @@ const Home = () => {
   const [roleLogIn, setRoleLogIn] = useState([]);
 
   Axios.defaults.withCredentials = true;
+
+  const [Image, setImageBanner] = useState([]);
+  
+  let slideInterval;
+
+  const getBannerHome = () => {
+    Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/get-bannerhome`).then((response) => {
+      let img = [];
+      for (let i = 0; i < response.data.length; i++) {
+        img[i] = response.data[i].image;
+      }
+      setImageBanner(img);
+    })
+  }
 
   const getUserId = (id) => {
     Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/profil`, {
@@ -63,6 +72,7 @@ const Home = () => {
     }).then(data => data.json()).then((data) => {
       setImage(`${process.env.REACT_APP_IBUCANGGIH_API}/` + data.image);
     })
+    getBannerHome();
   }, [])
 
   const [index, setIndex] = useState(0);
@@ -105,7 +115,7 @@ const Home = () => {
       <div className='flex-column'>
         <div ref={slideRef}>
           {index == 0 && <a href="https://bit.ly/PemenangIbuCanggih-A" target="_blank">
-            <img className="full-width" src={Image[index]} />
+            <img className="full-width" src={`${process.env.REACT_APP_IBUCANGGIH_API}/${Image[index]}`} />
           </a>}
         </div>
         <div>

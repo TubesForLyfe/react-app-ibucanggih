@@ -56,6 +56,8 @@ const User = () => {
           <Link to="/admin/event-type"><h3 className="linkadmin">Event Type</h3></Link>
           <Link to="/admin/event"><h3 className="linkadmin">Event</h3></Link>
           <Link to="/admin/event-form"><h3 className="linkadmin">Event Form</h3></Link>
+          <Link to="/admin/banner"><h3 className="linkadmin">Banner</h3></Link>
+          <Link to="/admin/artikel"><h3 className="linkadmin">Artikel</h3></Link>
           <div className="logout-button-admin" onClick={logOut}>
             <p className="logout-bg"></p>
             <p className="logout-text">Log Out</p>

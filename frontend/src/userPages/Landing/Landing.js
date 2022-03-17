@@ -1,9 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import { Link } from 'react-router-dom'
+import Axios from 'axios'
 
-import Logo from "../../img/Logo.png";
-import Banner1 from "../../img/Banner2.png";
-import Banner2 from "../../img/Banner3.png";
 import RightArrow from "../../img/RightArrow.png";
 import WhyIbuCanggih from "../../img/WhyIbuCanggih.png";
 import BenefitIbuCanggih from "../../img/BenefitIbuCanggih.png";
@@ -16,18 +14,38 @@ import "./Landing.css";
 import "../../App.css";
 import FooterLanding from "../../components/FooterLanding/FooterLanding";
 
-const Image = [
-  Banner1,
-  Banner2
-];
-
-let slideInterval;
 const Landing = () => {
   const [index, setIndex] = useState(0);
+  const [Image, setImage] = useState([]);
+  const [artikel, setArtikel] = useState([]);
   const slideRef = useRef();
+  
+  let slideInterval;
+
+  const getBannerLanding = () => {
+    Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/get-bannerlanding`).then((response) => {
+      let image = [];
+      for (let i = 0; i < response.data.length; i++) {
+        image[i] = response.data[i].image;
+      }
+      setImage(image);
+    })
+  }
+
+  const getArtikel = () => {
+    Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/get-artikel`).then((response) => {
+      setArtikel(response.data);
+    })
+  }
+
+  useEffect(() => {
+    getBannerLanding();
+    getArtikel();
+  }, [])
 
   const handleNextClick = () => {
     setIndex((index + 1) % Image.length);
+
     slideRef.current.classList.add('fade-anim');
   }
   
@@ -63,10 +81,10 @@ const Landing = () => {
       <div>
         <div className='carousels' ref={slideRef}>
           {index == 0 && <a href="https://bertsolution.com/our-community-ibu2canggih/" target="_blank">
-            <img className="full-width" src={Image[index]} />
+            <img className="full-width" src={`${process.env.REACT_APP_IBUCANGGIH_API}/${Image[index]}`} />
           </a>}
           {index == 1 && <a href="http://wa.me/6281326035476" target="_blank">
-            <img className="full-width" src={Image[index]} />
+            <img className="full-width" src={`${process.env.REACT_APP_IBUCANGGIH_API}/${Image[index]}`} />
           </a>}
         </div>
         <img className="left-slide-landing" src={RightArrow} onClick={handlePrevClick} />
@@ -98,12 +116,16 @@ const Landing = () => {
         <div className='flex-column full-width'>
           <img className='margin-left-20 margin-top margin-bot' src={ArtikelHead} />
           <div className='margin-left-12'>
-            <img src={Artikel1} />
-            <img src={Artikel2} />
-            <img src={Artikel3} />
+              {artikel.map((val, key) => {
+                  return (
+                    <div>
+                        <img src={`${process.env.REACT_APP_IBUCANGGIH_API}/${val.image}`} />
+                    </div>
+                  )
+              })}
           </div>
         </div>
-        <div>
+        <div className="margin-top-16">
         <FooterLanding />
         </div>
       </div>

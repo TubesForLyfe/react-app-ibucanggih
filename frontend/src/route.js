@@ -37,6 +37,12 @@ import DeleteEvent from "./adminPages/DeleteEvent/DeleteEvent"
 import EventForm from "./adminPages/EventForm/EventForm"
 import ValidEvent from "./adminPages/ValidEvent/ValidEvent"
 import InvalidEvent from "./adminPages/InvalidEvent/InvalidEvent"
+import Banner from "./adminPages/Banner/Banner"
+import AddBanner from "./adminPages/AddBanner/AddBanner"
+import DeleteBanner from "./adminPages/DeleteBanner/DeleteBanner"
+import Artikel from "./adminPages/Artikel/Artikel"
+import AddArtikel from "./adminPages/AddArtikel/AddArtikel"
+import DeleteArtikel from "./adminPages/DeleteArtikel/DeleteArtikel"
 
 const RouteManager = () => {
     const [logIn, setLogIn] = useState(false);
@@ -107,6 +113,12 @@ const RouteManager = () => {
                 <Route path="/admin/event-form" component={EventForm} />
                 <Route path="/admin/valid-event-form/:id" component={ValidEvent} />
                 <Route path="/admin/invalid-event-form/:id" component={InvalidEvent} />
+                <Route path="/admin/banner" component={Banner} />
+                <Route path="/admin/add-banner" component={AddBanner} />
+                <Route path="/admin/delete-banner/:id" component={DeleteBanner} />
+                <Route path="/admin/artikel" component={Artikel} />
+                <Route path="/admin/add-artikel" component={AddArtikel} />
+                <Route path="/admin/delete-artikel/:id" component={DeleteArtikel} />
                 <Route path="*">
                     <Redirect to="/admin" />
                 </Route>

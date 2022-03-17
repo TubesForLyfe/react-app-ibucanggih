@@ -919,4 +919,140 @@ app.put(`${base}/edit-user-poin/:id`, (req, res) => {
     )
 })
 
+app.get(`${base}/get-bannerlanding`, (req, res) => {
+    db.query (
+        "SELECT * FROM banner WHERE page = 'landing'",
+        (err, result) => {
+            if (err) {
+                res.send({message: err.message});
+            } else {
+                res.send(result);
+            }
+        }
+    )
+});
+
+app.get(`${base}/get-bannerhome`, (req, res) => {
+    db.query (
+        "SELECT * FROM banner WHERE page = 'home'",
+        (err, result) => {
+            if (err) {
+                res.send({message: err.message});
+            } else {
+                res.send(result);
+            }
+        }
+    )
+});
+
+app.post(`${base}/add-banner`, (req, res) => {
+    const page = req.body.page;
+    let link = req.body.link;
+    const image = req.body.image;
+
+    if (link == "") {
+        link = "#";
+    }
+    
+    db.query (
+        "INSERT INTO banner (image, link, page) VALUES (?,?,?)",
+        [image, link, page],
+        (err, result) => {
+            res.send(result);
+        }
+    );
+});
+
+app.post(`${base}/get-bannerid`, (req, res) => {
+    const id = req.body.id;
+
+    db.query (
+        "SELECT * FROM banner WHERE id = ?;",
+        id,
+        (err, result) => {
+            if (err) {
+                res.send({message: err.message});
+            } else {
+                res.send(result);
+            }
+        }
+    )
+});
+
+app.delete(`${base}/delete-banner/:id`, (req, res) => {
+    const id = req.params.id;
+
+    db.query (
+        "DELETE FROM banner WHERE id = ?", id,
+        (err, result) => {
+            if (err) {
+                res.send({message: err.message});
+            } else {
+                res.send(result);
+            }
+        }
+    )
+});
+
+app.get(`${base}/get-artikel`, (req, res) => {
+    db.query (
+        "SELECT * FROM artikel",
+        (err, result) => {
+            if (err) {
+                res.send({message: err.message});
+            } else {
+                res.send(result);
+            }
+        }
+    )
+});
+
+app.post(`${base}/add-artikel`, (req, res) => {
+    let link = req.body.link;
+    const image = req.body.image;
+
+    if (link == "") {
+        link = "#";
+    }
+    
+    db.query (
+        "INSERT INTO artikel (image, link) VALUES (?,?)",
+        [image, link],
+        (err, result) => {
+            res.send(result);
+        }
+    );
+});
+
+app.post(`${base}/get-artikelid`, (req, res) => {
+    const id = req.body.id;
+
+    db.query (
+        "SELECT * FROM artikel WHERE id = ?;",
+        id,
+        (err, result) => {
+            if (err) {
+                res.send({message: err.message});
+            } else {
+                res.send(result);
+            }
+        }
+    )
+});
+
+app.delete(`${base}/delete-artikel/:id`, (req, res) => {
+    const id = req.params.id;
+
+    db.query (
+        "DELETE FROM artikel WHERE id = ?", id,
+        (err, result) => {
+            if (err) {
+                res.send({message: err.message});
+            } else {
+                res.send(result);
+            }
+        }
+    )
+});
+
 app.listen(process.env.PORT, () => console.log(`Server running at port ${process.env.PORT}`));

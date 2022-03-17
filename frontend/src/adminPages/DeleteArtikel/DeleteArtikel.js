@@ -4,13 +4,9 @@ import Axios from 'axios'
 
 import Logo from "../../img/icon_white_circle.png"
 
-const ResetPoin = () => {
-  const [name, setName] = useState([]);
-  const [phone, setPhone] = useState([]);
-  const [address, setAddress] = useState([]);
-  const [wagroup, setWagroup] = useState([]);
-  const [email, setEmail] = useState([]);
-  const [poin, setPoin] = useState([]);
+const DeleteBanner = () => {
+  const [image, setImage] = useState([]);
+  const [link, setLink] = useState([]);
   
   const {id} = useParams();
   const history = useHistory();
@@ -20,23 +16,19 @@ const ResetPoin = () => {
 
   Axios.defaults.withCredentials = true;
 
-  const reset = (e) => {
+  const deleteArtikel = (e) => {
       e.preventDefault();
-      Axios.put(`${process.env.REACT_APP_IBUCANGGIH_API}/reset-poin/${id}`).then((response) => {
-          history.push('/admin/user');
+      Axios.delete(`${process.env.REACT_APP_IBUCANGGIH_API}/delete-artikel/${id}`).then((response) => {
+          history.push('/admin/artikel');
       })
   }
 
-  const getUserId = (id) => {
-    Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/profil`, {
+  const getArtikelId = (id) => {
+    Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/get-artikelid`, {
         id: id
     }).then((response) => {
-        setName(response.data[0].name);
-        setPhone(response.data[0].phone);
-        setAddress(response.data[0].address);
-        setWagroup(response.data[0].wagroup);
-        setEmail(response.data[0].email);
-        setPoin(response.data[0].poin);
+        setImage(response.data[0].image);
+        setLink(response.data[0].link);
     })
   }
 
@@ -49,7 +41,7 @@ const ResetPoin = () => {
         setLogIn(false);
       }
     })
-    getUserId(id);
+    getArtikelId(id);
   }, [])
 
   return (
@@ -61,21 +53,17 @@ const ResetPoin = () => {
       <Link to="/admin/event-type"><h3 className="linkadmin">Event Type</h3></Link>
       <Link to="/admin/event"><h3 className="linkadmin">Event</h3></Link>
       <Link to="/admin/event-form"><h3 className="linkadmin">Event Form</h3></Link>
-      <Link to="/admin/banner"><h3 className="linkadmin">Banner</h3></Link>
+      <Link to="/admin/banner"><h3 className="linkadmin">Banner</h3></Link> 
       <Link to="/admin/artikel"><h3 className="linkadmin">Artikel</h3></Link>
       <div className="delete-admin">
-        <p>Nama: {name}</p>
-        <p>Email: {email}</p>
-        <p>No Handphone: {phone}</p>
-        <p>Alamat: {address}</p>
-        <p>Asal Grup Whatsapp: {wagroup}</p>
-        <p>Poin: {poin}</p>
-        <h2>Reset poin?</h2>
-        <button onClick={reset}>Yes</button>
+        <img className="banner-image" src={`${process.env.REACT_APP_IBUCANGGIH_API}/${image}`} />
+        <p>Link: {link}</p>
+        <h2>Delete this artikel?</h2>
+        <button onClick={deleteArtikel}>Yes</button>
       </div>
       </div>}
     </div>
   )
 }
 
-export default ResetPoin
+export default DeleteBanner

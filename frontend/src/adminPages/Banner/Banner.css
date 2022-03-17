@@ -1,0 +1,10 @@
+.banner-image {
+    width: 300px;
+    height: 140px;
+}
+
+.banner-landing {
+    position: relative;
+    left: 500px;
+    top: -300px;
+}

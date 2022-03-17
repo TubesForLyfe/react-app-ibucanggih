@@ -55,6 +55,8 @@ const EventForm = () => {
           <div className="userexport-admin">
             <ExportFile csvData={eventForm} fileName={fileName} />
           </div>
+          <Link to="/admin/banner"><h3 className="linkadmin">Banner</h3></Link>
+          <Link to="/admin/artikel"><h3 className="linkadmin">Artikel</h3></Link>
           <div className="logout-button-admin" onClick={logOut}>
             <p className="logout-bg"></p>
             <p className="logout-text">Log Out</p>
