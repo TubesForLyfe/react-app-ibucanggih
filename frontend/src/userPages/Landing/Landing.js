@@ -17,6 +17,7 @@ import FooterLanding from "../../components/FooterLanding/FooterLanding";
 const Landing = () => {
   const [index, setIndex] = useState(0);
   const [Image, setImage] = useState([]);
+  const [banner, setBanner] = useState([]);
   const [artikel, setArtikel] = useState([]);
   const slideRef = useRef();
   
@@ -25,10 +26,13 @@ const Landing = () => {
   const getBannerLanding = () => {
     Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/get-bannerlanding`).then((response) => {
       let image = [];
+      let link = [];
       for (let i = 0; i < response.data.length; i++) {
         image[i] = response.data[i].image;
+        link[i] = response.data[i].link;
       }
       setImage(image);
+      setBanner(link)
     })
   }
 
@@ -80,12 +84,9 @@ const Landing = () => {
     <div>
       <div>
         <div className='carousels' ref={slideRef}>
-          {index == 0 && <a href="https://bertsolution.com/our-community-ibu2canggih/" target="_blank">
+          <a href={`${banner[index]}`} target="_blank">
             <img className="full-width" src={`${process.env.REACT_APP_IBUCANGGIH_API}/${Image[index]}`} />
-          </a>}
-          {index == 1 && <a href="http://wa.me/6281326035476" target="_blank">
-            <img className="full-width" src={`${process.env.REACT_APP_IBUCANGGIH_API}/${Image[index]}`} />
-          </a>}
+          </a>
         </div>
         <img className="left-slide-landing" src={RightArrow} onClick={handlePrevClick} />
         <img className="right-slide-landing" src={RightArrow} onClick={handleNextClick} />
@@ -118,9 +119,9 @@ const Landing = () => {
           <div className='margin-left-12'>
               {artikel.map((val, key) => {
                   return (
-                    <div>
+                    <a href={`${val.link}`} target="_blank">
                         <img src={`${process.env.REACT_APP_IBUCANGGIH_API}/${val.image}`} />
-                    </div>
+                    </a>
                   )
               })}
           </div>
