@@ -61,19 +61,21 @@ const EventType = () => {
             <p className="logout-bg"></p>
             <p className="logout-text">Log Out</p>
           </div>
-          <div className="list-admin">
-            <p>Nama Event Type</p>
-          </div>
-          <div>
-              {eventType.map((val, key) => {
+          <div className="tbl-admin">
+            <table className="tabel-admin">
+                <tr>
+                  <th>Nama Tipe Event</th>
+                </tr>
+                {eventType.map((val, key) => {
                   return (
-                    <div className="list-admin">
-                        <p>{val.name}</p>
-                        <Link to={`/admin/edit-event-type/${val.id}`} className="margin-left"><button>Edit</button></Link>
-                        <Link to={`/admin/delete-event-type/${val.id}`} className="margin-left"><button>Delete</button></Link>
-                    </div>
+                    <tr>
+                        <td>{val.name}</td>
+                        <td><Link to={`/admin/edit-event-type/${val.id}`}><button>Edit</button></Link></td>
+                        <td><Link to={`/admin/delete-event-type/${val.id}`}><button>Delete</button></Link></td>
+                    </tr>
                   )
               })}
+            </table>
           </div>
       </div>
       </div>}

@@ -61,19 +61,21 @@ const WAGroup = () => {
             <p className="logout-bg"></p>
             <p className="logout-text">Log Out</p>
           </div>
-          <div className="list-admin">
-            <p>Nama Grup Whatsapp</p>
-          </div>
-          <div>
-              {WAGroup.map((val, key) => {
+          <div className="tbl-admin">
+            <table className="tabel-admin">
+                <tr>
+                  <th>Nama Grup Whatsapp</th>
+                </tr>
+                {WAGroup.map((val, key) => {
                   return (
-                    <div className="list-admin">
-                        <p>{val.name}</p>
-                        <Link to={`/admin/edit-wagroup/${val.id}`} className="margin-left"><button>Edit</button></Link>
-                        <Link to={`/admin/delete-wagroup/${val.id}`} className="margin-left"><button>Delete</button></Link>
-                    </div>
+                    <tr>
+                        <td>{val.name}</td>
+                        <td><Link to={`/admin/edit-wagroup/${val.id}`} className="margin-left"><button>Edit</button></Link></td>
+                        <td><Link to={`/admin/delete-wagroup/${val.id}`} className="margin-left"><button>Delete</button></Link></td>
+                    </tr>
                   )
               })}
+            </table>
           </div>
       </div>
       </div>}

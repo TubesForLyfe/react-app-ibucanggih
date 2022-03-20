@@ -66,32 +66,32 @@ const Banner = () => {
             <p className="logout-bg"></p>
             <p className="logout-text">Log Out</p>
           </div>
-          <div className="list-admin">
-            <p>Halaman</p>
-            <p className="margin-left">Gambar</p>
-            <p className="margin-left">Link</p>
-          </div>
-          <div>
+          <div className="tbl-admin">
+            <table className="table-admin">
+              <th>Halaman</th>
+              <th>Gambar</th>
+              <th>Link</th>
               {bannerLanding.map((val, key) => {
                   return (
-                    <div className="list-admin">
-                        <p>{val.page}</p>
-                        <img className="banner-image margin-left" src={`${process.env.REACT_APP_IBUCANGGIH_API}/${val.image}`} />
-                        <p className="margin-left">{val.link}</p>
-                        <Link to={`/admin/delete-banner/${val.id}`} className="margin-left"><button>Delete</button></Link>
-                    </div>
+                    <tr>
+                        <td>{val.page}</td>
+                        <td><img className="banner-image" src={`${process.env.REACT_APP_IBUCANGGIH_API}/${val.image}`} /></td>
+                        <td>{val.link}</td>
+                        <td><Link to={`/admin/delete-banner/${val.id}`}><button>Delete</button></Link></td>
+                    </tr>
                   )
               })}
               {bannerHome.map((val, key) => {
                   return (
-                    <div className="list-admin">
-                        <p>{val.page}</p>
-                        <img className="banner-image margin-left" src={`${process.env.REACT_APP_IBUCANGGIH_API}/${val.image}`} />
-                        <p className="margin-left">{val.link}</p>
-                        <Link to={`/admin/delete-banner/${val.id}`} className="margin-left"><button>Delete</button></Link>
-                    </div>
+                    <tr>
+                        <td>{val.page}</td>
+                        <td><img className="banner-image" src={`${process.env.REACT_APP_IBUCANGGIH_API}/${val.image}`} /></td>
+                        <td>{val.link}</td>
+                        <td><Link to={`/admin/delete-banner/${val.id}`}><button>Delete</button></Link></td>
+                    </tr>
                   )
               })}
+            </table>
           </div>
       </div>
       </div>}

@@ -7,14 +7,16 @@ body {
     left: 25px;
 }
 
-.list-admin {
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    align-items: center;
-
+.tbl-admin {
     position: relative;
-    top: -400px;
-    width: 500px;
     margin-left: 400px;
+    top: -400px;
+}
+
+.table-admin {
+    width: 100%;
+}
+
+.table-admin, th, td {
+    border: 1px solid black;
 }

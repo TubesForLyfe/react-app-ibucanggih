@@ -61,27 +61,27 @@ const EventForm = () => {
             <p className="logout-bg"></p>
             <p className="logout-text">Log Out</p>
           </div>
-          <div className="list-admin">
-            <p>Nama Ibu</p>
-            <p className="margin-left">Nama Event</p>
-            <p className="margin-left">Tipe Event</p>
-            <p className="margin-left">Tanggal</p>
-            <p className="margin-left">Bukti</p>
-          </div>
-          <div>
+          <div className="tbl-admin">
+            <table className="table-admin">
+              <th>Nama Ibu</th>
+              <th>Nama Event</th>
+              <th>Tipe Event</th>
+              <th>Tanggal</th>
+              <th>Bukti</th>
               {eventForm.map((val, key) => {
                   return (
-                    <div className="list-admin">
-                        <p>{val.name}</p>
-                        <p className="margin-left">{val.eventname}</p>
-                        <p className="margin-left">{val.eventtype}</p>
-                        <p className="margin-left">{val.date} {val.month}</p>
-                        <img className="eventform-img margin-left" src={`${process.env.REACT_APP_IBUCANGGIH_API}/` + val.image} />
-                        <Link to={`/admin/valid-event-form/${val.id}`} className="margin-left"><button>Valid</button></Link>
-                        <Link to={`/admin/invalid-event-form/${val.id}`} className="margin-left"><button>Tidak Valid</button></Link>
-                    </div>
+                    <tr>
+                        <td>{val.name}</td>
+                        <td>{val.eventname}</td>
+                        <td>{val.eventtype}</td>
+                        <td>{val.date} {val.month}</td>
+                        <td><img className="eventform-img" src={`${process.env.REACT_APP_IBUCANGGIH_API}/` + val.image} /></td>
+                        <td><Link to={`/admin/valid-event-form/${val.id}`}><button>Valid</button></Link></td>
+                        <td><Link to={`/admin/invalid-event-form/${val.id}`}><button>Tidak Valid</button></Link></td>
+                    </tr>
                   )
               })}
+            </table>
           </div>
       </div>
       </div>}

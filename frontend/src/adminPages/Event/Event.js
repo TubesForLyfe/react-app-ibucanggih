@@ -61,25 +61,25 @@ const Event = () => {
             <p className="logout-bg"></p>
             <p className="logout-text">Log Out</p>
           </div>
-          <div className="list-admin">
-            <p>Nama Event</p>
-            <p className="margin-left">Tipe Event</p>
-            <p className="margin-left">Tanggal</p>
-            <p className="margin-left">Poin</p>
-          </div>
-          <div>
+          <div className="tbl-admin">
+            <table className="table-admin">
+              <th>Nama Event</th>
+              <th>Tipe Event</th>
+              <th>Tanggal</th>
+              <th>Poin</th>
               {event.map((val, key) => {
                   return (
-                    <div className="list-admin">
-                        <p>{val.name}</p>
-                        <p className="margin-left">{val.type}</p>
-                        <p className="margin-left">{val.date} {val.month}</p>
-                        <p className="margin-left">{val.poin}</p>
-                        <Link to={`/admin/edit-event/${val.id}`} className="margin-left"><button>Edit</button></Link>
-                        <Link to={`/admin/delete-event/${val.id}`} className="margin-left"><button>Delete</button></Link>
-                    </div>
+                    <tr>
+                        <td>{val.name}</td>
+                        <td>{val.type}</td>
+                        <td>{val.date} {val.month}</td>
+                        <td>{val.poin}</td>
+                        <td><Link to={`/admin/edit-event/${val.id}`}><button>Edit</button></Link></td>
+                        <td><Link to={`/admin/delete-event/${val.id}`}><button>Delete</button></Link></td>
+                    </tr>
                   )
               })}
+            </table>
           </div>
       </div>
       </div>}

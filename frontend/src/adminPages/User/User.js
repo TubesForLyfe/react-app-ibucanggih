@@ -62,30 +62,32 @@ const User = () => {
             <p className="logout-bg"></p>
             <p className="logout-text">Log Out</p>
           </div>
-          <div className="list-admin">
-            <p>Nama Lengkap</p>
-            <p className="margin-left">Email</p>
-            <p className="margin-left">No Handphone</p>
-            <p className="margin-left">Alamat</p>
-            <p className="margin-left">Asal Grup Whatsapp</p>
-            <p className="margin-left">Poin</p>
-          </div>
-          <div>
-              {user.map((val, key) => {
-                  return (
-                    <div className="list-admin">
-                        <p>{val.name}</p>
-                        <p className="margin-left">{val.email}</p>
-                        <p className="margin-left">{val.phone}</p>
-                        <p className="margin-left">{val.address}</p>
-                        <p className="margin-left">{val.wagroup}</p>
-                        <p className="margin-left">{val.poin}</p>
-                        <Link to={`/admin/edit-user/${val.id}`} className="margin-left"><button>Edit</button></Link>
-                        <Link to={`/admin/delete-user/${val.id}`} className="margin-left"><button>Delete</button></Link>
-                        <Link to={`/admin/reset-poin-user/${val.id}`} className="margin-left"><button>Reset Poin</button></Link>
-                    </div>
-                  )
-              })}
+          <div className="tbl-admin">
+            <table className="tabel-admin">
+                <tr>
+                  <th>Nama Lengkap</th>
+                  <th>Email</th>
+                  <th>No Handphone</th>
+                  <th>Alamat</th>
+                  <th>Asal Grup Whatsapp</th>
+                  <th>Poin</th>
+                </tr>
+                {user.map((val, key) => {
+                    return (
+                      <tr>
+                          <td>{val.name}</td>
+                          <td>{val.email}</td>
+                          <td>{val.phone}</td>
+                          <td>{val.address}</td>
+                          <td>{val.wagroup}</td>
+                          <td>{val.poin}</td>
+                          <td><Link to={`/admin/edit-user/${val.id}`}><button>Edit</button></Link></td>
+                          <td><Link to={`/admin/delete-user/${val.id}`}><button>Delete</button></Link></td>
+                          <td><Link to={`/admin/reset-poin-user/${val.id}`}><button>Reset Poin</button></Link></td>
+                      </tr>
+                    )
+                })}
+            </table>
           </div>
       </div>
       </div>}
