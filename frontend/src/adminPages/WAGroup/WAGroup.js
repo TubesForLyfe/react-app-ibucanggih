@@ -4,7 +4,6 @@ import Axios from 'axios'
 
 import Logo from "../../img/icon_white_circle.png"
 import { ExportFile } from '../../components/ExportFile/ExportFile'
-import "./WAGroup.css"
 
 const WAGroup = () => {
   const [WAGroup, setWAGroup] = useState([]);
@@ -62,13 +61,16 @@ const WAGroup = () => {
             <p className="logout-bg"></p>
             <p className="logout-text">Log Out</p>
           </div>
+          <div className="list-admin">
+            <p>Nama Grup Whatsapp</p>
+          </div>
           <div>
               {WAGroup.map((val, key) => {
                   return (
-                    <div className="wagroup-admin">
-                        <p>Nama Grup Whataapp: {val.name}</p>
-                        <Link to={`/admin/edit-wagroup/${val.id}`}><button>Edit</button></Link>
-                        <Link to={`/admin/delete-wagroup/${val.id}`}><button>Delete</button></Link>
+                    <div className="list-admin">
+                        <p>{val.name}</p>
+                        <Link to={`/admin/edit-wagroup/${val.id}`} className="margin-left"><button>Edit</button></Link>
+                        <Link to={`/admin/delete-wagroup/${val.id}`} className="margin-left"><button>Delete</button></Link>
                     </div>
                   )
               })}

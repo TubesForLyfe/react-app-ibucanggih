@@ -61,18 +61,24 @@ const EventForm = () => {
             <p className="logout-bg"></p>
             <p className="logout-text">Log Out</p>
           </div>
+          <div className="list-admin">
+            <p>Nama Ibu</p>
+            <p className="margin-left">Nama Event</p>
+            <p className="margin-left">Tipe Event</p>
+            <p className="margin-left">Tanggal</p>
+            <p className="margin-left">Bukti</p>
+          </div>
           <div>
               {eventForm.map((val, key) => {
                   return (
-                    <div className="eventform-admin">
-                        <p>Nama Ibu: {val.name}</p>
-                        <p>Nama Event: {val.eventname}</p>
-                        <p>Tipe Event: {val.eventtype}</p>
-                        <p>Tanggal: {val.date} {val.month}</p>
-                        <p>Bukti:</p>
-                        <img className="eventform-img" src={`${process.env.REACT_APP_IBUCANGGIH_API}/` + val.image} />
-                        <Link to={`/admin/valid-event-form/${val.id}`}><button>Valid</button></Link>
-                        <Link to={`/admin/invalid-event-form/${val.id}`}><button>Tidak Valid</button></Link>
+                    <div className="list-admin">
+                        <p>{val.name}</p>
+                        <p className="margin-left">{val.eventname}</p>
+                        <p className="margin-left">{val.eventtype}</p>
+                        <p className="margin-left">{val.date} {val.month}</p>
+                        <img className="eventform-img margin-left" src={`${process.env.REACT_APP_IBUCANGGIH_API}/` + val.image} />
+                        <Link to={`/admin/valid-event-form/${val.id}`} className="margin-left"><button>Valid</button></Link>
+                        <Link to={`/admin/invalid-event-form/${val.id}`} className="margin-left"><button>Tidak Valid</button></Link>
                     </div>
                   )
               })}

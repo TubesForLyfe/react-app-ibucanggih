@@ -4,7 +4,6 @@ import Axios from 'axios'
 
 import Logo from "../../img/icon_white_circle.png"
 import { ExportFile } from '../../components/ExportFile/ExportFile'
-import "./Event.css"
 
 const Event = () => {
   const [event, setEvent] = useState([]);
@@ -62,16 +61,22 @@ const Event = () => {
             <p className="logout-bg"></p>
             <p className="logout-text">Log Out</p>
           </div>
+          <div className="list-admin">
+            <p>Nama Event</p>
+            <p className="margin-left">Tipe Event</p>
+            <p className="margin-left">Tanggal</p>
+            <p className="margin-left">Poin</p>
+          </div>
           <div>
               {event.map((val, key) => {
                   return (
-                    <div className="event-admin">
-                        <p>Nama Event: {val.name}</p>
-                        <p>Tipe Event: {val.type}</p>
-                        <p>Date: {val.date} {val.month}</p>
-                        <p>Poin: {val.poin}</p>
-                        <Link to={`/admin/edit-event/${val.id}`}><button>Edit</button></Link>
-                        <Link to={`/admin/delete-event/${val.id}`}><button>Delete</button></Link>
+                    <div className="list-admin">
+                        <p>{val.name}</p>
+                        <p className="margin-left">{val.type}</p>
+                        <p className="margin-left">{val.date} {val.month}</p>
+                        <p className="margin-left">{val.poin}</p>
+                        <Link to={`/admin/edit-event/${val.id}`} className="margin-left"><button>Edit</button></Link>
+                        <Link to={`/admin/delete-event/${val.id}`} className="margin-left"><button>Delete</button></Link>
                     </div>
                   )
               })}

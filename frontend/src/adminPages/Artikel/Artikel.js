@@ -57,13 +57,17 @@ const Artikel = () => {
             <p className="logout-bg"></p>
             <p className="logout-text">Log Out</p>
           </div>
+          <div className="list-admin">
+            <p>Gambar</p>
+            <p className="margin-left">Link</p>
+          </div>
           <div>
               {artikel.map((val, key) => {
                   return (
-                    <div className="user-admin">
+                    <div className="list-admin">
                         <img className="banner-image" src={`${process.env.REACT_APP_IBUCANGGIH_API}/${val.image}`} />
-                        <p>Link: {val.link}</p>
-                        <Link to={`/admin/delete-artikel/${val.id}`}><button>Delete</button></Link>
+                        <p className="margin-left">{val.link}</p>
+                        <Link to={`/admin/delete-artikel/${val.id}`} className="margin-left"><button>Delete</button></Link>
                     </div>
                   )
               })}

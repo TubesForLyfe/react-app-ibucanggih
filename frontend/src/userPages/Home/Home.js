@@ -20,16 +20,20 @@ const Home = () => {
   Axios.defaults.withCredentials = true;
 
   const [Image, setImageBanner] = useState([]);
+  const [banner, setBanner] = useState([]);
   
   let slideInterval;
 
   const getBannerHome = () => {
     Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/get-bannerhome`).then((response) => {
       let img = [];
+      let link = [];
       for (let i = 0; i < response.data.length; i++) {
         img[i] = response.data[i].image;
+        link[i] = response.data[i].link;
       }
       setImageBanner(img);
+      setBanner(link);
     })
   }
 
@@ -114,9 +118,9 @@ const Home = () => {
     <div className=''>
       <div className='flex-column'>
         <div ref={slideRef}>
-          {index == 0 && <a href="https://bit.ly/PemenangIbuCanggih-A" target="_blank">
+          <a href={`${banner[index]}`} target="_blank">
             <img className="full-width" src={`${process.env.REACT_APP_IBUCANGGIH_API}/${Image[index]}`} />
-          </a>}
+          </a>
         </div>
         <div>
           <img className="left-slide" src={RightArrow} onClick={handlePrevClick} />

@@ -32,7 +32,7 @@ const Landing = () => {
         link[i] = response.data[i].link;
       }
       setImage(image);
-      setBanner(link)
+      setBanner(link);
     })
   }
 

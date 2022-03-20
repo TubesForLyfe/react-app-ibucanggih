@@ -62,19 +62,27 @@ const User = () => {
             <p className="logout-bg"></p>
             <p className="logout-text">Log Out</p>
           </div>
+          <div className="list-admin">
+            <p>Nama Lengkap</p>
+            <p className="margin-left">Email</p>
+            <p className="margin-left">No Handphone</p>
+            <p className="margin-left">Alamat</p>
+            <p className="margin-left">Asal Grup Whatsapp</p>
+            <p className="margin-left">Poin</p>
+          </div>
           <div>
               {user.map((val, key) => {
                   return (
-                    <div className="user-admin">
-                        <p>Nama Lengkap: {val.name}</p>
-                        <p>Email: {val.email}</p>
-                        <p>No Handphone: {val.phone}</p>
-                        <p>Alamat: {val.address}</p>
-                        <p>Asal Grup Whatsapp: {val.wagroup}</p>
-                        <p>Poin: {val.poin}</p>
-                        <Link to={`/admin/edit-user/${val.id}`}><button>Edit</button></Link>
-                        <Link to={`/admin/delete-user/${val.id}`}><button>Delete</button></Link>
-                        <Link to={`/admin/reset-poin-user/${val.id}`}><button>Reset Poin</button></Link>
+                    <div className="list-admin">
+                        <p>{val.name}</p>
+                        <p className="margin-left">{val.email}</p>
+                        <p className="margin-left">{val.phone}</p>
+                        <p className="margin-left">{val.address}</p>
+                        <p className="margin-left">{val.wagroup}</p>
+                        <p className="margin-left">{val.poin}</p>
+                        <Link to={`/admin/edit-user/${val.id}`} className="margin-left"><button>Edit</button></Link>
+                        <Link to={`/admin/delete-user/${val.id}`} className="margin-left"><button>Delete</button></Link>
+                        <Link to={`/admin/reset-poin-user/${val.id}`} className="margin-left"><button>Reset Poin</button></Link>
                     </div>
                   )
               })}
