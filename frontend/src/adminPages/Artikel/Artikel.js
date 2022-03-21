@@ -60,11 +60,13 @@ const Artikel = () => {
           <div className="tbl-admin">
             <table className="table-admin">
               <th>Gambar</th>
+              <th>Judul</th>
               <th>Link</th>
               {artikel.map((val, key) => {
                   return (
                     <tr>
                         <td><img className="banner-image" src={`${process.env.REACT_APP_IBUCANGGIH_API}/${val.image}`} /></td>
+                        <td>{val.name}</td>
                         <td>{val.link}</td>
                         <td><Link to={`/admin/delete-artikel/${val.id}`}><button>Delete</button></Link></td>
                     </tr>
