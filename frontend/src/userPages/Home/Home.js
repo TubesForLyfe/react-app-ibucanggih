@@ -3,12 +3,14 @@ import { Link, useParams } from 'react-router-dom'
 import Axios from 'axios'
 
 import BannerWelcome from "../../img/BannerWelcome.jpg";
+import BannerBephanten from "../../img/BannerBephanten.jpg";
 import RightArrow from "../../img/RightArrow.png";
 import FooterHome from "../../components/FooterHome/FooterHome" 
 import "./Home.css"
 
 const Image = [
-  BannerWelcome
+  BannerWelcome,
+  BannerBephanten
 ];
 
 let slideInterval;
@@ -105,6 +107,9 @@ const Home = () => {
       <div className='flex-column'>
         <div ref={slideRef}>
           {index == 0 && <a href="https://bit.ly/PemenangIbuCanggih-A" target="_blank">
+            <img className="full-width" src={Image[index]} />
+          </a>}
+          {index == 1 && <a href="https://s.id/DaftarBepanthenXIIC" target="_blank">
             <img className="full-width" src={Image[index]} />
           </a>}
         </div>
