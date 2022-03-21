@@ -2,18 +2,10 @@ import React, { useState, useEffect, useRef } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import Axios from 'axios'
 
-import BannerWelcome from "../../img/BannerWelcome.jpg";
-import BannerBephanten from "../../img/BannerBephanten.jpg";
 import RightArrow from "../../img/RightArrow.png";
 import FooterHome from "../../components/FooterHome/FooterHome" 
 import "./Home.css"
 
-const Image = [
-  BannerWelcome,
-  BannerBephanten
-];
-
-let slideInterval;
 const Home = () => {
   const [name, setName] = useState([]);
   const [image, setImage] = useState([]);
@@ -25,6 +17,24 @@ const Home = () => {
   const [roleLogIn, setRoleLogIn] = useState([]);
 
   Axios.defaults.withCredentials = true;
+
+  const [Image, setImageBanner] = useState([]);
+  const [banner, setBanner] = useState([]);
+  
+  let slideInterval;
+
+  const getBannerHome = () => {
+    Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/get-bannerhome`).then((response) => {
+      let img = [];
+      let link = [];
+      for (let i = 0; i < response.data.length; i++) {
+        img[i] = response.data[i].image;
+        link[i] = response.data[i].link;
+      }
+      setImageBanner(img);
+      setBanner(link);
+    })
+  }
 
   const getUserId = (id) => {
     Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/profil`, {
@@ -65,6 +75,7 @@ const Home = () => {
     }).then(data => data.json()).then((data) => {
       setImage(`${process.env.REACT_APP_IBUCANGGIH_API}/` + data.image);
     })
+    getBannerHome();
   }, [])
 
   const [index, setIndex] = useState(0);
@@ -106,12 +117,9 @@ const Home = () => {
     <div className=''>
       <div className='flex-column'>
         <div ref={slideRef}>
-          {index == 0 && <a href="https://bit.ly/PemenangIbuCanggih-A" target="_blank">
-            <img className="full-width" src={Image[index]} />
-          </a>}
-          {index == 1 && <a href="https://s.id/DaftarBepanthenXIIC" target="_blank">
-            <img className="full-width" src={Image[index]} />
-          </a>}
+          <a href={`${banner[index]}`} target="_blank">
+            <img className="full-width" src={`${process.env.REACT_APP_IBUCANGGIH_API}/${Image[index]}`} />
+          </a>
         </div>
         <div>
           <img className="left-slide" src={RightArrow} onClick={handlePrevClick} />

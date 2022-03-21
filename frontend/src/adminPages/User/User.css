@@ -2,20 +2,21 @@ body {
     margin: 0;
 }
 
-.user-admin {
-    position: relative;
-    width: 333px;
-    height: 235px;
-    left: 390px;
-    top: -300px;
-
-    background: #FFFFFF;
-
-    box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.08);
-    border-radius: 24px;
-}
-
 .userexport-admin  {
     position: relative;
     left: 25px;
+}
+
+.tbl-admin {
+    position: relative;
+    margin-left: 400px;
+    top: -400px;
+}
+
+.table-admin {
+    width: 100%;
+}
+
+.table-admin, th, td {
+    border: 1px solid black;
 }

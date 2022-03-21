@@ -3,11 +3,9 @@ import { Link, useHistory } from 'react-router-dom'
 import Axios from 'axios'
 
 import Logo from "../../img/icon_white_circle.png"
-import { ExportFile } from '../../components/ExportFile/ExportFile'
-import "./EventForm.css"
 
-const EventForm = () => {
-  const [eventForm, setEventForm] = useState([]);
+const Artikel = () => {
+  const [artikel, setArtikel] = useState([]);
   const history = useHistory();
 
   const [logIn, setLogIn] = useState(false);
@@ -15,13 +13,11 @@ const EventForm = () => {
 
   Axios.defaults.withCredentials = true;
 
-  const getEventForm = () => {
-      Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/get-eventform`).then((response) => {
-          setEventForm(response.data);
+  const getArtikel = () => {
+      Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/get-artikel`).then((response) => {
+          setArtikel(response.data);
       })
   }
-
-  const fileName = "IbuCanggih_EventForm"
 
   const logOut = (() => {
     Axios.delete(`${process.env.REACT_APP_IBUCANGGIH_API}/delete-cookies`).then((response) => {
@@ -39,11 +35,11 @@ const EventForm = () => {
         setLogIn(false);
       }
     })
-    getEventForm();
+    getArtikel();
   }, [])
 
   return (
-    <div className="landing-admin">
+    <div className='landing-admin'>
       {logIn && (roleLogIn == "admin") && <div>
       <div>
           <img className="imageadmin" src={Logo} />
@@ -52,32 +48,25 @@ const EventForm = () => {
           <Link to="/admin/event-type"><h3 className="linkadmin">Event Type</h3></Link>
           <Link to="/admin/event"><h3 className="linkadmin">Event</h3></Link>
           <Link to="/admin/event-form"><h3 className="linkadmin">Event Form</h3></Link>
-          <div className="userexport-admin">
-            <ExportFile csvData={eventForm} fileName={fileName} />
-          </div>
           <Link to="/admin/banner"><h3 className="linkadmin">Banner</h3></Link>
           <Link to="/admin/artikel"><h3 className="linkadmin">Artikel</h3></Link>
+          <div className="userexport-admin">
+            <Link to="/admin/add-artikel"><h4 className="linkadmin">Add Artikel</h4></Link>
+          </div>
           <div className="logout-button-admin" onClick={logOut}>
             <p className="logout-bg"></p>
             <p className="logout-text">Log Out</p>
           </div>
           <div className="tbl-admin">
             <table className="table-admin">
-              <th>Nama Ibu</th>
-              <th>Nama Event</th>
-              <th>Tipe Event</th>
-              <th>Tanggal</th>
-              <th>Bukti</th>
-              {eventForm.map((val, key) => {
+              <th>Gambar</th>
+              <th>Link</th>
+              {artikel.map((val, key) => {
                   return (
                     <tr>
-                        <td>{val.name}</td>
-                        <td>{val.eventname}</td>
-                        <td>{val.eventtype}</td>
-                        <td>{val.date} {val.month}</td>
-                        <td><img className="eventform-img" src={`${process.env.REACT_APP_IBUCANGGIH_API}/` + val.image} /></td>
-                        <td><Link to={`/admin/valid-event-form/${val.id}`}><button>Valid</button></Link></td>
-                        <td><Link to={`/admin/invalid-event-form/${val.id}`}><button>Tidak Valid</button></Link></td>
+                        <td><img className="banner-image" src={`${process.env.REACT_APP_IBUCANGGIH_API}/${val.image}`} /></td>
+                        <td>{val.link}</td>
+                        <td><Link to={`/admin/delete-artikel/${val.id}`}><button>Delete</button></Link></td>
                     </tr>
                   )
               })}
@@ -89,4 +78,4 @@ const EventForm = () => {
   )
 }
 
-export default EventForm
+export default Artikel

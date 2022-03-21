@@ -4,7 +4,6 @@ import Axios from 'axios'
 
 import Logo from "../../img/icon_white_circle.png"
 import { ExportFile } from '../../components/ExportFile/ExportFile'
-import "./WAGroup.css"
 
 const WAGroup = () => {
   const [WAGroup, setWAGroup] = useState([]);
@@ -56,20 +55,27 @@ const WAGroup = () => {
           <Link to="/admin/event-type"><h3 className="linkadmin">Event Type</h3></Link>
           <Link to="/admin/event"><h3 className="linkadmin">Event</h3></Link>
           <Link to="/admin/event-form"><h3 className="linkadmin">Event Form</h3></Link>
+          <Link to="/admin/banner"><h3 className="linkadmin">Banner</h3></Link>
+          <Link to="/admin/artikel"><h3 className="linkadmin">Artikel</h3></Link>
           <div className="logout-button-admin" onClick={logOut}>
             <p className="logout-bg"></p>
             <p className="logout-text">Log Out</p>
           </div>
-          <div>
-              {WAGroup.map((val, key) => {
+          <div className="tbl-admin">
+            <table className="tabel-admin">
+                <tr>
+                  <th>Nama Grup Whatsapp</th>
+                </tr>
+                {WAGroup.map((val, key) => {
                   return (
-                    <div className="wagroup-admin">
-                        <p>Nama Grup Whataapp: {val.name}</p>
-                        <Link to={`/admin/edit-wagroup/${val.id}`}><button>Edit</button></Link>
-                        <Link to={`/admin/delete-wagroup/${val.id}`}><button>Delete</button></Link>
-                    </div>
+                    <tr>
+                        <td>{val.name}</td>
+                        <td><Link to={`/admin/edit-wagroup/${val.id}`} className="margin-left"><button>Edit</button></Link></td>
+                        <td><Link to={`/admin/delete-wagroup/${val.id}`} className="margin-left"><button>Delete</button></Link></td>
+                    </tr>
                   )
               })}
+            </table>
           </div>
       </div>
       </div>}

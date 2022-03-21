@@ -2,19 +2,6 @@ body {
     margin: 0;
 }
 
-.eventform-admin {
-    position: relative;
-    width: 333px;
-    height: 400px;
-    left: 390px;
-    top: -300px;
-
-    background: #FFFFFF;
-
-    box-shadow: 0px 3px 6px 1px rgba(0, 0, 0, 0.08);
-    border-radius: 24px;
-}
-
 .eventform-img {
     width: 200px;
     height: 200px;

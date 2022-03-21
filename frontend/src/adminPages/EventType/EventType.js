@@ -4,7 +4,6 @@ import Axios from 'axios'
 
 import Logo from "../../img/icon_white_circle.png"
 import { ExportFile } from '../../components/ExportFile/ExportFile'
-import "./EventType.css"
 
 const EventType = () => {
   const [eventType, setEventType] = useState([]);
@@ -56,20 +55,27 @@ const EventType = () => {
           </div>
           <Link to="/admin/event"><h3 className="linkadmin">Event</h3></Link>
           <Link to="/admin/event-form"><h3 className="linkadmin">Event Form</h3></Link>
+          <Link to="/admin/banner"><h3 className="linkadmin">Banner</h3></Link>
+          <Link to="/admin/artikel"><h3 className="linkadmin">Artikel</h3></Link>
           <div className="logout-button-admin" onClick={logOut}>
             <p className="logout-bg"></p>
             <p className="logout-text">Log Out</p>
           </div>
-          <div>
-              {eventType.map((val, key) => {
+          <div className="tbl-admin">
+            <table className="tabel-admin">
+                <tr>
+                  <th>Nama Tipe Event</th>
+                </tr>
+                {eventType.map((val, key) => {
                   return (
-                    <div className="eventtype-admin">
-                        <p>Event Type: {val.name}</p>
-                        <Link to={`/admin/edit-event-type/${val.id}`}><button>Edit</button></Link>
-                        <Link to={`/admin/delete-event-type/${val.id}`}><button>Delete</button></Link>
-                    </div>
+                    <tr>
+                        <td>{val.name}</td>
+                        <td><Link to={`/admin/edit-event-type/${val.id}`}><button>Edit</button></Link></td>
+                        <td><Link to={`/admin/delete-event-type/${val.id}`}><button>Delete</button></Link></td>
+                    </tr>
                   )
               })}
+            </table>
           </div>
       </div>
       </div>}

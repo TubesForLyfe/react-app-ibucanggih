@@ -71,6 +71,8 @@ const EditEvent = () => {
       <Link to="/admin/event-type"><h3 className="linkadmin">Event Type</h3></Link>
       <Link to="/admin/event"><h3 className="linkadmin">Event</h3></Link>
       <Link to="/admin/event-form"><h3 className="linkadmin">Event Form</h3></Link>
+      <Link to="/admin/banner"><h3 className="linkadmin">Banner</h3></Link>
+      <Link to="/admin/artikel"><h3 className="linkadmin">Artikel</h3></Link>
       <form className="editevent-admin">
             <div>
               <input type="text" name="name" placeholder=" Nama Event" value={name}

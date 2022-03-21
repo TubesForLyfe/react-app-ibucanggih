@@ -4,7 +4,6 @@ import Axios from 'axios'
 
 import Logo from "../../img/icon_white_circle.png"
 import { ExportFile } from '../../components/ExportFile/ExportFile'
-import "./Event.css"
 
 const Event = () => {
   const [event, setEvent] = useState([]);
@@ -56,23 +55,31 @@ const Event = () => {
             <ExportFile csvData={event} fileName={fileName} />
           </div>
           <Link to="/admin/event-form"><h3 className="linkadmin">Event Form</h3></Link>
+          <Link to="/admin/banner"><h3 className="linkadmin">Banner</h3></Link>
+          <Link to="/admin/artikel"><h3 className="linkadmin">Artikel</h3></Link>
           <div className="logout-button-admin" onClick={logOut}>
             <p className="logout-bg"></p>
             <p className="logout-text">Log Out</p>
           </div>
-          <div>
+          <div className="tbl-admin">
+            <table className="table-admin">
+              <th>Nama Event</th>
+              <th>Tipe Event</th>
+              <th>Tanggal</th>
+              <th>Poin</th>
               {event.map((val, key) => {
                   return (
-                    <div className="event-admin">
-                        <p>Nama Event: {val.name}</p>
-                        <p>Tipe Event: {val.type}</p>
-                        <p>Date: {val.date} {val.month}</p>
-                        <p>Poin: {val.poin}</p>
-                        <Link to={`/admin/edit-event/${val.id}`}><button>Edit</button></Link>
-                        <Link to={`/admin/delete-event/${val.id}`}><button>Delete</button></Link>
-                    </div>
+                    <tr>
+                        <td>{val.name}</td>
+                        <td>{val.type}</td>
+                        <td>{val.date} {val.month}</td>
+                        <td>{val.poin}</td>
+                        <td><Link to={`/admin/edit-event/${val.id}`}><button>Edit</button></Link></td>
+                        <td><Link to={`/admin/delete-event/${val.id}`}><button>Delete</button></Link></td>
+                    </tr>
                   )
               })}
+            </table>
           </div>
       </div>
       </div>}
