@@ -1010,14 +1010,15 @@ app.get(`${base}/get-artikel`, (req, res) => {
 app.post(`${base}/add-artikel`, (req, res) => {
     let link = req.body.link;
     const image = req.body.image;
+    const name = req.body.name;
 
     if (link == "") {
         link = "#";
     }
     
     db.query (
-        "INSERT INTO artikel (image, link) VALUES (?,?)",
-        [image, link],
+        "INSERT INTO artikel (image, name, link) VALUES (?,?,?)",
+        [image, name, link],
         (err, result) => {
             res.send(result);
         }

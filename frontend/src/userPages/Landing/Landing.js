@@ -120,7 +120,17 @@ const Landing = () => {
               {artikel.map((val, key) => {
                   return (
                     <a href={`${val.link}`} target="_blank">
+                      <img src={`${process.env.REACT_APP_IBUCANGGIH_API}/${val.image}`} />
+                      {/* Ini untuk nama artikel
+                      <div className='artikel'>
                         <img src={`${process.env.REACT_APP_IBUCANGGIH_API}/${val.image}`} />
+                        <p className="margin-left-20">
+                          {val.name}
+                          <p className="detail-artikel">Selengkapnya {`>`}</p>
+                        </p>
+                        
+                      </div>
+                      */}
                     </a>
                   )
               })}

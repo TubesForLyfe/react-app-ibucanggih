@@ -5,6 +5,7 @@ import Axios from 'axios'
 import Logo from "../../img/icon_white_circle.png"
 
 const AddBanner = () => {
+  const [name, setName] = useState([]);
   const [link, setLink] = useState([]);
   const [image, setImage] = useState([]);
   const [imageView, setImageView] = useState([]);
@@ -21,6 +22,7 @@ const AddBanner = () => {
   const addArtikel = (e) => {
     e.preventDefault();
     Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/add-artikel`, {
+      name: name,
       link: link,
       image: image
     }).then((response) => {
@@ -83,6 +85,13 @@ const AddBanner = () => {
       <Link to="/admin/banner"><h3 className="linkadmin">Banner</h3></Link>
       <Link to="/admin/artikel"><h3 className="linkadmin">Artikel</h3></Link>
       <form className="editeventtype-admin">
+            <div>
+              <input type="text" name="name" placeholder=" Title" value={name}
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+              />
+            </div>
             <div>
               <input type="text" name="name" placeholder=" Link to" value={link}
                 onChange={(e) => {
