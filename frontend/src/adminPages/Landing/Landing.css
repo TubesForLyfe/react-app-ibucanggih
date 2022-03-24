@@ -2,13 +2,6 @@ body {
     margin: 0px;
 }
 
-.landing-admin {
-    position: relative;
-    background-color: #85296B;
-    display: flex;
-    left: -375px;
-}
-
 .imageadmin {
     position: relative;
     left: 132.5px;
@@ -19,7 +12,8 @@ body {
 .linkadmin {
     font-family: Avenir;
     font-style: normal;
-    color: #FFFFFF;
+    color: #85296B;
+    margin-left: 16px;
 }
 
 .logout-button-admin {

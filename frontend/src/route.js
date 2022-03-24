@@ -66,7 +66,7 @@ const RouteManager = () => {
     return (
         <Router>
             <Switch>
-                {!logIn && <div>
+                {!logIn && <div className="app">
                 <Route path="/" exact component={Landing} />
                 <Route path="/sign-up" component={Register} />
                 <Route path="/login" component={Login} />
@@ -75,7 +75,7 @@ const RouteManager = () => {
                 </Route>
                 </div>}
 
-                {logIn && roleLogIn == "user" && <div>
+                {logIn && roleLogIn == "user" && <div className="app">
                 <Route path="/profil/:id" component={Profile} />
                 <Route path="/edit-profil/:id" exact component={EditProfile} />
                 <Route path="/edit-profil/email/:id" component={EditProfileEmail} />

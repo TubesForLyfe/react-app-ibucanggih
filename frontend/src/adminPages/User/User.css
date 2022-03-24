@@ -9,8 +9,9 @@ body {
 
 .tbl-admin {
     position: relative;
-    margin-left: 400px;
-    top: -400px;
+    margin-left: 300px;
+    top: -350px;
+    margin-right: 64px;
 }
 
 .table-admin {

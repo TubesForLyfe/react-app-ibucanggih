@@ -41,7 +41,7 @@ const AddReward = () => {
       e.preventDefault();
       Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/add-eventform`, {
           id: id,
-          date: date,
+          date: parseInt(date),
           month: month,
           eventtype: eventType,
           eventname: eventName,

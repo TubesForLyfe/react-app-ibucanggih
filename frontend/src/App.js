@@ -6,7 +6,7 @@ import './App.css';
 function App() {
   document.title = "Ibu Canggih"
   return (
-    <div className="app">
+    <div>
       <RouteManager />
     </div>
   );
