@@ -2,7 +2,7 @@
 
 ### Deskripsi singkat program
 
-Website ini dibuat dengan menggunakan framework ReactJS, Express.js, dan MySQL. User dapat menambah poin reward pada halaman yang telah disediakan dengan mengisi data-data yang dibutuhkan. Website ini dapat menampilkan total poin yang sudah didapatkan oleh user dan detail setiap poin reward yang valid dan tidak valid. Website juga memiliki fitur admin yang dapat mengelola user, event, artikel, dan banner.
+Website ini dibuat dengan menggunakan framework ReactJS, Express.js, dan MySQL. User dapat mengedit profile dan menambah poin reward pada halaman yang telah disediakan dengan mengisi data-data yang dibutuhkan. Website ini dapat menampilkan total poin yang sudah didapatkan oleh user dan detail setiap poin reward yang valid dan tidak valid. Website juga memiliki fitur admin yang dapat mengelola user, grup whatsapp, event, artikel, dan banner.
 
 ### Cara Penggunaan Program
 
