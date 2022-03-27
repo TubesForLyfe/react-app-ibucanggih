@@ -11,6 +11,7 @@ const User = () => {
   const [startID, setStartID] = useState(1);
   const [finishID, setFinishID] = useState(10);
   const [page, setPage] = useState(1);
+  const [search, setSearch] = useState('');
   const history = useHistory();
 
   const [logIn, setLogIn] = useState(false);
@@ -28,7 +29,7 @@ const User = () => {
   }
 
   const handlePrevClick = () => {
-    if (page != 1) {
+    if (page != 1 && page != "") {
       setPage(page - 1);
       const id1 = startID - 10;
       const id2 = finishID - 10;
@@ -39,12 +40,32 @@ const User = () => {
   }
 
   const handleNextClick = () => {
-    setPage(page + 1);
-    const id1 = startID + 10;
-    const id2 = finishID + 10;
-    getUser(id1, id2);
-    setStartID(id1);
-    setFinishID(id2);
+    if (page == "") {
+      setPage(1);
+      getUser(1, 10);
+      setStartID(1);
+      setFinishID(10);
+      setSearch('')
+    } else {
+      setPage(page + 1);
+      const id1 = startID + 10;
+      const id2 = finishID + 10;
+      getUser(id1, id2);
+      setStartID(id1);
+      setFinishID(id2);
+    }
+  }
+
+  const searchUser = (e) => {
+    e.preventDefault();
+    Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/get-userbysearch`, {
+      search: search
+    }).then((response) => {
+        setUser(response.data);
+    })
+    if (page != "") {
+      setPage('');
+    }
   }
 
   const fileName = "IbuCanggih_User"
@@ -115,11 +136,19 @@ const User = () => {
                 })}
             </table>
           </div>
-          <div className="next-prev margin-top">
+          <div className="next-prev">
             <p onClick={handlePrevClick}>Prev</p>
             <p className='margin-left'>{page}</p>
             <p className='margin-left' onClick={handleNextClick}>Next</p>
           </div>
+          <form className="search-admin">
+            <input type="text" placeholder='Type words to search' value={search} 
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
+            />
+            <button onClick={searchUser}>Search</button>
+          </form>
       </div>
       </div>}
     </div>

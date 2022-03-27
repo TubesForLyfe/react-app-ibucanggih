@@ -32,4 +32,12 @@ body {
     margin-left: 300px;
     top: -350px;
     margin-right: 64px;
+    cursor: pointer;
+}
+
+.search-admin {
+    position: absolute;
+    margin-left: 300px;
+    margin-right: 64px;
+    top: 75px;
 }

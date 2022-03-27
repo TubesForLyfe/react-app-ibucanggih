@@ -7,6 +7,10 @@ import { ExportFile } from '../../components/ExportFile/ExportFile'
 
 const Event = () => {
   const [event, setEvent] = useState([]);
+  const [startID, setStartID] = useState(1);
+  const [finishID, setFinishID] = useState(10);
+  const [page, setPage] = useState(1);
+  const [search, setSearch] = useState('');
   const history = useHistory();
 
   const [logIn, setLogIn] = useState(false);
@@ -14,10 +18,53 @@ const Event = () => {
 
   Axios.defaults.withCredentials = true;
 
-  const getEvent = () => {
-      Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/get-eventname`).then((response) => {
-          setEvent(response.data);
-      })
+  const getEvent = (id1, id2) => {
+    Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/get-eventnamebyid`, {
+      id1: id1,
+      id2: id2
+    }).then((response) => {
+        setEvent(response.data);
+    })
+  }
+
+  const handlePrevClick = () => {
+    if (page != 1 && page != "") {
+      setPage(page - 1);
+      const id1 = startID - 10;
+      const id2 = finishID - 10;
+      getEvent(id1, id2);
+      setStartID(id1);
+      setFinishID(id2);
+    }
+  }
+
+  const handleNextClick = () => {
+    if (page == "") {
+      setPage(1);
+      getEvent(1, 10);
+      setStartID(1);
+      setFinishID(10);
+      setSearch('')
+    } else {
+      setPage(page + 1);
+      const id1 = startID + 10;
+      const id2 = finishID + 10;
+      getEvent(id1, id2);
+      setStartID(id1);
+      setFinishID(id2);
+    }
+  }
+
+  const searchEvent = (e) => {
+    e.preventDefault();
+    Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/get-eventnamebysearch`, {
+      search: search
+    }).then((response) => {
+        setEvent(response.data);
+    })
+    if (page != "") {
+      setPage('');
+    }
   }
 
   const fileName = "IbuCanggih_Event"
@@ -38,7 +85,7 @@ const Event = () => {
         setLogIn(false);
       }
     })
-    getEvent();
+    getEvent(startID, finishID);
   }, [])
 
   return (
@@ -81,6 +128,19 @@ const Event = () => {
               })}
             </table>
           </div>
+          <div className="next-prev">
+            <p onClick={handlePrevClick}>Prev</p>
+            <p className='margin-left'>{page}</p>
+            <p className='margin-left' onClick={handleNextClick}>Next</p>
+          </div>
+          <form className="search-admin">
+            <input type="text" placeholder='Type words to search' value={search} 
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
+            />
+            <button onClick={searchEvent}>Search</button>
+          </form>
       </div>
       </div>}
     </div>

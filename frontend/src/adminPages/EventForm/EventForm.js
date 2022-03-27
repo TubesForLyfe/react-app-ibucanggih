@@ -8,6 +8,7 @@ import "./EventForm.css"
 
 const EventForm = () => {
   const [eventForm, setEventForm] = useState([]);
+  const [search, setSearch] = useState('');
   const history = useHistory();
 
   const [logIn, setLogIn] = useState(false);
@@ -19,6 +20,15 @@ const EventForm = () => {
       Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/get-eventform`).then((response) => {
           setEventForm(response.data);
       })
+  }
+
+  const searchEventForm = (e) => {
+    e.preventDefault();
+    Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/get-eventformbysearch`, {
+      search: search
+    }).then((response) => {
+        setEventForm(response.data);
+    })
   }
 
   const fileName = "IbuCanggih_EventForm"
@@ -83,6 +93,14 @@ const EventForm = () => {
               })}
             </table>
           </div>
+          <form className="search-admin">
+            <input type="text" placeholder='Type words to search' value={search} 
+              onChange={(e) => {
+                setSearch(e.target.value);
+              }}
+            />
+            <button onClick={searchEventForm}>Search</button>
+          </form>
       </div>
       </div>}
     </div>

@@ -426,6 +426,21 @@ app.post(`${base}/get-userbyid`, (req, res) => {
     )
 });
 
+app.post(`${base}/get-userbysearch`, (req, res) => {
+    const search = req.body.search;
+
+    db.query (
+        `SELECT * FROM users WHERE name LIKE '%${search}%' OR email LIKE '%${search}%' OR phone LIKE '%${search}%' OR address LIKE '%${search}%' OR wagroup LIKE '%${search}%'`, 
+        (err, result) => {
+            if (err) {
+                res.send({message: err.message});
+            } else {
+                res.send(result);
+            }
+        }
+    )
+});
+
 app.delete(`${base}/delete-user/:id`, (req, res) => {
     const id = req.params.id;
 
@@ -566,6 +581,37 @@ app.post(`${base}/get-eventtypebycalendar`, (req, res) => {
 app.get(`${base}/get-eventname`, (req, res) => {
     db.query (
         "SELECT * FROM eventname",
+        (err, result) => {
+            if (err) {
+                res.send({message: err.message});
+            } else {
+                res.send(result);
+            }
+        }
+    )
+});
+
+app.post(`${base}/get-eventnamebyid`, (req, res) => {
+    const id1 = req.body.id1;
+    const id2 = req.body.id2;
+
+    db.query (
+        "SELECT * FROM eventname WHERE id >= ? AND id <= ?", [id1, id2],
+        (err, result) => {
+            if (err) {
+                res.send({message: err.message});
+            } else {
+                res.send(result);
+            }
+        }
+    )
+});
+
+app.post(`${base}/get-eventnamebysearch`, (req, res) => {
+    const search = req.body.search;
+
+    db.query (
+        `SELECT * FROM eventname WHERE name LIKE '%${search}%' OR type LIKE '%${search}%' OR date LIKE '%${search}%' OR month LIKE '%${search}%'`, 
         (err, result) => {
             if (err) {
                 res.send({message: err.message});
@@ -866,6 +912,21 @@ app.get(`${base}/get-eventform/:id`, (req, res) => {
 app.get(`${base}/get-eventform`, (req, res) => {
     db.query (
         "SELECT f.id, u.name, user_id, eventtype, f.eventname, f.date, f.month, f.image FROM eventform f, eventname n, users u WHERE u.id = f.user_id AND eventtype = type AND f.eventname = n.name AND f.date = n.date AND f.month = n.month AND review = 99",
+        (err, result) => {
+            if (err) {
+                res.send({message: err.message});
+            } else {
+                res.send(result);
+            }
+        }
+    )
+});
+
+app.post(`${base}/get-eventformbysearch`, (req, res) => {
+    const search = req.body.search;
+    
+    db.query (
+        `SELECT f.id, u.name, user_id, eventtype, f.eventname, f.date, f.month, f.image FROM eventform f, eventname n, users u WHERE u.id = f.user_id AND eventtype = type AND f.eventname = n.name AND f.date = n.date AND f.month = n.month AND review = 99 AND (u.name LIKE '%${search}%' OR eventtype LIKE '%${search}%' OR f.eventname LIKE '%${search}%' OR f.date LIKE '%${search}%' OR f.month LIKE '%${search}%')`,
         (err, result) => {
             if (err) {
                 res.send({message: err.message});
