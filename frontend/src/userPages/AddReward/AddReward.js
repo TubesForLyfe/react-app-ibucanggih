@@ -27,7 +27,7 @@ const AddReward = () => {
   const [activeEventName, setActiveEventName] = useState(false);
   const [listEventName, setListEventName] = useState([]);
 
-  const [image, setImage] = useState([]);
+  const [image, setImage] = useState('');
   const {id} = useParams();
   const history = useHistory();
 
@@ -39,16 +39,18 @@ const AddReward = () => {
 
   const addForm = (e) => {
       e.preventDefault();
-      Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/add-eventform`, {
-          id: id,
-          date: parseInt(date),
-          month: month,
-          eventtype: eventType,
-          eventname: eventName,
-          image: image
-      }).then((response) => {
-        history.push(`/submitted/${response.data}`)
-      })
+      if (month != "" && eventType != "" && eventName != "" && image != "") {
+        Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/add-eventform`, {
+            id: id,
+            date: parseInt(date),
+            month: month,
+            eventtype: eventType,
+            eventname: eventName,
+            image: image
+        }).then((response) => {
+          history.push(`/submitted/${response.data}`)
+        })
+      }
   }
 
   useEffect(() => {

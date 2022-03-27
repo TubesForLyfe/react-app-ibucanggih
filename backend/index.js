@@ -595,7 +595,10 @@ app.post(`${base}/get-calendar`, (req, res) => {
 
 app.post(`${base}/add-eventform`, (req, res) => {
     const user_id = req.body.id;
-    const date = req.body.date;
+    let date = req.body.date;
+    if (date < 10) {
+        date = "0" + date;
+    }
     const month = req.body.month;
     const eventtype = req.body.eventtype;
     const eventname = req.body.eventname;
