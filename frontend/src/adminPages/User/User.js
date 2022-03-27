@@ -8,6 +8,9 @@ import "./User.css"
 
 const User = () => {
   const [user, setUser] = useState([]);
+  const [startID, setStartID] = useState(1);
+  const [finishID, setFinishID] = useState(10);
+  const [page, setPage] = useState(1);
   const history = useHistory();
 
   const [logIn, setLogIn] = useState(false);
@@ -15,10 +18,33 @@ const User = () => {
 
   Axios.defaults.withCredentials = true;
 
-  const getUser = () => {
-      Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/get-user`).then((response) => {
+  const getUser = (id1, id2) => {
+      Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/get-userbyid`, {
+        id1: id1,
+        id2: id2
+      }).then((response) => {
           setUser(response.data);
       })
+  }
+
+  const handlePrevClick = () => {
+    if (page != 1) {
+      setPage(page - 1);
+      const id1 = startID - 10;
+      const id2 = finishID - 10;
+      getUser(id1, id2);
+      setStartID(id1);
+      setFinishID(id2);
+    }
+  }
+
+  const handleNextClick = () => {
+    setPage(page + 1);
+    const id1 = startID + 10;
+    const id2 = finishID + 10;
+    getUser(id1, id2);
+    setStartID(id1);
+    setFinishID(id2);
   }
 
   const fileName = "IbuCanggih_User"
@@ -39,7 +65,7 @@ const User = () => {
         setLogIn(false);
       }
     })
-    getUser();
+    getUser(startID, finishID);
   }, [])
 
   return (
@@ -88,6 +114,11 @@ const User = () => {
                     )
                 })}
             </table>
+          </div>
+          <div className="next-prev margin-top">
+            <p onClick={handlePrevClick}>Prev</p>
+            <p className='margin-left'>{page}</p>
+            <p className='margin-left' onClick={handleNextClick}>Next</p>
           </div>
       </div>
       </div>}

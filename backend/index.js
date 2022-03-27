@@ -410,6 +410,22 @@ app.get(`${base}/get-user`, (req, res) => {
     )
 });
 
+app.post(`${base}/get-userbyid`, (req, res) => {
+    const id1 = req.body.id1;
+    const id2 = req.body.id2;
+
+    db.query (
+        "SELECT * FROM users WHERE id >= ? AND id <= ?", [id1, id2],
+        (err, result) => {
+            if (err) {
+                res.send({message: err.message});
+            } else {
+                res.send(result);
+            }
+        }
+    )
+});
+
 app.delete(`${base}/delete-user/:id`, (req, res) => {
     const id = req.params.id;
 

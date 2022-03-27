@@ -21,3 +21,15 @@ body {
 .table-admin, th, td {
     border: 1px solid black;
 }
+
+.next-prev {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+
+    position: relative;
+    margin-left: 300px;
+    top: -350px;
+    margin-right: 64px;
+}
