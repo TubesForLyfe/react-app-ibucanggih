@@ -110,6 +110,15 @@ body {
     text-decoration: none;
 }
 
+.artikel-title {
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: 800;
+    font-size: 24px;
+    line-height: 18px;
+    color: #85296B;
+}
+
 .artikel {
     color: #000000;
     display: flex;
@@ -123,6 +132,10 @@ body {
     font-weight: 500;
     font-size: 16px;
     line-height: 18px;
+}
+
+.artikel-image {
+    border-radius: 10%;
 }
 
 .detail-artikel {

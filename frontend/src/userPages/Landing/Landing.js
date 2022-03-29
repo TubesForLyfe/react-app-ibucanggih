@@ -6,10 +6,6 @@ import RightArrow from "../../img/RightArrow.png";
 import WhyIbuCanggih from "../../img/WhyIbuCanggih.png";
 import BenefitIbuCanggih from "../../img/BenefitIbuCanggih.png";
 import EventIbuCanggih from "../../img/EventIbuCanggih.png";
-import ArtikelHead from "../../img/Artikel-head.png";
-import Artikel1 from "../../img/artikel-1.png";
-import Artikel2 from "../../img/artikel-2.png";
-import Artikel3 from "../../img/artikel-3.png";
 import "./Landing.css";
 import "../../App.css";
 import FooterLanding from "../../components/FooterLanding/FooterLanding";
@@ -115,15 +111,15 @@ const Landing = () => {
             </div>
         </div>
         <div className='flex-column full-width'>
-          <img className='margin-left-20 margin-top margin-bot' src={ArtikelHead} />
+          <p className='margin-left-20 margin-top margin-bot artikel-title'>Artikel _____________________</p>
           <div className='margin-left-12'>
               {artikel.map((val, key) => {
                   return (
                     <a href={`${val.link}`} target="_blank">
-                      <img src={`${process.env.REACT_APP_IBUCANGGIH_API}/${val.image}`} />
+                      <img className="artikel-image" src={`${process.env.REACT_APP_IBUCANGGIH_API}/${val.image}`} />
                       {/* Ini untuk nama artikel
                       <div className='artikel'>
-                        <img src={`${process.env.REACT_APP_IBUCANGGIH_API}/${val.image}`} />
+                        <img className="artikel-image" src={`${process.env.REACT_APP_IBUCANGGIH_API}/${val.image}`} />
                         <p className="margin-left-20">
                           {val.name}
                           <p className="detail-artikel">Selengkapnya {`>`}</p>
