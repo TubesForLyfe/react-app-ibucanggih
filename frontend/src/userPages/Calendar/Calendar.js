@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom'
 import Axios from 'axios'
 import Kalender from 'react-calendar'
 
-import Background from "../../img/Background.png";
 import LineCalendar from "../../img/LineDetailReward.png";
 import FooterHome from "../../components/FooterHome/FooterHome";
 import "./Calendar.css";
@@ -38,7 +37,7 @@ const Calendar = () => {
 
   const setEvent = (e) => {
     Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/get-calendar`, {
-      month: e.toString().substring(4,7)
+      month: e.activeStartDate.toString().substring(4,7)
     }).then((response) => {
       setListEvent(response.data);
     })
@@ -49,7 +48,7 @@ const Calendar = () => {
       {logIn && (roleLogIn == "user") && (id == idLogIn) && <div>
       <p className="title-calendar">Event Kalender</p>
       <div className="calendar-main">
-          <Kalender onChange={setEvent} />
+          <Kalender onActiveStartDateChange={setEvent} />
       </div>
       <p className="event-calendar">All Events</p>
       <div className='padding-horizontal-20'>
