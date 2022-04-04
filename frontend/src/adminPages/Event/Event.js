@@ -7,8 +7,7 @@ import { ExportFile } from '../../components/ExportFile/ExportFile'
 
 const Event = () => {
   const [event, setEvent] = useState([]);
-  const [startID, setStartID] = useState(1);
-  const [finishID, setFinishID] = useState(10);
+  const [listEvent, setListEvent] = useState([]);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
   const history = useHistory();
@@ -18,40 +17,50 @@ const Event = () => {
 
   Axios.defaults.withCredentials = true;
 
-  const getEvent = (id1, id2) => {
-    Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/get-eventnamebyid`, {
-      id1: id1,
-      id2: id2
-    }).then((response) => {
+  const min = (a, b) => {
+    if (a < b) {
+      return a;
+    } else {
+      return b;
+    }
+  }
+
+  const getEvent = () => {
+    Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/get-eventname`).then((response) => {
         setEvent(response.data);
+        let arrEvent = [];
+        for (let i = 0; i < min(response.data.length, 10); i++) {
+          arrEvent[i] = response.data[i];
+        }
+        setListEvent(arrEvent);
     })
   }
 
   const handlePrevClick = () => {
     if (page != 1 && page != "") {
       setPage(page - 1);
-      const id1 = startID - 10;
-      const id2 = finishID - 10;
-      getEvent(id1, id2);
-      setStartID(id1);
-      setFinishID(id2);
+      let arrEvent = [];
+      for (let i = 10 * (page - 2); i < 10 * (page - 1); i++) {
+        arrEvent[i] = event[i];
+      }
+      setListEvent(arrEvent);
     }
   }
 
   const handleNextClick = () => {
     if (page == "") {
       setPage(1);
-      getEvent(1, 10);
-      setStartID(1);
-      setFinishID(10);
       setSearch('')
+      getEvent();
     } else {
-      setPage(page + 1);
-      const id1 = startID + 10;
-      const id2 = finishID + 10;
-      getEvent(id1, id2);
-      setStartID(id1);
-      setFinishID(id2);
+      if (event.length / 10 > page) {
+        setPage(page + 1);
+        let arrEvent = [];
+        for (let i = 10 * page; i < min(event.length, 10 * (page + 1)); i++) {
+          arrEvent[i] = event[i];
+        }
+        setListEvent(arrEvent);
+      }
     }
   }
 
@@ -60,7 +69,7 @@ const Event = () => {
     Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/get-eventnamebysearch`, {
       search: search
     }).then((response) => {
-        setEvent(response.data);
+        setListEvent(response.data);
     })
     if (page != "") {
       setPage('');
@@ -85,7 +94,7 @@ const Event = () => {
         setLogIn(false);
       }
     })
-    getEvent(startID, finishID);
+    getEvent();
   }, [])
 
   return (
@@ -114,7 +123,7 @@ const Event = () => {
               <th>Tipe Event</th>
               <th>Tanggal</th>
               <th>Poin</th>
-              {event.map((val, key) => {
+              {listEvent.map((val, key) => {
                   return (
                     <tr>
                         <td>{val.name}</td>

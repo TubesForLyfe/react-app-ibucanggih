@@ -8,8 +8,7 @@ import "./User.css"
 
 const User = () => {
   const [user, setUser] = useState([]);
-  const [startID, setStartID] = useState(1);
-  const [finishID, setFinishID] = useState(10);
+  const [listUser, setListUser] = useState([]);
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
   const history = useHistory();
@@ -19,40 +18,50 @@ const User = () => {
 
   Axios.defaults.withCredentials = true;
 
-  const getUser = (id1, id2) => {
-      Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/get-userbyid`, {
-        id1: id1,
-        id2: id2
-      }).then((response) => {
+  const min = (a, b) => {
+    if (a < b) {
+      return a;
+    } else {
+      return b;
+    }
+  }
+
+  const getUser = () => {
+      Axios.get(`${process.env.REACT_APP_IBUCANGGIH_API}/get-user`).then((response) => {
           setUser(response.data);
-      })
+          let arrUser = [];
+          for (let i = 0; i < min(response.data.length, 10); i++) {
+            arrUser[i] = response.data[i];
+          }
+          setListUser(arrUser);
+      });
   }
 
   const handlePrevClick = () => {
     if (page != 1 && page != "") {
       setPage(page - 1);
-      const id1 = startID - 10;
-      const id2 = finishID - 10;
-      getUser(id1, id2);
-      setStartID(id1);
-      setFinishID(id2);
+      let arrUser = [];
+      for (let i = 10 * (page - 2); i < 10 * (page - 1); i++) {
+        arrUser[i] = user[i];
+      }
+      setListUser(arrUser);
     }
   }
 
   const handleNextClick = () => {
     if (page == "") {
       setPage(1);
-      getUser(1, 10);
-      setStartID(1);
-      setFinishID(10);
-      setSearch('')
+      setSearch('');
+      getUser();
     } else {
-      setPage(page + 1);
-      const id1 = startID + 10;
-      const id2 = finishID + 10;
-      getUser(id1, id2);
-      setStartID(id1);
-      setFinishID(id2);
+      if (user.length / 10 > page) {
+        setPage(page + 1);
+        let arrUser = [];
+        for (let i = 10 * page; i < min(user.length, 10 * (page + 1)); i++) {
+          arrUser[i] = user[i];
+        }
+        setListUser(arrUser);
+      }
     }
   }
 
@@ -61,7 +70,7 @@ const User = () => {
     Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/get-userbysearch`, {
       search: search
     }).then((response) => {
-        setUser(response.data);
+        setListUser(response.data);
     })
     if (page != "") {
       setPage('');
@@ -86,7 +95,7 @@ const User = () => {
         setLogIn(false);
       }
     })
-    getUser(startID, finishID);
+    getUser();
   }, [])
 
   return (
@@ -119,7 +128,7 @@ const User = () => {
                   <th>Asal Grup Whatsapp</th>
                   <th>Poin</th>
                 </tr>
-                {user.map((val, key) => {
+                {listUser.map((val, key) => {
                     return (
                       <tr>
                           <td>{val.name}</td>

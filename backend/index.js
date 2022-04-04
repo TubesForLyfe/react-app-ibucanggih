@@ -410,22 +410,6 @@ app.get(`${base}/get-user`, (req, res) => {
     )
 });
 
-app.post(`${base}/get-userbyid`, (req, res) => {
-    const id1 = req.body.id1;
-    const id2 = req.body.id2;
-
-    db.query (
-        "SELECT * FROM users WHERE id >= ? AND id <= ?", [id1, id2],
-        (err, result) => {
-            if (err) {
-                res.send({message: err.message});
-            } else {
-                res.send(result);
-            }
-        }
-    )
-});
-
 app.post(`${base}/get-userbysearch`, (req, res) => {
     const search = req.body.search;
 
@@ -581,22 +565,6 @@ app.post(`${base}/get-eventtypebycalendar`, (req, res) => {
 app.get(`${base}/get-eventname`, (req, res) => {
     db.query (
         "SELECT * FROM eventname",
-        (err, result) => {
-            if (err) {
-                res.send({message: err.message});
-            } else {
-                res.send(result);
-            }
-        }
-    )
-});
-
-app.post(`${base}/get-eventnamebyid`, (req, res) => {
-    const id1 = req.body.id1;
-    const id2 = req.body.id2;
-
-    db.query (
-        "SELECT * FROM eventname WHERE id >= ? AND id <= ?", [id1, id2],
         (err, result) => {
             if (err) {
                 res.send({message: err.message});
