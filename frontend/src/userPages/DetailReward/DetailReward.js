@@ -78,8 +78,8 @@ const DetailReward = () => {
   return (
     <div className='min-full-height'>
       {logIn && (roleLogIn == "user") && (id == idLogIn) && <div>
+      <img className="bg-detail" src={Background} />
       <div>
-          <img className="bg-detail" src={Background} />
           <img className="bg-detailreward" src={RewardBackground} />
           <p className="title-detailreward">
               Detail Poin Reward

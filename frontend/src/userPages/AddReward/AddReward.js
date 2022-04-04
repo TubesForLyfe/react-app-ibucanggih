@@ -129,8 +129,8 @@ const AddReward = () => {
   return (
     <div className='full-height'>
       {logIn && (roleLogIn == "user") && (id == idLogIn) && <div>
+      <img src={Background} />
       <div>
-          <img src={Background} />
           <img className="bg-addreward" src={RewardBackground} />
           <p className="title-addreward">
               Tambah Poin Reward

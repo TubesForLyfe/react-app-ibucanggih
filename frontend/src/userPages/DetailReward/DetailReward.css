@@ -24,6 +24,7 @@ body {
     
     background: #85296B;
     border-radius: 50%;
+    clip: rect(0px, 358px, 375px, 17px);
 }
 
 .title-detailreward {

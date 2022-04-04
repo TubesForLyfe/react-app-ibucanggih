@@ -6,11 +6,13 @@ body {
     position: absolute;
     width: 374px;
     height: 181px;
-    left: 0px;
-    top: -50px;
+    left: -5%;
+    top: -65px;
+    zoom: 110%;
     
     background: #85296B;
     border-radius: 50%;
+    clip: rect(0px, 358px, 375px, 17px);
 }
 
 .title-addreward {
@@ -25,6 +27,7 @@ body {
     font-weight: 900;
     font-size: 24px;
     line-height: 38px;
+    text-align: center;
 
     color: #FFFFFF;
 }
