@@ -14,6 +14,7 @@ import FooterAddReward from "../../components/FooterAddReward/FooterAddReward"
 import './AddReward.css'
 
 const AddReward = () => {
+  const [addRewardStatus, setAddRewardStatus] = useState('');
   const [activeCalendar, setActiveCalendar] = useState(false);
   const [date, setDate] = useState('');
   const [month, setMonth] = useState('');
@@ -50,6 +51,8 @@ const AddReward = () => {
         }).then((response) => {
           history.push(`/submitted/${response.data}`)
         })
+      } else {
+        setAddRewardStatus("Data belum diisi");
       }
   }
 
@@ -194,6 +197,7 @@ const AddReward = () => {
                 <p className="submit-addrewardbg"></p>
                 <p className="submit-addrewardtxt">Submit</p>
             </button>
+            <p className="add-rewardstatus">{addRewardStatus}</p>
           </form>
       </div>
       

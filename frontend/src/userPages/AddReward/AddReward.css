@@ -420,3 +420,16 @@ body {
     flex-grow: 0;
     margin: 0px 10px;
 }
+
+.add-rewardstatus {
+    position: relative;
+    font-family: Avenir;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 14px;
+    top: -275px;
+    left: 146px;
+
+    color: #E62828;
+}
