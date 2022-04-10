@@ -9,6 +9,8 @@ const Event = () => {
   const [event, setEvent] = useState([]);
   const [listEvent, setListEvent] = useState([]);
   const [page, setPage] = useState(1);
+  const [firstPage, setFirstPage] = useState('');
+  const [lastPage, setLastPage] = useState('');
   const [search, setSearch] = useState('');
   const history = useHistory();
 
@@ -33,11 +35,22 @@ const Event = () => {
           arrEvent[i] = response.data[i];
         }
         setListEvent(arrEvent);
+        let last = parseInt((response.data.length - 1) / 10) + 1;
+        if (last != 1) {
+          setLastPage(last);
+        }
     })
   }
 
   const handlePrevClick = () => {
     if (page != 1 && page != "") {
+      if (page - 1 == 1) {
+        setFirstPage('');
+      }
+      let last = parseInt((event.length - 1) / 10) + 1;
+      if (last != 1) {
+        setLastPage(last);
+      }
       setPage(page - 1);
       let arrEvent = [];
       for (let i = 10 * (page - 2); i < 10 * (page - 1); i++) {
@@ -54,6 +67,10 @@ const Event = () => {
       getEvent();
     } else {
       if (event.length / 10 > page) {
+        setFirstPage(1)
+        if (page + 1 == lastPage) {
+          setLastPage('');
+        } 
         setPage(page + 1);
         let arrEvent = [];
         for (let i = 10 * page; i < min(event.length, 10 * (page + 1)); i++) {
@@ -73,6 +90,12 @@ const Event = () => {
     })
     if (page != "") {
       setPage('');
+    }
+    if (firstPage != "") {
+      setFirstPage('');
+    }
+    if (lastPage != "") {
+      setLastPage('');
     }
   }
 
@@ -139,7 +162,11 @@ const Event = () => {
           </div>
           <div className="next-prev">
             <p onClick={handlePrevClick}>Prev</p>
-            <p className='margin-left'>{page}</p>
+            <p className='margin-left'>{firstPage}</p>
+            {page > 2 && <p className='margin-left-8'>..</p>}
+            <p className='margin-left-8'><strong><u>{page}</u></strong></p>
+            {page != '' && page < event.length / 10 - 1 && <p className='margin-left-8'>..</p>}
+            <p className='margin-left-8'>{lastPage}</p>
             <p className='margin-left' onClick={handleNextClick}>Next</p>
           </div>
           <form className="search-admin">
