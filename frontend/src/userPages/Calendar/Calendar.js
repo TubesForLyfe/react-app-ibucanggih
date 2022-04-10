@@ -43,12 +43,21 @@ const Calendar = () => {
     })
   }
 
+  const setEventByDate = (e) => {
+    Axios.post(`${process.env.REACT_APP_IBUCANGGIH_API}/get-calendarbydate`, {
+      month: e.toString().substring(4,7),
+      date: e.toString().substring(8,10)
+    }).then((response) => {
+      setListEvent(response.data);
+    })
+  }
+
   return (
     <div className='flex-column min-full-height'>
       {logIn && (roleLogIn == "user") && (id == idLogIn) && <div>
       <p className="title-calendar">Event Kalender</p>
       <div className="calendar-main">
-          <Kalender onActiveStartDateChange={setEvent} />
+          <Kalender onActiveStartDateChange={setEvent} onChange={setEventByDate}/>
       </div>
       <p className="event-calendar">All Events</p>
       <div className='padding-horizontal-20'>

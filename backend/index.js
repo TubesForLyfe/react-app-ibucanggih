@@ -612,7 +612,23 @@ app.post(`${base}/get-calendar`, (req, res) => {
     const month = req.body.month;
 
     db.query (
-        "SELECT * FROM eventname WHERE month = ? order by date", month,
+        "SELECT * FROM eventname WHERE month = ? ORDER BY date", month,
+        (err, result) => {
+            if (err) {
+                res.send({message: err.message});
+            } else {
+                res.send(result);
+            }
+        }
+    )
+});
+
+app.post(`${base}/get-calendarbydate`, (req, res) => {
+    const month = req.body.month;
+    const date = req.body.date;
+
+    db.query (
+        "SELECT * FROM eventname WHERE month = ? AND date = ?", [month, date],
         (err, result) => {
             if (err) {
                 res.send({message: err.message});

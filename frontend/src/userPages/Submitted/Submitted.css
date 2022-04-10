@@ -2,6 +2,11 @@ body {
     margin: 0;
 }
 
+.bg-submit {
+    max-width: 374px;
+    height: 750px;
+}
+
 .terimakasih {
     position: absolute;
     width: 188px;

@@ -30,7 +30,7 @@ const Submitted = () => {
   return (
     <div>
       {logIn && (roleLogIn == "user") && (id == idLogIn) && <div>
-      <img src={Background} />
+      <img className="bg-submit" src={Background} />
       <p className="terimakasih">Terima kasih!</p>
       <img className="submission" src={Submission} />
       <p className="txt-submission">Submission Ibu sudah diterima</p>

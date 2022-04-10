@@ -193,10 +193,10 @@ const AddReward = () => {
             </div>}
             </div>}
             </div>}
-            <button onClick={addForm}>
+            <div onClick={addForm}>
                 <p className="submit-addrewardbg"></p>
                 <p className="submit-addrewardtxt">Submit</p>
-            </button>
+            </div>
             <p className="add-rewardstatus">{addRewardStatus}</p>
           </form>
       </div>
